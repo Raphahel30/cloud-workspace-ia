@@ -250,7 +250,7 @@ export class OfficeRenderer {
     const first=this.actorTransitions.get(this.actors[0].id);
     this.host.dataset.pose=poseAt(state,this.elapsed-(first?.since??0),0,this.view.reduced,first?.from).pose;
     this.host.dataset.agentStates=JSON.stringify(Object.fromEntries(this.actorTransitions));
-    if(fps>0||this.moving)this.timer=setTimeout(()=>this.tick(),1000/(fps||30));
+    if(fps>0||this.moving)this.timer=setTimeout(()=>this.tick(),Math.max(0,1000/(fps||30)-(performance.now()-now)));
   }
   private release() {
     if(this.released)return;this.released=true;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { AgentVisualState } from './core-contracts/agentState';
 import Office from './components/Office';
 import FloorDetails from './components/FloorDetails';
@@ -25,7 +25,12 @@ export default function App() {
   const [paused,setPaused] = useState(false);
   const [reduced,setReduced] = useState(()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(()=>{const query=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>setReduced(query.matches);query.addEventListener('change',change);return()=>query.removeEventListener('change',change);},[]);
-  const resetZoom=()=>{setZoomed(false);requestAnimationFrame(()=>document.querySelectorAll<HTMLButtonElement>('.scene-sector-buttons button')[4-floorOrder.indexOf(selected)]?.focus());};
+  const previousZoom=useRef(false);
+  useLayoutEffect(()=>{
+    if(previousZoom.current&&!zoomed)document.querySelectorAll<HTMLButtonElement>('.scene-sector-buttons button')[4-floorOrder.indexOf(selected)]?.focus();
+    previousZoom.current=zoomed;
+  },[zoomed,selected]);
+  const resetZoom=()=>setZoomed(false);
   useEffect(()=>{
     const key=(event:KeyboardEvent)=>{
       if(page!=='office'||(event.target instanceof HTMLElement&&event.target.closest('select,input,textarea')))return;
