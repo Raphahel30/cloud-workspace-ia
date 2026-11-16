@@ -11,3 +11,5 @@ src-tauri/target/
 *.pem
 .venv/
 __pycache__/
+test-results/
+playwright-report/

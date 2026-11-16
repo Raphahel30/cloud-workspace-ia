@@ -10,18 +10,25 @@
     "tauri": "tauri",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
-    "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs"
+    "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs",
+    "test:contracts": "node --experimental-strip-types --test tests/agentState.node.test.mjs",
+    "test:e2e": "playwright test",
+    "art:build": "node scripts/generate-assets.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",
+    "pixi.js": "^8.23.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@tauri-apps/cli": "^2.0.0",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.4.0",
+    "sharp": "^0.35.5",
     "typescript": "^5.8.0",
     "vite": "^6.2.0",
     "vitest": "^3.1.0"
