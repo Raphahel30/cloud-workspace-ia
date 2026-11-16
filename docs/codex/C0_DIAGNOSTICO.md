@@ -17,3 +17,7 @@ Problemas observados e tratados:
 - Revisão independente: transições paradas deslizavam e falha de import assíncrono não chegava ao fallback. Ambos reproduzidos por testes antes da correção e corrigidos. Revisão posterior sem novos P1/P2.
 
 Não são impedimentos resolvidos: validação nativa Windows e acabamento artístico final premium. Ver relatório final e capturas reais.
+
+## 2026-11-16 23:55:14 UTC — diagnóstico da correção artística R03
+
+A estratégia exclusivamente geométrica foi rejeitada pelo usuário; runtime técnico preservado no commit `5c23397`. Nova etapa limitada a duas propostas ilustradas e comparação documental para aprovação, sem novos sprites ou alterações de aplicação. Geração image_gen guiada pela referência disponível: duas propostas 1536×1024 exportadas. Drive conectado: subpasta `1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0` criada no projeto existente; duas imagens enviadas e confirmadas por busca de metadados, com tamanhos 2.817.164 e 2.951.479 bytes. Chromium bloqueou abertura `file://` do comparativo (`ERR_BLOCKED_BY_ADMINISTRATOR`); exportação documental usa servidor HTTP restrito a localhost:1421. Nenhum deploy ou nova aplicação.

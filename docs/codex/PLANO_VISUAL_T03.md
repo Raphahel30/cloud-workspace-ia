@@ -25,10 +25,17 @@ Executado: materiais/luz rasterizada, personagens e mobiliário detalhados; atla
 
 A aparência das rodadas anteriores foi REJEITADA. Preservar tudo como protótipo técnico; não seguir com refinamentos geométricos ou expansão de sprites. A referência aprovada é o alvo principal, sem substituição de estilo.
 
-- [ ] 1. Produzir conceito estático ilustrado do prédio inteiro, fiel a composição/proporção/materiais/luz da referência.
-- [ ] 2. Produzir conceito ampliado de um andar com personagens e mobiliário na mesma qualidade.
-- [ ] 3. Comparar referência / versão atual / propostas e exportar para APROVAÇÃO HUMANA.
+- [x] 1. Produzir conceito estático ilustrado do prédio inteiro, fiel a composição/proporção/materiais/luz da referência.
+- [x] 2. Produzir conceito ampliado de um andar com personagens e mobiliário na mesma qualidade.
+- [x] Comparar referência / versão atual / propostas e exportar o material.
+- [ ] 3. Receber APROVAÇÃO HUMANA explícita das duas propostas.
 - [ ] Backup: manter arte, prompts, comparação e registros no repositório e no Drive quando a gravação for verificada.
 - [!] 4. Implementação e expansão de sprites BLOQUEADAS até aprovação explícita; depois planejar arte original independente por camadas e animações PixiJS, preservando sistemas existentes.
 
 Registro contínuo obrigatório: `docs/codex/STATUS_CONTINUO_CODEX.md`. Diretório da rodada: `docs/codex/direcao-artistica/R03/`. Propostas estáticas são conceitos, nunca capturas de funcionamento.
+
+2026-11-16 23:48:04 UTC: [x] Etapa 1 exportada em `direcao-artistica/R03/R03_01_PREDIO_INTEIRO_PROPOSTA_NAO_APROVADA.png`; [ ] aprovação; [ ] Etapa 2 em produção.
+
+2026-11-16 23:52:33 UTC: [x] Etapa 2 exportada; [ ] comparação/backup; [ ] aprovação artística de ambas. Etapa 4 bloqueada.
+
+2026-11-16 23:59:56 UTC: [x] comparativo HTML/PNG/PDF pronto e inspecionado; [x] duas propostas e dois comparativos gravados e verificados no Drive; [ ] pacote/registros finais em preparação; [ ] aprovação pendente.
