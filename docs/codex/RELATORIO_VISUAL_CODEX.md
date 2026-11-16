@@ -100,4 +100,4 @@ Sem filtros pesados, renderização automática/ticker permanente ou serviço de
 
 Histórico de implementação: commits desta branch em relação a `origin/main` (`git log --oneline origin/main..HEAD`), incluindo preparação `cd5a9be` e renderer/atlas `0c3c3b6`.
 
-PR de revisão: URL registrada após abertura na entrega desta branch.
+PR de revisão (rascunho, aberto, sem merge): https://github.com/Raphahel30/cloud-workspace-ia/pull/1 .
