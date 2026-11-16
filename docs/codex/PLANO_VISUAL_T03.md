@@ -14,3 +14,9 @@ Arquitetura: preservar App, FloorDetails, Tauri e contratos. Substituir somente 
 Riscos a verificar: desmontagem durante init assíncrono; contexto WebGL indisponível; zoom após resize; aba oculta/intersection; redução de movimento; conteúdo fora da tela em notebook. Testes cobrem estados, câmera, pause/visibilidade e desmontagem/remontagem. Falha gráfica deve apresentar mensagem acessível, nunca trocar pela referência.
 
 Conflito histórico: Plano Mestre menciona repositório ainda não criado e proibição anterior de criar GitHub. A autorização atual nomeia o repositório existente e pede branch/PR; não autoriza integrações de produto, merge nem deploy. Sem mudança das decisões funcionais.
+
+## Continuação autorizada — PR #1, rodada premium 2
+
+Hardware de referência: Ryzen 5 5600G / Radeon integrada / 16 GB RAM / NVMe 512 GB. Arquitetura permanece PixiJS 8 + React/Tauri, sem depender de ensaio prévio no Windows.
+
+Executado: materiais/luz rasterizada, personagens e mobiliário detalhados; atlas recortado com origem preservada; interiores ampliados, fachada e vegetação; máquina visual de trajetos pelo corredor, aproximação, sentar/levantar e saída; elevador com paradas/portas; cache seletivo avaliado no Cloud; testes de regressão, novas capturas, benchmark e relatório. Manter as metas 30/10/0 FPS e registrar desempenho efetivo sem prometer resultado no hardware alvo. Nenhuma integração, contrato protegido, merge ou deploy autorizado nesta continuação.
