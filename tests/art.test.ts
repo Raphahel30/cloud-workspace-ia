@@ -11,3 +11,21 @@ it('ships genuinely distinct raster frames for the required actions',async()=>{
    expect(new Set(pixels).size,pose).toBe(count);
  }
 });
+
+it('packs extra poses into one small atlas without losing the original foot origin',async()=>{
+ const atlas=JSON.parse(await readFile('public/art/office.json','utf8'));
+ const meta=await sharp('public/art/office.png').metadata();
+ expect(meta.width).toBe(atlas.meta.size.w);expect(meta.height).toBe(atlas.meta.size.h);
+ expect(meta.width!*meta.height!*4).toBeLessThan(5*1024*1024);
+ for(const name of ['sit-0','sit-1','stand-0','stand-1','walk-back-0','seated-wait-0']){
+  const f=atlas.frames[name];expect(f.sourceSize).toEqual({w:128,h:128});
+  expect(f.spriteSourceSize.y+f.spriteSourceSize.h).toBeLessThanOrEqual(121);
+  expect(f.frame.x+f.frame.w).toBeLessThanOrEqual(meta.width!);
+  expect(f.frame.y+f.frame.h).toBeLessThanOrEqual(meta.height!);
+ }
+ const entries=Object.values(atlas.frames) as Array<{frame:{x:number;y:number;w:number;h:number}}>;
+ for(let i=0;i<entries.length;i++)for(let j=i+1;j<entries.length;j++){
+  const a=entries[i].frame,b=entries[j].frame;
+  expect(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y).toBe(true);
+ }
+});

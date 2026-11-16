@@ -1,5 +1,6 @@
 /** Original Cloud Workspace pixel artwork. Sources are editable SVG; raster atlas is reproducible. */
 import sharp from 'sharp';
+import {premiumArt} from './art/premium.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 await mkdir('public/art',{recursive:true});
 await mkdir('assets/source',{recursive:true});
@@ -41,13 +42,27 @@ for(const [pose,count] of [['walk',4],['type',4],['idle',2],['wait',2],['error',
  if(pose==='unknown')b+=r(50,40,12,14,'#526c80')+r(54,43,5,2,'#d0dce4')+r(57,45,2,3,'#d0dce4')+r(54,50,2,2,'#d0dce4');
  art[`${pose}-${f}`]=b;
 }
-for(const name of Object.keys(art).filter(n=>/^(walk|type|idle|wait|error|unknown)-/.test(n))) {
+premiumArt(art,r,p);
+for(const name of Object.keys(art).filter(n=>/^(walk|walk-back|type|idle|wait|error|unknown|sit|stand|seated)-/.test(n))) {
   const palettes=[['#7389a9','#a9b9c9','#3c5678'],['#a889c3','#d1b9db','#66517f'],['#58a598','#9bd0ba','#356d72'],['#c69b70','#e6c490','#8a654b'],['#6f9cbd','#b2d2dc','#456882']];
-  palettes.forEach((colors,i)=>art[`${name}-c${i}`]=art[name].replaceAll('#7389a9',colors[0]).replaceAll('#a9b9c9',colors[1]).replaceAll('#3c5678',colors[2]));
+  palettes.forEach((colors,i)=>art[`${name}-c${i}`]=art[name].replaceAll('#7389a9',colors[0]).replaceAll('#a9b9c9',colors[1]).replaceAll('#3c5678',colors[2]).replaceAll('#553c3e',['#553c3e','#655078','#684938','#463941','#434555'][i]).replaceAll('#916151',['#916151','#9e7fb8','#ab7b53','#857371','#7e8587'][i]));
 }
-const names=Object.keys(art),columns=8,cell=128,rows=Math.ceil(names.length/columns);
-const frames={},composite=[];
-for(let i=0;i<names.length;i++) {const name=names[i];const source=svg(art[name]);await writeFile(`assets/source/${name}.svg`,source);const png=await sharp(Buffer.from(source)).png().toBuffer();const x=i%columns*cell,y=Math.floor(i/columns)*cell;composite.push({input:png,left:x,top:y});frames[name]={frame:{x,y,w:cell,h:cell},sourceSize:{w:cell,h:cell},spriteSourceSize:{x:0,y:0,w:cell,h:cell},trimmed:false,rotated:false};}
-await sharp({create:{width:columns*cell,height:rows*cell,channels:4,background:'#00000000'}}).composite(composite).png().toFile('public/art/office.png');
-await writeFile('public/art/office.json',JSON.stringify({frames,meta:{image:'office.png',scale:'1',size:{w:columns*cell,h:rows*cell}},animations:{walk:['walk-0','walk-1','walk-2','walk-3'],type:['type-0','type-1','type-2','type-3'],idle:['idle-0','idle-1'],wait:['wait-0','wait-1'],error:['error-0','error-1'],unknown:['unknown-0','unknown-1']}},null,2));
-console.log(`${names.length} original sprites → public/art/office.{png,json}`);
+// Crop transparent margins, preserving each sprite's 128px source origin for Pixi anchors.
+const names=Object.keys(art),width=1024,frames={},composite=[];
+let packX=0,packY=0,rowHeight=0;
+for(const name of names) {
+ const source=svg(art[name]);await writeFile(`assets/source/${name}.svg`,source);
+ const {data,info}=await sharp(Buffer.from(source)).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+ let minX=127,minY=127,maxX=0,maxY=0;
+ for(let y=0;y<128;y++)for(let x=0;x<128;x++)if(data[(y*128+x)*4+3]){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}
+ const w=maxX-minX+1,h=maxY-minY+1;
+ if(packX+w+2>width){packX=0;packY+=rowHeight+2;rowHeight=0;}
+ const png=await sharp(data,{raw:info}).extract({left:minX,top:minY,width:w,height:h}).png().toBuffer();
+ composite.push({input:png,left:packX,top:packY});
+ frames[name]={frame:{x:packX,y:packY,w,h},sourceSize:{w:128,h:128},spriteSourceSize:{x:minX,y:minY,w,h},trimmed:true,rotated:false};
+ packX+=w+2;rowHeight=Math.max(rowHeight,h);
+}
+const height=packY+rowHeight;
+await sharp({create:{width,height,channels:4,background:'#00000000'}}).composite(composite).png().toFile('public/art/office.png');
+await writeFile('public/art/office.json',JSON.stringify({frames,meta:{image:'office.png',scale:'1',size:{w:width,h:height}},animations:{walk:['walk-0','walk-1','walk-2','walk-3'],type:['type-0','type-1','type-2','type-3'],idle:['idle-0','idle-1'],wait:['wait-0','wait-1'],error:['error-0','error-1'],unknown:['unknown-0','unknown-1']}},null,2));
+console.log(`${names.length} original sprites packed in ${width}×${height} → public/art/office.{png,json}`);
