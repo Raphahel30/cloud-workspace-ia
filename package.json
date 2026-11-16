@@ -13,7 +13,8 @@
     "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs",
     "test:contracts": "node --experimental-strip-types --test tests/agentState.node.test.mjs",
     "test:e2e": "playwright test",
-    "art:build": "node scripts/generate-assets.mjs"
+    "art:build": "node scripts/generate-assets.mjs",
+    "benchmark:visual": "node scripts/benchmark-visual.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",

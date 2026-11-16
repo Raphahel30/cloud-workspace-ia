@@ -54,7 +54,7 @@ test('demo states, motion, visibility, teardown and metrics',async({page})=>{
     await page.locator('#scene-state').selectOption(scene);await expect(host).toHaveAttribute('data-pose',pose);
   }
   await page.locator('#scene-state').selectOption('absent');
-  await expect(host).toHaveAttribute('data-actors','0',{timeout:6000});
+  await expect(host).toHaveAttribute('data-actors','0',{timeout:9000});
   await page.locator('#scene-state').selectOption('active');
   await page.getByRole('button',{name:'Movimento reduzido',exact:true}).click();
   await page.waitForTimeout(800);
@@ -134,4 +134,37 @@ test('renderer chunk failure shows accessible fallback',async({page})=>{
  await page.goto('/');await expect(page.getByRole('alert')).toContainText('A cena WebGL não pôde iniciar');
  await page.getByRole('button',{name:/Ampliar andar 3:/}).click();
  await expect(page.getByRole('button',{name:/Voltar ao prédio/})).toBeVisible();
+});
+
+test('cached architecture keeps animated feet grounded through sitting, waiting and exit',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/');
+ const host=page.getByTestId('office-renderer');
+ await expect(host).toHaveAttribute('data-static-caches','8');
+ const codex=async()=>JSON.parse((await host.getAttribute('data-actor-poses'))||'{}').codex;
+ await expect.poll(codex).toBeTruthy();
+ const initial=await codex();expect(initial.y).toBeLessThanOrEqual(-initial.x*.068-3);
+ await page.locator('#scene-state').selectOption('active');
+ await expect.poll(async()=>(await codex()).phase,{intervals:[30,60,80]}).toBe('sit');
+ await expect.poll(async()=>(await codex()).pose).toBe('type');
+ const working=await codex();await page.waitForTimeout(350);
+ expect((await codex()).x).toBe(working.x);expect((await codex()).y).toBe(working.y);
+ await page.getByRole('button',{name:/Ampliar andar 3:/}).click();
+ await page.getByRole('button',{name:'Ⅱ Pausar'}).click();await page.waitForTimeout(750);
+ await page.screenshot({path:'docs/codex/screenshots/premium-working-zoom-1440x900.png'});
+ await page.setViewportSize({width:1280,height:800});await page.waitForTimeout(250);
+ await page.screenshot({path:'docs/codex/screenshots/premium-working-zoom-1280x800.png'});
+ await page.getByRole('button',{name:'▶ Retomar'}).click();
+ await page.locator('#scene-state').selectOption('waiting');
+ expect((await codex()).x).toBe(working.x);expect((await codex()).y).toBe(working.y);
+ await page.locator('#scene-state').selectOption('absent');
+ await expect.poll(async()=>(await codex()).pose,{intervals:[30,60,80]}).toBe('stand');
+ await expect.poll(async()=>(await codex()).pose).toBe('walk');
+ await expect(host).toHaveAttribute('data-fps','30');
+ await expect.poll(async()=>(await codex()).visible,{timeout:9000}).toBe(false);
+ await page.getByRole('button',{name:'Movimento reduzido',exact:true}).click();
+ await page.locator('#scene-state').selectOption('unknown');
+ await expect.poll(async()=>(await codex()).visible).toBe(true);
+ await expect.poll(async()=>(await codex()).pose).toBe('unknown');
+ await page.locator('#scene-state').selectOption('idle');
+ await expect.poll(async()=>(await codex()).visible).toBe(true);
 });

@@ -20,6 +20,6 @@ export function renderBudget(visible: boolean, paused: boolean, reduced: boolean
   return !visible || paused || reduced ? 0 : individualActivity ? 30 : scene === 'idle' || scene === 'unknown' || scene === 'absent' ? 10 : 30;
 }
 export function cameraFor(width: number, height: number, floor: number|null) {
-  const scale = floor === null ? Math.min(width/1100,height/800) : Math.min(width/700,height/310);
-  return {scale,x:width/2-555*scale,y:height/2-(floor === null?360:610-floor*108-60)*scale};
+  const scale = floor === null ? Math.min(width/1100,height/800) : Math.min(width/850,height/310);
+  return {scale,x:width/2-(floor === null?555:630)*scale,y:height/2-(floor === null?360:610-floor*108-60)*scale};
 }
