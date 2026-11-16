@@ -1,0 +1,26 @@
+{
+  "environment": "Linux Chromium headless; ANGLE SwiftShader (software), not target Ryzen 5600G",
+  "measurements": [
+    {
+      "mode": "active",
+      "frames": 29,
+      "durationMs": 1273,
+      "effectiveFps": 22.78
+    },
+    {
+      "mode": "idle",
+      "frames": 20,
+      "durationMs": 2022,
+      "heap": 26824622,
+      "effectiveFps": 9.89
+    }
+  ],
+  "e2eStats": {
+    "startTime": "2026-11-16T22:44:57.689Z",
+    "duration": 41457.960999999996,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
