@@ -1,0 +1,263 @@
+CLOUD WORKSPACE IA — STATUS E REGISTRO DE ETAPAS
+Data da primeira emissão: 13/11/2026
+Versão do registro: 0.2
+Estado geral: PLANEJAMENTO FECHADO / FASE 1A PARCIAL - CÓDIGO INICIAL PRODUZIDO; NÃO INSTALADO NO WINDOWS
+
+ATENÇÃO: ESTE ARQUIVO É A REFERÊNCIA DE CONTINUIDADE OPERACIONAL.
+Ao fim de CADA ETAPA EFETIVAMENTE EXECUTADA, atualizar este arquivo e entregar
+uma nova cópia em texto (.txt) nesta conversa. Se houver Drive conectado e a
+operação estiver autorizada, atualizar também a cópia do projeto no Drive.
+Nenhuma atualização ocorre sozinha: depende de nova interação/autorização e
+de execução efetiva; não prometer execução em segundo plano.
+
+========== O QUE ESTÁ CONCLUÍDO ==========
+[X] Definição da ideia e da direção visual do software.
+[X] 30 decisões funcionais e de segurança fechadas, 8 rodadas.
+[X] Plano Mestre v2.0 preparado em Markdown e replicado em TXT.
+[X] Pasta "Projetos Code" criada no Google Drive.
+[X] Conexão do Google Drive ao ChatGPT confirmada em conversa anterior.
+[X] Histórico cronológico consolidado para continuidade.
+[X] Modelo de acompanhamento por fase preparado.
+
+OBSERVAÇÃO: Essas são entregas DOCUMENTAIS; não representam código do software.
+
+========== O QUE NÃO FOI FEITO ==========
+[ ] Aplicativo Windows instalável implementado.
+[ ] MCP Cloud Workspace implementado, autenticado e testado.
+[ ] Auditoria do computador via Desktop Commander.
+[ ] Identificação de todos os projetos locais e repositórios equivalentes no GitHub.
+[ ] Migração de qualquer projeto antigo para o Google Drive.
+[ ] KeePassXC instalado/configurado/importação dos tokens.
+[~] Tauri + React + PixiJS: scaffold e cena isométrica inicial criados; sem integração real nem instalação Windows.
+[ ] Playwright/Chromium integrado e validado.
+[ ] Suporte validado a Codex, Antigravity, Claude Code e ChatGPT.
+[ ] Integração de upload/deploy Hostinger ativada.
+[ ] Testes locais, backup de projetos e limpeza de SSD ativados.
+[ ] Repositório GitHub do Cloud Workspace IA criado.
+[ ] Túnel Cloudflare configurado.
+[ ] Alteração, merge ou publicação de qualquer projeto existente.
+
+========== PLANO DE FASES ==========
+FASE 0 — INVENTÁRIO E PRÉ-VALIDAÇÃO (PRÓXIMA; NÃO INICIADA)
+  Status: PENDENTE DE AUTORIZAÇÃO.
+  Entregas: inventário de arquivos/projetos (somente leitura); mapeamento GitHub;
+  estado do SSD e Drive; credenciais localizadas por nome e metadados (sem exposição);
+  versões instaladas das ferramentas; relatório de risco e proposta de migração.
+  Proibido nesta fase: mover/apagar arquivos, capturar valores de token em logs,
+  publicar em Hostinger, instalar dependências sem autorização, migrar projeto.
+
+FASE 1 — FUNDAÇÃO DO APLICATIVO (INICIADA PARCIALMENTE: CÓDIGO-BASE E UI)
+  Entregas: estrutura do repositório privado do próprio Cloud Workspace (quando
+  autorizado), aplicativo Tauri/React, SQLite, registro de estados e tarefas,
+  interface técnica mínima, documentação e testes básicos.
+
+FASE 2 — DRIVE, PROJETOS E SINCRONIZAÇÃO (NÃO INICIADA)
+  Entregas: Drive streaming, catálogo e criação de novos projetos, checkout
+  temporário, snapshots compactados e criptografados, conflito/validação,
+  fechamento e limpeza controlada somente após aprovação.
+
+FASE 3 — MCP, EXECUÇÃO E AGENTES (NÃO INICIADA)
+  Entregas: MCP local autenticado, execução controlada, logs, limites de CPU/RAM,
+  isolamento lógico de worktrees, integração incremental e testes de cada cliente.
+
+FASE 4 — NAVEGADOR DE TESTES E PUBLICAÇÕES (NÃO INICIADA)
+  Entregas: Playwright headless com perfis separados, relatórios, GitHub e
+  Hostinger com prévia, autorização, validação pós-deploy e plano de reversão.
+
+FASE 5 — ESCRITÓRIO ISOMÉTRICO (PRÉVIA VISUAL INICIADA EM FASE 1B; INTEGRAÇÃO REAL PENDENTE)
+  Entregas: sala do chefe, funcionários por app, sala de servidores, zoom,
+  transições, eventos reais, modo economia, indicadores sem falsas afirmações.
+
+FASE 6 — ENDURECIMENTO E INSTALADOR (NÃO INICIADA)
+  Entregas: testes fim a fim, recuperação de interrupções, atualização segura,
+  consumo de recursos validado, instalador Windows e documentação final.
+
+========== MODELO OBRIGATÓRIO DE REGISTRO POR ETAPA ==========
+Copiar e preencher ao concluir cada trabalho real:
+
+[AAAA-MM-DD HH:MM] ETAPA: <código/nome>
+STATUS: CONCLUÍDA / PARCIAL / BLOQUEADA
+OBJETIVO ORIGINAL:
+O QUE FOI FEITO (fatos verificáveis):
+ARQUIVOS CRIADOS/ALTERADOS (caminhos e links):
+VERIFICAÇÕES/TESTES FEITOS E RESULTADOS:
+DECISÕES OU IDEIAS MODIFICADAS (antes -> depois; motivo):
+IMPACTO EM OUTRAS FASES:
+O QUE FALTA FAZER:
+DEPENDÊNCIAS/BLOQUEIOS:
+O QUE EXIGE APROVAÇÃO DO USUÁRIO:
+RECOMENDAÇÃO PARA PRÓXIMA ETAPA:
+BACKUP/ROLLBACK DISPONÍVEL:
+IDENTIFICADOR DE COMMIT / BRANCH, SE HOUVER:
+
+========== HISTÓRICO DE EXECUÇÕES ==========
+
+[2026-11-13] DOCUMENTAÇÃO DE CONTINUIDADE
+STATUS: CONCLUÍDA SOMENTE A PREPARAÇÃO DE DOCUMENTOS.
+O QUE FOI FEITO: histórico cronológico, espelho em texto do Plano Mestre,
+status inicial e texto de retomada preparados; organizar arquivos no Drive
+somente após confirmar upload.
+IDEIAS MODIFICADAS: nenhuma decisão funcional; apenas formalizada a rotina
+obrigatória de entregar relatório em texto após cada etapa efetiva.
+O QUE FALTA: fases 0 a 6, todo desenvolvimento, auditoria e migração.
+
+========== REGRAS FIXAS DE SEGURANÇA E PUBLICAÇÃO ==========
+- Não modificar PetSiStore, OptiGrill, Orquestrador nem projetos pessoais sem
+  escopo autorizado para cada projeto.
+- Não executar merge, exclusão, publicação/produção sem aprovação explícita.
+- Push automático SOMENTE para branches autorizadas e desvinculadas de deploy.
+- Não expor tokens em relatórios, mensagens, logs, commit ou Drive em texto puro.
+- Manter backup original criptografado, validar integridade e resolver conflitos.
+- Não apagar cópias temporárias sem confirmar sincronização e aprovação.
+- Trabalho em segundo plano sem movimentar o mouse e teclado reais.
+- Não inventar status "trabalhando" para agentes cuja atividade não é confirmada.
+- Testes locais não dependem de GitHub Actions; sem VPS no MVP.
+
+========== COMO RETOMAR ==========
+Enviar os quatro TXT da pasta de documentação para uma nova conversa, ou
+abrir os arquivos já salvos no Drive, e pedir: "Continue o Cloud Workspace IA
+pela fase indicada no STATUS_E_REGISTRO_DE_ETAPAS, respeitando o Plano Mestre.
+Antes de escrever em qualquer projeto existente, mostre o escopo e peça autorização."
+
+
+[2026-11-13] FASE 1A — SCAFFOLD E PROTÓTIPO DE ESCRITÓRIO
+STATUS: PARCIALMENTE CONCLUÍDA; CÓDIGO INICIAL PRODUZIDO, AINDA NÃO EXECUTADO NO WINDOWS.
+OBJETIVO: iniciar software sem depender do computador, mantendo arquivos no Drive.
+O QUE FOI FEITO:
+- Estrutura inicial independente de 24 arquivos: Tauri 2, React 19, TypeScript, Vite, PixiJS 8, contratos de telemetria, UI, testes de políticas e documentação.
+- Cena isométrica com 3 salas e painéis técnicos; estados de serviços/agentes explicitamente demonstrativos/não verificados.
+- Regras preliminares para autorizações, branch de agente e bloqueio de limpeza sem sincronização.
+- Pacote de código zipado como cópia de conveniência, além de arquivos individualizados no Drive (a confirmar após upload).
+VERIFICAÇÕES:
+- 4 JSON sintaticamente válidos.
+- 9 fontes TS/TSX sem erros de sintaxe na transpilação isolada.
+- Imports relativos locais conferidos.
+- npm install não concluído neste ambiente; testes Vitest, TypeScript completo, build Vite e build Tauri NÃO validados.
+MUDANÇAS DE IDEIA: nenhuma das 30 decisões. Arte e ícones são provisórios.
+O QUE FALTA: validar dependências/build, integrar bandeja, serviço local MCP, Drive, testes, GitHub, Hostinger e KeePassXC; auditoria do PC ainda pendente.
+APROVAÇÕES NECESSÁRIAS: criar repositório privado GitHub; migrar qualquer projeto; acessar segredos; publicar ou excluir.
+OBS: Nenhum projeto existente, site ou repositório foi modificado.
+
+[2026-11-13] FASE 1B — PRÉVIA DE INTERFACE ISOMÉTRICA EM APROVAÇÃO
+STATUS: IMPLEMENTAÇÃO DE TELAS/ASSETS PRELIMINARES CONCLUÍDA; APROVAÇÃO VISUAL E BUILD REAL PENDENTES.
+OBJETIVO ORIGINAL: continuar o desenvolvimento e mostrar telas e animações em imagens para aprovação.
+O QUE FOI FEITO:
+- Tela principal redesenhada em React, com menu lateral, indicadores, eventos e destaque de salas.
+- Cenas SVG isométricas (repouso, em atividade e alerta), com animações CSS leves de digitação, sono e LEDs piscando.
+- Controles de modo DEMONSTRAÇÃO e de sala selecionada; sem conexão com serviços reais.
+- Prévia HTML independente reaproveita os mesmos SVGs e CSS da aplicação React.
+- Gerados 3 painéis gráficos para revisão visual e GIF de transição de estados.
+TESTES E VERIFICAÇÕES:
+- 9 arquivos TS/TSX verificados quanto a sintaxe por TypeScript transpileModule, sem erros de parsing.
+- SVGs dos 3 estados validados como XML e rasterizados por CairoSVG.
+- Montagens visuais produzidas por renderizador de imagem dos próprios SVGs; não são screenshots de navegador/React.
+- Chromium do ambiente está bloqueado por política de administrador; screenshots de navegador não realizados.
+- npm install não concluído; compilação Vite/Tauri e testes unitários não executados.
+IDEIAS ALTERADAS: a implementação inicial em PixiJS foi temporariamente trocada por SVG/CSS para a cena pixelada, priorizando leveza. Reavaliar após aprovação e testes de desempenho.
+O QUE FALTA: aprovação visual; logos definitivos; telemetria; MCP, Drive, GitHub, Hostinger, testes locais; build Windows e auditoria.
+APROVAÇÃO EXIGIDA: composição e estética dos ambientes, personagens e animações. Nenhum serviço externo foi alterado.
+
+ESTADO ATUAL EM 13/11/2026: Aguardando aprovação das imagens/estética do escritório para prosseguir na arte. Arquivos da Fase 1B estão no Drive dentro do projeto cloud-workspace-ia. Nenhum binário Windows foi gerado.
+
+
+[2026-11-13] DECISÃO VISUAL APROVADA — PRÉDIO 16 BITS COM CINCO ANDARES
+STATUS: CONCLUÍDO O AJUSTE DE ESCOPO VISUAL; IMPLEMENTAÇÃO DO PRÉDIO NÃO INICIADA.
+OBJETIVO: atingir visual muito próximo da referência aprovada pelo usuário, com prédio vertical isométrico em corte, personagens e animações independentes.
+O QUE FOI FEITO:
+- Usuário confirmou que a referência de prédio com cinco andares é o resultado pretendido.
+- Definido mapeamento de setores: 01 recepção/visão geral; 02 chefe/controle; 03 funcionários IA; 04 MCP/testes; 05 servidores/integrações.
+- Planejado comportamento clicável por andar, zoom, sprites por camadas, animações orientadas por estados confirmados e performance adaptativa.
+- Orientação de monitores corrigida como regra obrigatória: telas viradas para os personagens, não para quem observa o prédio.
+- Documento mestre recebeu aditivo de arquitetura visual e critérios de aceite; imagem conceitual salva como referência.
+MUDANÇA DE IDEIA: tela inicial de três salas horizontais → prédio de cinco andares; manter as salas como setores dos andares.
+VALIDAÇÃO: conceito visual aprovado pelo usuário; aplicação real NÃO demonstrada; sem build Tauri/React executado no Windows.
+O QUE FALTA:
+- Desenhar/redesenhar assets em sprite sheets 16 bits, separando cada andar e seus objetos.
+- Implementar cena de prédio em React/PixiJS, hotspots, zoom e estados de cada personagem.
+- Criar animações independentes e mostrar prova de movimento capturada do próprio aplicativo.
+- Validar performance, orientação de todos os monitores e sincronização entre UI e telemetria.
+- Executar testes, auditoria Windows, instalação do MCP e integrações conforme fases já previstas.
+DEPENDÊNCIAS: arte final não equivale a arquivo de sprites ou código; testes de compilação Windows ainda pendentes.
+APROVAÇÕES PENDENTES: criação de repositório GitHub privado; quaisquer ações sobre projetos externos, segredos, merge, deploy ou exclusões.
+ATIVOS PRESERVADOS: código SVG/React da fase 1B, arquivos de backup e imagem anterior continuam guardados no Drive.
+PRÓXIMO PASSO: construir protótipo do prédio de cinco andares com camadas e interações, mantendo o código anterior até a aprovação da implementação visual.
+
+======================================================
+FASE 1C — REGISTRO ADICIONAL DE 13/11/2026
+======================================================
+Decisão: usuário preferiu NÃO utilizar GIF; animações serão implementadas por elementos e quadros controlados pelo aplicativo, evoluindo para spritesheets PixiJS.
+Entregue: prédio original em cinco camadas SVG, estados idle/active/alert, equipes com movimentos CSS individuais, LEDs e elevador, telas dos monitores voltadas a personagens, seleção de andar e zoom/retorno, prévia HTML e mudanças React.
+Testes realizados: validação XML dos 3 SVG; 5 TS/TSX parseados sem erros sintáticos com TypeScript 5.8; Chromium carregou a prévia com as três cenas, selecionou o andar 04, ampliou, voltou à visão geral e não gerou overflow horizontal com viewport de 1550 px.
+Importante: prévia renderizada no Chromium com conteúdo embutido não é build Tauri nem React compilado. Arte ainda simplificada em relação à referência aprovada. Sem integração com MCP, GitHub, Drive como runtime ou Hostinger. O aplicativo não foi instalado no Windows.
+Próximos passos: spritesheets 16-bit detalhados, animações individuais e motor PixiJS; testes de build de aplicação real no Windows; validação de desempenho FPS e memória; após isso, MCP.
+Arquivos do código em: Projetos Code / 01 - Projetos / cloud-workspace-ia / Arquivos Navegaveis.
+Prévia em: Projetos Code / 01 - Projetos / cloud-workspace-ia / Previa Visual para Aprovacao.
+Não foram alterados projetos de terceiros; nenhum deploy/merge/exclusão foi executado.
+
+
+=== ATUALIZAÇÃO 2026-11-16 · FASE 1D / 0.4.0-alpha.1 ===
+# Fase 1D — Movimentos independentes e inspeção de andares
+Data: 16/11/2026
+Estado: código preparado e testes estáticos aprovados; interface final e instalação PENDENTES.
+
+## Implementado
+1. ScenePolicy tipado, com chefe apenas em tarefa do Cloud Workspace e agentes sem conexão sinalizados como não verificados.
+2. Animações CSS independentes em sprites SVG: digitação, caminhada na recepção, espera, plantas, rack LEDs, elevador, monitor edge.
+3. Office.tsx: cenário SVG local inline, pausa das animações e hotspots por andar com zoom e retorno.
+4. App.tsx: controles de cena e Pausar/Retomar; FloorDetails com detalhes por setor e personagens demonstrativos.
+5. Prévia HTML de referência sem dependências, com controles de estado, navegação, zoom e pausa.
+6. Regras `prefers-reduced-motion` e foco visível nos botões.
+
+## Alterações de ideia
+- Nenhuma mudança no visual aprovado do prédio cinco andares em 16 bits.
+- Segue sem GIF de fundo; base vetorial animada por elemento e a posterior migração para sprites reais.
+- As imagens renderizadas são PRÉVIAS do SVG atual, não capturas de aplicativo Windows compilado.
+
+## Testes
+- Node test de policy: 3 testes PASSARAM.
+- Estrutura XML: 3 cenas válidas e 5 andares por cena.
+- TS/TSX sintaxe: 5 arquivos verificados sem problemas de parse.
+- JS da prévia: verificação de sintaxe passou.
+- npm install/build: NÃO executáveis neste ambiente (`EAI_AGAIN` acesso registry).
+- Chromium/Playwright: navegação a servidor local bloqueada com `ERR_BLOCKED_BY_ADMINISTRATOR`; sem validação visual interativa de clique aqui.
+
+## Pendente
+- Validar instalação e compilação Tauri/React, CSS e cliques em navegador real.
+- Melhorar profundidade e pixel-art do prédio: chegar mais próximo da referência aprovada, ilustrar cada andar com spritesets consistentes.
+- Verificar integração MCP, Drive para computador, GitHub e Hostinger no Windows com autorização.
+- Implementar estados reais observáveis e transmissão segura de eventos, sem inferir trabalho por simples processo aberto.
+
+## Regra de continuidade
+Não marcar esta fase como concluída em produção antes da validação em runtime. Manter o ambiente demonstrativo totalmente isolado de serviços reais.
+
+
+
+
+============================================================
+REGISTRO DE CONTINUIDADE — ENTREGA AO CODEX CLOUD — 16/11/2026
+============================================================
+STATUS: PACOTE PREPARADO; CODEX CLOUD AINDA NÃO EXECUTADO.
+
+O QUE FOI FEITO:
+- Inspecionada a origem `Cloud_Workspace_IA_Fase1D_Fonte.zip` e conferida a referência visual 16 bits aprovada.
+- Preparada pasta `Entrega Codex Cloud` no projeto, com ZIP completo para importação, prompt pronto, guia e registro.
+- ZIP inclui pasta raiz cloud-workspace-ia, AGENTS.md, referência PNG, Plano Mestre, status e todos os arquivos Fase 1D.
+- Escopo Codex definido como frontend do prédio em cinco andares, sprites, animações, qualidade visual e capturas reais.
+- Escopo ChatGPT definido separadamente como core: MCP, eventos verificados, Drive, GitHub, Hostinger, KeePassXC, testes.
+- Criados `src/core-contracts/agentState.ts` e `tests/agentState.node.test.mjs`, sem conectar fontes externas.
+- Testes: 5 contratos agentState PASSARAM; 3 testes scenePolicy anteriores PASSARAM; ZIP verificado sem erros.
+- Não modificados projetos externos, produção nem credenciais.
+
+O QUE MUDOU:
+- Apenas distribuição de responsabilidades entre Codex e ChatGPT; as 30 decisões do Plano Mestre não foram alteradas.
+- Nova regra para Codex: não editar core-contracts e não criar dados de telemetria fictícia.
+
+O QUE FALTA:
+- Repositório GitHub privado do Cloud Workspace IA NÃO criado nesta sessão.
+- Usuário precisa autorizar criação ou criar manualmente, importar conteúdo do ZIP e conectar ambiente Codex Cloud.
+- Codex ainda não iniciou build, PR, captura do frontend ou produção dos sprites definitivos.
+- Build completo React/Tauri, instalador Windows, MCP real e integrações locais continuam pendentes.
+
+PRÓXIMA AÇÃO:
+- Usar prompt no Drive `Entrega Codex Cloud/PROMPT_PRONTO_PARA_CODEX_CLOUD.txt` após disponibilizar repositório ao Codex.
+- Após PR de Codex, revisar e integrar com aprovação expressa; continuar core em branch/arquivos independentes.

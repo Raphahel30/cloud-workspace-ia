@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Cloud Workspace IA",
+  "version": "0.1.0",
+  "identifier": "br.cloudworkspace.ia",
+  "build": {"beforeDevCommand":"npm run dev","devUrl":"http://127.0.0.1:1420","beforeBuildCommand":"npm run build","frontendDist":"../dist"},
+  "app": {"windows":[{"title":"Cloud Workspace IA","width":1250,"height":800,"minWidth":940,"minHeight":620}],"security":{"csp":null}},
+  "bundle": {"active":false}
+}

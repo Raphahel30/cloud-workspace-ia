@@ -1,0 +1,16 @@
+[package]
+name = "cloud-workspace-ia"
+version = "0.1.0"
+description = "Cloud Workspace IA - aplicativo de gerenciamento de projetos"
+authors = ["Cloud Workspace IA"]
+edition = "2021"
+
+[lib]
+name = "cloud_workspace_ia_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }

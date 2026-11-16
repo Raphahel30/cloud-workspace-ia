@@ -1,0 +1,658 @@
+CLOUD WORKSPACE IA — PLANO MESTRE E REGRAS, VERSÃO 2.0
+CÓPIA EM TEXTO DO DOCUMENTO FECHADO EM 13/11/2026
+STATUS: PLANEJAMENTO CONCLUÍDO; PROTÓTIPOS 1A/1B; DIREÇÃO VISUAL DE PRÉDIO COM 5 ANDARES APROVADA; NÃO VALIDADO NO WINDOWS
+TODAS AS 30 DECISÕES SÃO VINCULANTES ATÉ REVISÃO EXPLÍCITA.
+
+# CLOUD WORKSPACE IA — PLANO MESTRE v2.0
+
+**Estado:** Escopo funcional fechado após oito rodadas e 30 decisões. **Implementação inicial iniciada em 13/11/2026: protótipo Tauri/React/PixiJS e regras de segurança; integrações e testes Windows ainda pendentes.**  
+**Data:** 13 de novembro de 2026  
+**Plataforma inicial:** Windows 10/11, aplicativo instalável  
+**Repositório do projeto:** ainda não criado (aguarda decisão do usuário). Código inicial salvo como arquivos navegáveis e pacote na pasta `Projetos Code/01 - Projetos/cloud-workspace-ia`.  
+**Pasta-raiz já existente no Google Drive:** [Projetos Code](https://drive.google.com/drive/folders/1Ks_TJljjq-p1JRsDUQ9OTSpDON_vPj5R)  
+**Autorização posterior:** o usuário autorizou em 13/11/2026 o início do desenvolvimento do próprio Cloud Workspace IA e a atualização dos arquivos no Google Drive. Continuam proibidas, sem aprovação específica: migração de projetos externos, criação de repositório GitHub, merge, deploy, exclusões e uso de credenciais.
+
+---
+
+## 1. Visão do produto e limites
+
+**Missão.** Centralizar projetos de programação em uma pasta do Google Drive apresentada como unidade virtual do Windows; usar o SSD apenas quando o trabalho local exigir; tornar ChatGPT, Codex, Antigravity, Claude Code e futuros agentes capazes de consultar, desenvolver e testar projetos por interfaces autorizadas; integrar GitHub para histórico de código e Hostinger para publicação; representar os estados reais de agentes e serviços em um escritório virtual **pixel art isométrico 2D**, leve e interativo.
+
+**Requisitos inegociáveis:**
+
+1. Sem VPS própria, GitHub Actions obrigatório ou servidor de execução remoto neste ciclo.
+2. Execução e testes no computador do usuário, quando ele estiver ligado.
+3. Trabalho em segundo plano sem manipular o mouse/teclado reais no modo padrão.
+4. Google Drive/`Projetos Code` guarda as pastas navegáveis e os backups completos; **não é o local recomendado para repositórios Git ativos ou builds em andamento**.
+5. Nenhuma exclusão de arquivos originais, merge em branch protegida ou publicação de produção sem aprovação explícita.
+6. Agentes podem criar commits e fazer push **somente** em branches autorizadas, isoladas e sem acionamento de produção.
+7. Credenciais protegidas por KeePassXC e backups criptografados; não incluir segredos em pastas navegáveis ou commits.
+8. Dar prioridade à organização e à liberação de espaço do SSD; respeitar interrupções e possibilidade de recuperação.
+9. Isolamento total entre este novo aplicativo e PetSiStore, OptiGrill, Orquestrador e quaisquer outros projetos existentes, salvo migração individual autorizada.
+10. A interface visual não pode fingir telemetria: estados não comprovados serão explicitamente indicados como desconhecidos.
+
+### O que o produto NÃO promete
+
+- SSD com uso zero: Drive em streaming, navegador, Git, compiladores e dependências utilizam cache e/ou espaço temporário.
+- Um único agente com acesso universal: capacidades e permissões variam por cliente; ChatGPT poderá usar Desktop Commander como ponte quando não houver conexão MCP direta compatível.
+- Execução local com o computador desligado.
+- Isolamento seguro apenas por definir caminhos no MCP. Comandos e processos precisam de privilégios reduzidos e controles próprios do Windows.
+- Rollback perfeito de qualquer publicação: depende de backup, banco de dados e compatibilidade do serviço.
+- Acesso automático a credenciais de produção do usuário só porque o cofre foi aberto.
+
+---
+
+## 2. Registro integral das decisões aprovadas
+
+| Nº | Rodada | Decisão fechada |
+|---:|:---:|---|
+| 01 | 1 | Armazenar **cópias completas** dos projetos no Drive, com a exceção de segredos em pastas comuns. |
+| 02 | 1 | Cofre **KeePassXC criptografado**. |
+| 03 | 1 | Personagem chefe representa **somente atividades do Cloud Workspace**. |
+| 04 | 2 | **Várias IAs** simultâneas, com ambientes e branches isolados. |
+| 05 | 2 | Ao criar projeto, **perguntar** se deseja um repositório GitHub privado. |
+| 06 | 2 | Agentes podem alterar código, commitar e fazer push em branches autorizadas; **merge, publicação e exclusões exigem aprovação**. |
+| 07 | 3 | Cena **pixel art isométrica completa**, clicável para ampliar salas. |
+| 08 | 3 | Monitorar todos os aplicativos de IA cadastrados, mesmo iniciados fora do Cloud Workspace. |
+| 09 | 3 | Mostrar atividade de trabalho somente com **evidência confirmada**; sinalizar ocioso/desconhecido. |
+| 10 | 3 | Iniciar junto com Windows, **minimizado na bandeja**, mantendo MCP e monitoramento. |
+| 11 | 4 | Unidade virtual pelo **Google Drive para computador em streaming**. |
+| 12 | 4 | **Pontos de sincronização seguros** e sincronização final. |
+| 13 | 4 | **Preservar conflitos** e solicitar decisão antes de substituir versões. |
+| 14 | 4 | Backups em marcos importantes, inicialmente **três cópias recuperáveis**. |
+| 15 | 5 | Gerenciamento **adaptativo** de CPU e RAM. |
+| 16 | 5 | Comandos controlados por projeto; comandos novos/sensíveis exigem autorização. |
+| 17 | 5 | Para celular, **Desktop Commander primeiro**; túnel apenas quando necessário. |
+| 18 | 5 | KeePassXC desbloqueado **sob demanda**, com acesso apenas aos processos autorizados. |
+| 19 | 6 | Escolher o canal compatível de publicação **GitHub, Hostinger API ou Antigravity**, com aprovação. |
+| 20 | 6 | Verificação **completa** pós-publicação com Playwright e plano de restauração. |
+| 21 | 6 | Recuperar tarefas; retomar automaticamente apenas etapas **comprovadamente seguras**. |
+| 22 | 6 | Atualizações verificadas do aplicativo, **instaladas após aprovação**. |
+| 23 | 7 | **Pasta navegável + backup completo compactado** por projeto. |
+| 24 | 7 | Armazenar cofre KeePassXC **criptografado no Google Drive**. |
+| 25 | 7 | Controle inteligente do SSD com **margem de espaço livre**. |
+| 26 | 7 | Prever **segundo backup criptografado fora do Drive** quando houver destino. |
+| 27 | 8 | **Migração aprovada projeto por projeto**, com originais preservados. |
+| 28 | 8 | Arquivos com tokens: **backup integral criptografado**, KeePassXC e pastas navegáveis sem segredos. |
+| 29 | 8 | Sem homologação, produção apenas excepcionalmente, após testes, backup, riscos e **aprovação expressa**. |
+| 30 | 8 | **MCP integrado progressivamente** e validado agente por agente. |
+
+### Decisões anteriores, fora da numeração, que permanecem válidas
+
+- Interface com **sala do chefe**, **sala dos funcionários** e **sala dos servidores**.
+- Personagem por aplicativo, logo correspondente na cabeça, animações de entrada, trabalho, espera, sono e falha.
+- **Chromium/Chrome for Testing + Playwright**: navegador dedicado, headless por padrão, cookies/sessões separados do Chrome pessoal.
+- Pasta temporária gerenciada pelo aplicativo para desenvolver, compilar, testar, sincronizar e então remover cópia com autorização.
+- Publicação individual de arquivos na Hostinger como fluxo distinto de publicação completa.
+- Estados e logs de GitHub, Google Drive, Hostinger, MCP, Desktop Commander e navegador de testes.
+- Modo escritório e modo painel técnico; economia de recursos ao minimizar.
+
+---
+
+## 3. Arquitetura de alto nível, sem VPS
+
+```mermaid
+flowchart TD
+  AG[ChatGPT / Codex / Antigravity / Claude Code] --> GW[MCP Cloud Workspace - Gateway local]
+  APP[Tauri + React + PixiJS - Windows] --> CORE[Núcleo e fila de tarefas local]
+  GW --> CORE
+  CORE --> AUD[Permissões / Aprovações / Auditoria]
+  CORE --> FS[Gestor de Projetos e Sincronização]
+  CORE --> RUN[Executor local controlado]
+  CORE --> TEL[Monitor de processos e integrações]
+  RUN --> PW[Chromium / Playwright headless]
+  RUN --> GIT[Git e branches isoladas]
+  FS --> DRIVE[Google Drive para computador / Drive API]
+  GIT --> GH[GitHub]
+  CORE --> PUB[Publicador com prévia e confirmação]
+  PUB --> HOST[Hostinger Git / API / upload aprovado]
+  CORE --> VAULT[KeePassXC - autorização específica]
+  TEL --> APP
+```
+
+### 3.1 Componentes propostos
+
+| Camada | Tecnologia proposta | Função |
+|---|---|---|
+| Interface | **Tauri 2 + React + TypeScript + Vite** | Instalador, bandeja, painéis, permissões e interface profissional. |
+| Cena isométrica | **PixiJS + sprites 2D** | Renderização econômica do escritório e seus estados. |
+| Núcleo local | **Serviço/processo auxiliar sob usuário sem privilégios de administrador**; tecnologia a definir em prova de conceito | Fila, sincronização, tarefas, log e integrações. |
+| MCP | Implementação oficial compatível com **stdio** e **Streamable HTTP local** | Ferramentas estruturadas para agentes autorizados. |
+| Estado local | **SQLite** com journaling confiável | Projetos, relatórios, aprovações, jobs, manifests, estados e auditoria. |
+| Drive | **Drive para computador (streaming)** + API somente onde necessária | Navegação por unidade e verificação remota. |
+| Versionamento | **Git CLI + GitHub API** | Branches, commits, pushes, diffs, PRs e comparações. |
+| Área temporária | Diretório por projeto/tarefa fora da unidade sincronizada | Execução de código e testes sem interferir no cache do Drive. |
+| Testes web | **Playwright + Chromium isolado** | Testes headless, screenshots, console e rede. |
+| Cofre | **KeePassXC (.kdbx)** | Identificação e uso controlado de credenciais. |
+| Deploy | **Hostinger via Git/API/upload**, quando suportado e autorizado | Arquivo isolado ou publicação completa com logs. |
+| Acesso celular | **Desktop Commander** já usado; possível túnel autenticado no futuro | Solicitar operações com computador ligado. |
+
+**Sem Redis, PostgreSQL remoto, Docker obrigatório ou VPS nesta fase.** Se aparecer necessidade real, avaliar posteriormente sem redesenhar toda a interface.
+
+### 3.2 MCP: contratos e cautelas
+
+- Implementar ferramentas como `projects_list`, `project_get`, `workspace_prepare`, `workspace_status`, `files_read`, `files_patch`, `tests_run`, `tests_status`, `tests_logs`, `git_diff`, `git_commit_branch`, `git_push_branch`, `sync_checkpoint`, `deploy_preview`, `deploy_request_approval`, `cleanup_preview`.
+- Não oferecer terminal irrestrito por padrão. `tests_run` usa perfis por stack, comandos permitidos, diretório e ambiente autorizados.
+- Comandos específicos aprovados podem ser reutilizados dentro do mesmo projeto e escopo, mas não criam permissão global.
+- `stdio` para clientes que aceitam lançamento local; HTTP local em `127.0.0.1` para processo compartilhado, autenticado, com validação de origem quando cabível.
+- Tokens de chamada com prazo e permissões específicas; logs com mascaramento de segredos; nenhum comando que eleve privilégios.
+- **Testar conectores individualmente**: Codex, Antigravity IDE/CLI, Claude Code e ChatGPT via Desktop Commander. A compatibilidade direta de ChatGPT com o MCP deve ser validada no produto disponível, não presumida.
+- Agentes remotos de fornecedores podem não ter acesso ao MCP local: somente usar conexão remota autenticada se o cliente suportar e o usuário aprovar.
+
+### 3.3 Integração progressiva dos agentes
+
+1. Descobrir executáveis, versões, processos e configurações com auditoria somente leitura.
+2. Implementar/adicionar configuração de MCP **por cliente** e testar leitura em projeto fictício.
+3. Testar edição em branch descartável autorizada; confirmar que o agente não acessa outros projetos.
+4. Testar execução local e logs; conferir ausência de roubo de foco/mouse.
+5. Registrar suporte real (`compatível`, `parcial`, `indisponível`) e limitações por versão.
+6. Nunca conceder `mcp(*)` ou equivalentes amplos apenas por conveniência.
+
+---
+
+## 4. Estrutura do Google Drive
+
+Pasta existente: `Meu Drive / Projetos Code`.
+
+```text
+Projetos Code/
+├── 00 - Catalogo Cloud Workspace/
+│   ├── MANUAL.md
+│   ├── INVENTARIO.csv
+│   ├── DECISOES.md
+│   └── STATUS_PROJETOS.md
+├── 01 - Projetos/
+│   ├── <slug-do-projeto-A>/
+│   │   ├── Arquivos Navegaveis/
+│   │   ├── Documentacao/
+│   │   └── Manifesto.json
+│   └── <slug-do-projeto-B>/
+├── 02 - Backups Criptografados/
+│   └── <slug>/
+│       ├── <data>-snapshot-integral.enc
+│       ├── <data>-snapshot-integral.enc
+│       └── <data>-snapshot-integral.enc
+├── 03 - Cofre de Credenciais/
+│   ├── credenciais.kdbx
+│   └── LEIA-ME-SEGURANCA.md
+└── 04 - Relatorios/
+    ├── Migracoes/
+    ├── Testes/
+    └── Publicacoes/
+```
+
+Essa árvore é **proposta**, não existente. O cofre efetivo pode usar nome e caminho menos previsíveis. O sistema classifica estados (ativo, finalizado, pausado, arquivado) em metadados, evitando mover pastas automaticamente e invalidar links.
+
+### 4.1 Arquivos navegáveis versus preservação integral
+
+- **Arquivos navegáveis:** projeto completo para consulta e retomada, **exceto segredos em texto puro**, arquivos temporários que contenham segredos, ou material explicitamente excluído pelo usuário. Preservar o máximo de conteúdo solicitado.
+- **Snapshot integral original:** arquivo compactado e criptografado **antes** de enviar ao Drive; pode preservar integralmente os arquivos sensíveis originais para recuperação autorizada.
+- Registrar divergências entre a pasta navegável e o snapshot criptografado no manifesto, em vez de alegar cópia byte a byte idêntica.
+- Dependências e caches podem ser grandes; **não descartar automaticamente** porque o usuário escolheu cópias completas. Mostrar estimativa de custo/volume e permitir exceção autorizada por projeto.
+- Não salvar cópias permanentes de `.env`, tokens ou chaves em pastas comuns. `env.example` deve omitir valores reais.
+- Nunca copiar credenciais de outro projeto por engano; snapshots de projetos têm chaves/restrições apropriadas.
+
+### 4.2 Manifesto por projeto
+
+Dados mínimos: id estável, slug, localização original, Drive folder id, hashes quando disponíveis, inventário de arquivos, tamanho, data, último sync, último commit, branch, backup de referência, classificação, segredos catalogados **por identificador e serviço, nunca pelo valor**, status de conflitos, pendências, projetos relacionados, histórico de migrações.
+
+---
+
+## 5. Área temporária e sincronização segura
+
+### 5.1 Diretório proposto no Windows
+
+```text
+C:\CloudWorkspace\Temporarios\
+  <project-id>\
+    <run-id>\
+      checkout\
+      logs\
+      testes\
+      artefatos\
+```
+
+A localização exata será escolhida **após medir SSD livre, permissões e instalações**; não se presume que essa pasta já exista.
+
+### 5.2 Estados controlados
+
+`REMOTO -> PREPARANDO -> PRONTO -> EDITANDO -> TESTANDO -> AGUARDANDO_CHECKPOINT -> ENVIANDO -> VERIFICANDO -> SINCRONIZADO -> AGUARDANDO_APROVACAO_DE_LIMPEZA -> LIBERADO`
+
+Desvios: `OFFLINE`, `CONFLITO`, `ENVIO_FALHOU`, `HASH_DIVERGENTE`, `ARQUIVO_ABERTO`, `SEM_ESPACO`, `AGENTE_FALHOU`, `REINICIO_PENDENTE`.
+
+### 5.3 Regras obrigatórias
+
+1. Antes de editar, registrar inventário, versão no Drive, hash local, branch/commit base e estado dos arquivos.
+2. Cada agente usa checkout/cópia própria; não compartilhar arquivos modificáveis entre agentes simultâneos.
+3. Salvar checkpoints em momentos consistentes, com journal persistente; **sincronização não equivale a merge ou deploy**.
+4. Ao enviar, detectar alterações remotas concorrentes, preservar versões e apresentar diff/solução ao usuário.
+5. Confirmar escrita remota, integridade possível e ausência de operações pendentes antes de liberar a cópia.
+6. Limpeza só dos caminhos temporários **criados e registrados pelo Cloud Workspace**; nunca apagar diretamente a pasta montada no Drive nem o cache gerenciado pelo Google.
+7. Exigir aprovação de exclusão da cópia temporária, em conformidade com a decisão 06. Mesmo após aprovação, abortar se surgir conflito ou processo ainda usando arquivos.
+8. Monitorar espaço disponível **antes** de baixar/buildar e durante a execução; reservar margem para Windows e Drive.
+9. Não prometer apagamento irrecuperável no SSD: a limpeza remove arquivos lógicos gerenciados, não é sanitização forense.
+10. Após queda de energia, retomar apenas operações idempotentes ou verificáveis; `push`, publicação, exclusão e merge devem ser revalidados.
+
+### 5.4 Controle de versões e backups
+
+- Criar backup cifrado antes de migração, limpeza, substituição relevante ou publicação.
+- Manter até três snapshots recuperáveis como meta inicial; quando houver necessidade de remover um snapshot antigo, **solicitar autorização de exclusão**. Não eliminar automaticamente a única cópia íntegra.
+- Guardar hash, manifesto, versão de criptografia, data, tamanho e referência de restauração.
+- O backup independente fora do Drive é um requisito **preparado, ainda sem destino configurado**; nunca alegar redundância entre fornecedores antes de validá-lo.
+- Testar restauração de arquivo pequeno e projeto de teste; verificar resultado antes de migrar projetos importantes.
+- Monitorar uso e quota do Drive; snapshots adicionais contam para o armazenamento da conta.
+
+---
+
+## 6. GitHub, branches e trabalhos concorrentes
+
+### 6.1 Política
+
+- `main`/branch de produção protegida; nunca permitir push de agentes diretamente nela.
+- Branches do agente: `agent/<agente>/<task-id>`, sem ligação com produção ou automação de deploy.
+- Autorizar alterações, commits e pushes nessas branches; merge requer aprovação separada.
+- Ao criar projeto, **perguntar se usuário deseja repositório privado**; não criar sem decisão.
+- Sempre conferir quais branches já acionam GitHub Actions ou deploy Hostinger; **push de agentes não deve disparar publicação nem consumo indesejado de Actions**.
+- Se algum pipeline for acionado por push em todas as branches, ajustar a política **após autorização** antes de liberar pushes automáticos.
+- Cada agente usa worktree/checkout independente e base explícita; integração exige resolver conflitos e testes.
+- O Drive contém snapshot/pasta navegável, GitHub contém histórico e colaboração de código, e o diretório temporário contém árvore executável em desenvolvimento.
+
+### 6.2 Testes mínimos
+
+- Duas IAs editam arquivos diferentes; histórico correto.
+- Duas IAs editam o mesmo arquivo; conflito detectado, sem sobrescrever silenciosamente.
+- Push para branch de agente não altera o site de produção.
+- Commit/push parcialmente concluído após interrupção é detectado e não repetido cegamente.
+
+---
+
+## 7. Segurança, KeePassXC e autorização
+
+### 7.1 Cofre
+
+- Banco `.kdbx` criptografado no Drive; senha mestra **nunca** escrita em configuração, chat ou logs.
+- Inventário de credenciais por título, serviço, finalidade, ambiente, projeto, validade conhecida e identificador no cofre. Não listar tokens em relatórios.
+- Uso sob demanda: autorização explícita, contexto de projeto, duração limitada e acesso restrito à operação necessária.
+- Preferir credenciais de serviço com privilégio mínimo, passadas em memória ao processo autorizado ou por mecanismo específico do serviço; não montar cofre inteiro para agentes.
+- Respeitar funcionamento/limitações da API/CLI do KeePassXC, a serem verificados. **Não presumir integração programática ilimitada** com o cofre.
+- Banco KeePassXC sincronizado pelo Drive pode gerar conflitos: evitar escrita simultânea, fazer backup do `.kdbx` e oferecer reconciliação, sem substituir silenciosamente.
+- Avaliar revogação/substituição de credenciais que tenham sido expostas em repositórios, logs ou materiais inseguros.
+
+### 7.2 Execução local
+
+- Agentes não rodam automaticamente como administrador.
+- Proibir acesso fora de raízes autorizadas por controles efetivos de permissões e processo, não apenas validações da interface.
+- Perfis permitidos de comandos por stack; bloqueio/solicitação para comandos novos, downloads executáveis, scripts desconhecidos e alterações em sistema.
+- Separar credenciais de desenvolvimento, homologação e produção; nenhum teste automatizado em banco de produção sem autorização específica.
+- Isolamento de processos e permissões em Windows deve ser validado com um projeto de prova antes de aceitar código desconhecido.
+- Painel de auditoria: agente, ação, projeto, arquivo, motivo, resultado, aprovação, horário, versão e origem.
+- Testes devem ser não destrutivos por padrão e usar dados fictícios.
+
+### 7.3 Acesso remoto
+
+- Desktop Commander é a ponte preferencial pelo celular, **somente com computador ligado e conexão ativa**.
+- MCP local padrão sem exposição na internet; túnel autenticado somente por necessidade demonstrada e autorização.
+- Caso HTTP local seja ativado: autenticação, `localhost`, validação de `Origin`, proteção CSRF/DNS-rebinding conforme transporte e versão adotados.
+- Uma conexão remota com o Desktop Commander **não concede automaticamente** permissões ilimitadas ao MCP; todas as operações respeitam escopos e aprovação.
+
+---
+
+## 8. Navegador de testes sem interferir no mouse
+
+- Instalar/configurar Chromium do Playwright separadamente do Chrome pessoal.
+- Rodar **headless** como padrão, perfis/sessões isolados por projeto, cookies e histórico não compartilhados.
+- Validar URLs autorizadas, domínios de teste, autenticação fictícia e downloads.
+- Capturar screenshot, trace, logs de console, falhas de rede, HTTP e relatório por execução.
+- Testes em site publicado não precisam trazer código ao SSD, mas **testes locais de aplicação precisam baixar/preparar checkout e dependências**.
+- Headless não é sandbox de sistema operacional: somar isolamento de processos e caminhos.
+- Não simular mouse/teclado do usuário; se um teste exigir interface gráfica real, requer ambiente diferente e autorização.
+- Ao minimizar o Cloud Workspace, continuar execução e telemetria, mas pausar renderização da cena isométrica.
+
+---
+
+## 9. Escritório vivo — especificação visual e de eventos
+
+### 9.1 Direção de arte
+
+- Pixel art isométrica 2D, não 3D; cenário único com salas clicáveis e zoom.
+- Personagens com traços consistentes e **logo do aplicativo como cabeça**, respeitando regras de marca e legibilidade.
+- Animações em spritesheets pequenas; cenário majoritariamente estático; sem efeitos caros ou renderização desnecessária.
+- Cena de escritório + painel técnico de mesma informação; navegação por teclado e alternativas textuais acessíveis.
+
+### 9.2 Sala do chefe
+
+| Condição real | Visual |
+|---|---|
+| Sem tarefa originada/gerenciada pelo Cloud Workspace | Sala vazia |
+| Tarefa Cloud Workspace ativa | Chefe entra, senta e trabalha |
+| Tarefa aguardando aprovação | Chefe aguarda / sinal amarelo |
+| Tarefa falhou | Sinal de erro e relatório acessível |
+| Cloud Workspace apenas aberto, sem tarefa | Chefe permanece ausente |
+
+**Não ativar chefe por atividade genérica do Windows ou por uso de outras IAs fora do Cloud Workspace.** Isso evita contradição com a decisão 03.
+
+### 9.3 Sala dos funcionários
+
+| Evidência | Visual |
+|---|---|
+| Programa cadastrado não está em execução | Mesa vazia, personagem ausente |
+| Programa aberto e comprovadamente ocioso | Personagem dormindo/parado |
+| Programa aberto, atividade não observável | Personagem presente, indicador **desconhecido** (não simular trabalho) |
+| Telemetria confirma tarefa ativa | Digitando/trabalhando |
+| Teste, build ou análise confirmados | Animação contextual |
+| Aguardando autorização | Pose de espera e ícone de aprovação |
+| Erro confirmado | Alerta e acesso a log |
+
+Monitorar todos os programas de IA cadastrados, mesmo iniciados manualmente. O nível de detecção é específico por integração; não inferir geração de código apenas de processo aberto ou CPU elevada.
+
+### 9.4 Sala dos servidores
+
+- Racks de Drive, GitHub, Hostinger, MCP local, Desktop Commander, Playwright e futuras integrações.
+- LEDs acesos quando saúde da conexão estiver **confirmada**, pulsação quando houver atividade, amarelo para atenção/expiração/quota, vermelho para falha e cinza para desconhecido.
+- **Serviço não testado não é classificado como desconectado**. Exibir "sem dados" quando a telemetria não permitir concluir.
+- Os racks são metáforas visuais de serviços; não significam servidores de propriedade do usuário.
+
+### 9.5 Desempenho
+
+- Renderizar apenas enquanto a cena estiver visível; pausar animações e gráficos ao minimizar.
+- Estado recebido por eventos; verificações periódicas leves apenas quando a fonte não disponibilizar eventos.
+- FPS limitado e escalável; 30 FPS como alvo visual inicial; modo economia menor.
+- Registrar métricas reais de RAM/CPU/energia no PC alvo antes de estabelecer um teto obrigatório. Testar com pelo menos duas IAs abertas e um build em execução.
+
+---
+
+## 10. Hostinger: publicação com segurança
+
+### 10.1 Canais
+
+| Canal | Quando usar | Condições |
+|---|---|---|
+| GitHub/Hostinger Git | Projeto com integração Git estável | Branch de publicação protegida; confirmar auto-deploy |
+| API/upload individual | Corrigir um arquivo específico | Caminho, hash/versão, backup e verificação confirmados |
+| Pacote/site completo | Publicação ampla, método suportado pelo plano | Backup antes, prévia do que será sobrescrito, aprovação específica |
+| Antigravity CLI/MCP | Quando comprovado compatível com a integração | Não depender de comandos ou permissões não validados no CLI |
+
+**Terminologia:** Git faz `commit` no repositório; Hostinger recebe uma **publicação/upload/deploy**, não um "commit na Hostinger".
+
+### 10.2 Fluxo de publicação obrigatório
+
+1. Identificar projeto, domínio e ambiente reais e validar escopo de autorização.
+2. Detectar método suportado na conta/hosting, branch, diretório e arquivos atuais.
+3. Conferir testes locais e, quando houver, homologação; apresentar diferenças e arquivos alterados.
+4. Gerar snapshot/backup apropriado e registrar estratégia de reversão, incluindo limitações de bancos.
+5. Apresentar plano de deploy para aprovação expressa, separado de aprovação de código.
+6. Executar método aprovado; **não** habilitar sobrescrita de site inteiro por padrão.
+7. Verificar arquivos e páginas, navegação crítica via Playwright, logs e erros.
+8. Em falha, preservar evidências, bloquear novas publicações e **solicitar autorização de rollback** em produção.
+9. Atualizar relatório e histórico; somente após confirmação, autorizar limpeza dos arquivos temporários.
+
+### 10.3 Produção sem homologação
+
+Permitida como **exceção autorizada**: teste local, backup verificado, prévia, riscos claros, aprovação específica e plano de restauração. Se não existir mecanismo razoável de backup/recuperação, bloquear e pedir solução ao usuário em vez de simular garantia.
+
+---
+
+## 11. Inventário e migração inicial (ainda não executados)
+
+1. Com Windows ligado e Desktop Commander conectado, **descobrir caminhos e registrar somente metadados primeiro**: nome, tamanho, localização, tipo, hash quando apropriado.
+2. Identificar arquivos comuns de projeto (`package.json`, `pyproject.toml`, `requirements.txt`, `composer.json`, `.sln`, `Cargo.toml`, `.git`, etc.).
+3. Associar cada projeto local a um ou mais repositórios GitHub, sem inferir correspondência por nome apenas.
+4. Comparar `HEAD`, branches, tags, diferenças de arquivos rastreados/não rastreados, commits locais não enviados e possíveis backups antigos.
+5. Identificar arquivos sensíveis pelos nomes e padrões com **mínimo de leitura necessário**, sem exibir valores no chat ou registrá-los em logs.
+6. Classificar: ativo, completo, pausado, arquivado, duplicado, versão desconhecida, necessita revisão.
+7. Montar **cartão de proposta de migração individual** com origem, destino, tamanho, versão de referência, backup e riscos.
+8. Solicitar aprovação individual; gerar arquivo integral compactado e cifrado; enviar e conferir Drive; criar pasta navegável sanitizada.
+9. Validar amostras e, para projetos críticos, um teste real de restauração.
+10. **Não excluir originais** até apresentação de relatório de integridade e aprovação separada de exclusão.
+
+### Modelo de cartão de migração
+
+```text
+Projeto:                  <nome>
+Estado estimado:          <ativo/concluido/incompleto/revisao>
+Origem Windows:           <caminho>
+Destino Drive:            Projetos Code/01 - Projetos/<slug>/
+GitHub:                   <repositorio e branch ou ausente>
+Diff local vs GitHub:     <novos/alterados/nao rastreados>
+Arquivos sensíveis:       <contagem e categorias, sem valores>
+Total de arquivos:        <número>
+Tamanho da origem:        <GB>
+Backup cifrado:          <planejado/criado/verificado>
+Riscos/pendências:        <texto>
+Ação sugerida:            <migrar/revisar/arquivar>
+Status de aprovação:      <pendente/aprovado/recusado>
+```
+
+---
+
+## 12. Atualizações e recuperação do aplicativo
+
+- Atualizador Tauri com **assinaturas verificadas**; instalação somente com consentimento do usuário.
+- Separar binários da aplicação, metadados locais, projetos temporários e cofre.
+- Antes de atualizar, registrar tarefas em curso e não interromper uploads críticos sem mecanismo de retomada.
+- Se Windows reiniciar, ler journal, reconciliar estado remoto e oferecer continuidade segura, sem repetir publicação ou exclusão.
+- Backups da configuração e compatibilidade de esquema SQLite; estratégia de restauração para migração de versão.
+- Logs não devem conter tokens, senha mestra ou conteúdo sensível de arquivos.
+
+---
+
+## 13. Modelo de dados local mínimo
+
+- `projects`: id, slug, nome, stack, estado, local original, drive_folder_id, github_repo, status de revisão.
+- `project_files_manifest`: project_id, path, tamanho, checksum/versão, sensibilidade, última sincronização.
+- `workspaces`: project_id, run_id, agent_id, path_local, branch, criado_em, estado, bytes_utilizados.
+- `agents`: nome, tipo, executável, versão, método MCP, estado observado, último sinal.
+- `agent_events`: agent_id, run_id, tipo, origem, confiança de observação, horário.
+- `tasks`: project_id, executor, perfil de comando, estado, retomada segura, início/fim, logs sanitizados.
+- `approvals`: tipo de ação, escopo, alvo, decisão, autor, vencimento, hash do plano aprovado.
+- `sync_jobs`: origem, destino, manifesto base, estado, tentativas, erro, validação.
+- `backup_records`: projeto, destino, snapshot, hash, estado de restauração, retenção.
+- `deployments`: projeto, domínio, método, arquivos, versão anterior, aprovação, resultado e verificação.
+- `audit_events`: sujeito, ação, escopo, horário, status, detalhes não sensíveis.
+
+SQLite é local e guarda metadados pequenos. Conteúdo integral dos projetos permanece no Drive e nas áreas temporárias quando necessário.
+
+---
+
+## 14. Etapas de implementação (ainda não iniciadas)
+
+| Fase | Resultado demonstrável | Critério de aceitação |
+|---|---|---|
+| **0. Auditoria somente leitura** | Inventário do Windows, ferramentas, Drive, GitHub e Hostinger | Nenhum projeto alterado; relatório local validado pelo usuário |
+| **1. Fundação** | App Tauri, bandeja, painel técnico, banco local e journal | Abre/minimiza, recupera estado, não exige admin nem servidor |
+| **2. Segurança e cofre** | Permissões, aprovação, registro de auditoria e estratégia KeePassXC | Nenhum segredo aparece em logs ou pastas navegáveis |
+| **3. Projetos e Drive** | Catálogo, criação de pasta, importação, snapshot e sync seguro | Resistir a conflito, offline, checksum divergente e reinício |
+| **4. Git multiagente** | Branches independentes e push restrito | Dois agentes não se sobrescrevem; nenhum push publica em produção |
+| **5. MCP local e testes** | MCP por cliente, executor e Playwright headless | Testes auditados sem mover mouse, respeitando limites |
+| **6. Publicação Hostinger** | Prévia, upload individual ou Git, aprovação e verificação | Domínio correto, snapshot existente, relatório e reversão controlada |
+| **7. Escritório isométrico** | Cena 2D, personagens, salas e telemetria real | Estados fiéis, sem falso trabalho, custo de recursos medido |
+| **8. Migração projeto por projeto** | Cartões aprováveis e verificação da recuperação | Originais intactos até aprovação explícita de exclusão |
+| **9. Entrega e atualizações** | Instalador e canal de atualização assinada | Testes de atualização, reinício e recuperação satisfatórios |
+
+**Observação:** uma prova visual estática/animada do escritório pode ser validada antes da Fase 7, sem interferir nos critérios técnicos. Não produzir arte nem código nesta etapa de planejamento.
+
+---
+
+## 15. Testes de aceitação críticos
+
+### Segurança e dados
+
+- [ ] Scan detecta projeto mas não lê/exibe valores de token no chat.
+- [ ] Projeto com `.env` tem backup integral **cifrado** e pasta navegável sem valor secreto.
+- [ ] Queda de internet durante envio preserva a cópia local e não anuncia sincronização.
+- [ ] Duas alterações divergentes preservam ambas as versões até decisão.
+- [ ] Backup mais antigo não é excluído automaticamente para atingir limite de três.
+- [ ] Restaurar snapshot em local independente e validar arquivos/hashes possíveis.
+- [ ] Limpeza nunca afeta Drive montado, cache do Drive, pasta externa ou processo ainda usando arquivos.
+
+### Agentes, MCP e testes
+
+- [ ] MCP rejeita ação fora do projeto autorizado e comando não permitido.
+- [ ] Duas IAs trabalham em branches isoladas com relatórios de merge.
+- [ ] Push de agente não aciona publicação nem workflow indesejado.
+- [ ] Playwright testa página em modo headless sem mover mouse nem reutilizar cookies pessoais.
+- [ ] Recursos são limitados com base em RAM/CPU/disco livres.
+- [ ] Com janela minimizada, a renderização do escritório é interrompida.
+
+### Publicação e recuperação
+
+- [ ] Atualização de um arquivo não sobrescreve outros arquivos inadvertidamente.
+- [ ] Site sem homologação exige confirmação excepcional expressa.
+- [ ] Falha após deploy gera log e plano de restauração; não executa rollback sem aprovação.
+- [ ] Reinício do Windows não duplica commit/push, deploy ou exclusão.
+- [ ] Atualização do aplicativo tem assinatura validada e requer aprovação.
+
+### Visualização
+
+- [ ] Chefe só trabalha durante tarefas do Cloud Workspace.
+- [ ] Agente fechado desaparece; ocioso confirmado dorme; estado não comprovado aparece como desconhecido.
+- [ ] Rack só aparece conectado quando há checagem bem-sucedida; conexão desconhecida não vira falha falsa.
+- [ ] O escritório é navegável por sala, e o painel técnico transmite os mesmos estados.
+
+---
+
+## 16. Pendências para validação técnica quando o computador estiver ligado
+
+Estas **não são perguntas de produto** nem autorização para começar implementação:
+
+1. Identificar a versão real de Windows, espaço livre, letra/montagem do Drive e limites da conta Google.
+2. Verificar instalações e versões de Antigravity IDE/CLI, Codex, Claude Code, ChatGPT para Windows, Git, Python, Node, Tauri/compilador e Playwright.
+3. Inspecionar o estado da conexão Desktop Commander e limites de suas funções sem automação visual.
+4. Verificar as políticas MCP suportadas por cada versão instalada; considerar diferença entre agentes locais e remotos.
+5. Medir consumo inicial real de RAM/CPU e estabelecer limites seguros para concorrência.
+6. Identificar repos GitHub e seus gatilhos de GitHub Actions e deploys Hostinger antes de liberar pushes.
+7. Confirmar tipo/plano dos sites Hostinger, credenciais necessárias, métodos e permissões de upload disponíveis.
+8. Verificar espaço do Drive para snapshots completos e disponibilidade de destino independente para segunda cópia.
+9. Validar comportamento da sincronização do `.kdbx` do KeePassXC com o Drive, bloqueio de gravações concorrentes e recuperação de backup.
+10. Definir apenas após medição os caminhos locais de cache, execução e relatórios; não supor que `C:\CloudWorkspace` já exista.
+
+**Nenhuma pendência acima impede o fechamento do escopo funcional.** Elas são insumos de instalação, compatibilidade ou prova de conceito que se verificam na Fase 0, após autorização explícita.
+
+---
+
+## 17. Registro de riscos e tratamentos
+
+| Risco | Tratamento |
+|---|---|
+| Arquivos do Drive gerarem cache inesperado no SSD | Monitorar e separar cache nativo de área temporária gerenciada; nunca apagar cache de forma manual. |
+| Projetos completos e snapshots esgotarem o Drive | Exibir estimativas antes da importação e acompanhar quota; não alterar escopo silenciosamente. |
+| Dois agentes tentarem modificar mesma versão | Checkout e branch independentes; conflito explícito antes de integrar. |
+| Push gerar deploy na Hostinger | Verificar e proteger gatilhos e branches de produção antes de autorizar push. |
+| Push disparar Github Actions e consumir cota | Auditoria de gatilhos antes de liberar pushes em branches dos agentes. |
+| Tokens em blocos de notas ou `.env` | Cofre KeePassXC, originais em snapshot criptografado, varredura de vazamentos. |
+| Falta de privilégio realmente restrito para testes Windows | Trabalhar com usuário/processo de menores permissões e validar isolamento, não apenas caminhos MCP. |
+| MCP exposto por túnel | Não ativar inicialmente; se necessário, autenticação forte e escopo mínimo. |
+| KeePassXC em edição concorrente no Drive | Backups, bloqueio de alterações simultâneas e reconciliação de conflitos. |
+| Publicação errada ou rollback parcial | Plano explícito, backup, verificação, aprovação por domínio/ambiente, restauração condicionada. |
+| Navegador de teste roubar foco do usuário | Headless obrigatório por padrão, sem automação de GUI da sessão pessoal. |
+| Telemetria falsa de atividade | Estado desconhecido separado de ocioso, erro e atividade confirmada. |
+
+---
+
+## 18. Fonte de verdade do planejamento e governança
+
+- **Este Plano Mestre v2.0** substitui as hipóteses antigas de execução 100% em nuvem presentes nas versões 1.0 e 1.1.
+- Mudanças no escopo devem ser registradas com data, justificativa, decisão e impacto.
+- Etapas concluídas devem receber referência a evidência: arquivo, teste, log, versão ou revisão.
+- Cada fase terá checklist `[ ] Pendente / [x] Concluído / [!] Bloqueado` e um relatório de resultados.
+- Não usar PetSiStore, OptiGrill ou Orquestrador como ambiente de teste sem aprovação individual explícita.
+- O projeto novo do Cloud Workspace terá repositório próprio **somente após autorização para iniciar**.
+
+### Referências técnicas consultadas
+
+- Google Drive: https://support.google.com/drive/answer/13401938?hl=pt-BR
+- Cache do Drive: https://support.google.com/drive/answer/2375012?hl=pt-BR
+- MCP — transportes: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/basic/transports/streamable-http.mdx
+- Antigravity MCP: https://antigravity.google/docs/mcp
+- Antigravity Remote Agents: https://antigravity.google/docs/remote-agents
+- Codex MCP: https://developers.openai.com/resources/docs-mcp
+- Claude Code MCP: https://code.claude.com/docs/pt/desktop
+- Playwright isolamento: https://playwright.dev/docs/browser-contexts
+- KeePassXC: https://keepassxc.org/docs/KeePassXC_UserGuide
+- Hostinger Git deploy: https://www.hostinger.com/support/1583302-how-to-deploy-a-git-repository-in-hostinger/
+- Tauri Updater: https://v2.tauri.app/plugin/updater/
+
+---
+
+## 19. Termo de encerramento do planejamento
+
+**Decisões fechadas:** 30/30.  
+**Escolhas de produto ainda indispensáveis:** nenhuma identificada neste momento.  
+**Fatos técnicos a verificar antes de implementação:** listados na Seção 16.  
+**Infraestrutura paga nova:** não autorizada, não necessária para o MVP proposto.  
+**Migrações, publicações ou exclusões realizadas:** nenhuma.  
+**Próximo passo, somente sob nova autorização do usuário:** Fase 0 — inventário **somente leitura** do computador e das integrações.
+
+
+---
+
+## ADENDO DE EXECUÇÃO — 13/11/2026 — FASE 1A
+
+- Autorizado o início do desenvolvimento sem acessar o computador; manter tudo em `Projetos Code` e registrar progresso no Drive.
+- Criados 24 arquivos iniciais: casca Tauri 2, React/TypeScript/Vite, cena isométrica demonstrativa PixiJS, tipos de telemetria, políticas preliminares, testes unitários declarados e documentação.
+- O protótipo ainda NÃO é executável/instalável verificado: tentativa de instalar dependências não foi concluída no ambiente de preparação. Somente sintaxe TS e JSON/importações locais foram verificadas.
+- Estados de serviços e agentes são intencionalmente `unknown`; nenhuma integração real, credencial, API, MCP ou repositório privado foi criado.
+- Fases 0 (auditoria Windows) e demais implementações continuam pendentes, sem alteração dos projetos existentes.
+- Registro canônico de execução: `00 - Documentacao Cloud Workspace IA/03_STATUS_E_REGISTRO_DE_ETAPAS.txt`, versão 0.2.
+- Ordem continua por validações controladas no Windows, quando disponível, sem abrir escopo para mover arquivos de outros projetos.
+
+
+---
+
+# ADITIVO VISUAL — DIREÇÃO APROVADA DE 13/11/2026 (SUBSTITUI A CENA PLANA DE TRÊS SALAS)
+
+**Estado da decisão:** Usuário aprovou a direção visual mostrada na imagem de um prédio isométrico com cinco andares, em pixel art 16 bits. Também pediu computadores com suas telas orientadas para os personagens usuários e deixou explícito que quer fidelidade visual próxima da referência. Não há aprovação para fingir que a imagem gerada seja uma implementação pronta: ela é uma referência estática para produção de sprites e cenas.
+
+## Mudança de design: ANTES → DEPOIS
+
+- ANTES: três salas (chefe, funcionários, servidores) dispostas horizontalmente no mesmo piso, com cenas SVG e transições simuladas.
+- DEPOIS: **um único prédio isométrico em corte**, com **cinco andares empilhados**, todos visíveis na tela principal e selecionáveis por clique. As três salas originais permanecem como **setores funcionais** dos novos andares. A estrutura de 5 andares é o novo padrão aprovado; usar seis apenas mediante nova decisão.
+- CONTINUA VÁLIDO: chefe só aparece e trabalha quando o Cloud Workspace tem uma tarefa confirmada; agentes só surgem trabalhando com atividade real comprovada; ausentes/ociosos/desconhecidos têm estado distinto; aplicativo minimizado economiza CPU e GPU.
+
+## Cinco andares da sede
+
+1. **Recepção / Visão geral** (térreo): catálogo de projetos, notificações, tarefas e fila de aprovações.
+2. **Chefe / Controle**: atividade de tarefas do Cloud Workspace, painel de orquestração e autorizações; o personagem chefe não deve ser mostrado permanentemente no escritório quando não há tarefa.
+3. **Funcionários IA**: um posto/personagem por aplicativo de IA cadastrado; presença, ociosidade, trabalho comprovado, espera e falha.
+4. **Infraestrutura / MCP / Testes**: status do gateway MCP, testes Playwright, serviços locais, isolamentos e recursos do Windows.
+5. **Servidores / Integrações**: indicadores de Drive, GitHub, Hostinger, sincronização, rede e conexões; LEDs representam somente estados verificados.
+
+## Requisitos visuais de fidelidade
+
+- Estilo 16 bits com sprites desenhados em pixel art real, pixel snapping, paleta controlada, bordas consistentes e perspectiva isométrica coerente.
+- Cena de corte em cinco andares visíveis, faixa lateral de navegação, elevador, interiores decorados, luzes de janela, janelas noturnas, mesas, plantas, fiação e racks.
+- **Monitores e computadores:** monitores em perspectiva correta, com o **lado da tela voltado ao rosto do personagem que está trabalhando**, não para a câmera. Quando o observador enxergar um monitor de costas, isso é correto. Exigir revisão de cada posto de trabalho.
+- Os estados reais (idle, executando, aguardando aprovação, desconhecido, falha/alerta, desconectado) devem poder ser vistos por andar e em painéis de detalhe acessíveis; não depender de uma animação cíclica que sugira atividade inexistente.
+- Animações independentes, não vídeo de fundo: personagens andando em rotas plausíveis, entrando/sentando/digitando/dormindo, elevador entre andares, luzes e LED; animar somente personagens cujo estado justificar.
+- O prédio inteiro cabe em uma tela e oferece zoom por andar sem perder contexto global; detalhes de missão/ação em overlay React.
+- Efeitos de alerta visuais localizados no andar/serviço com erro, sem alterar o prédio inteiro à toa; sem progresso fictício de reparo.
+- Adotar cenas com assets gráficos separados por plano/andar/objeto e atlas de sprites; não usar a imagem conceitual como camada única clicável, pois isso impediria comportamento granular e responsivo.
+- Preservar desempenho: animações acionadas por eventos, frame rate e detalhes adaptativos; pausar renderização pesada quando minimizado, mantendo serviço MCP em segundo plano.
+
+## Estratégia de implementação e aceite
+
+A. Registrar e versionar a referência visual aprovada na pasta de prévias do projeto.
+B. Criar protótipo estático do prédio 5 andares com hotspots clicáveis, navegável em tela de notebook.
+C. Recortar/redesenhar sprites originais licenciáveis e atlases de elementos (não copiar literalmente imagem rasterizada como implementação final).
+D. Criar máquina de estados por andar/serviço/agent e animações individuais de sprite; testar o modo demonstração sem afirmar que é telemetria real.
+E. Integrar dados reais progressivamente a partir do MCP e das conexões autorizadas.
+F. Capturar telas do aplicativo executando e vídeo/GIF de movimento real para aprovação antes de substituir o protótipo anterior.
+G. Testar build React/Tauri, responsividade, monitor correto e consumo no hardware alvo Windows.
+
+**Critério obrigatório de honestidade:** resultados conceituais ou vídeos gerados por IA não são evidência de que o aplicativo funciona. Explicitar sempre qual captura veio do aplicativo real e qual é somente uma referência.
+
+**Data desta alteração:** 2026-11-13. **Implementação real do prédio de cinco andares:** ainda não iniciada. **Próxima etapa:** preparar os assets por camadas, layout técnico e tela React/PixiJS clicável; validar em runtime quando possível.
+
+============================================================
+ADENDO VISUAL — FASE 1C (13/11/2026)
+============================================================
+Decisão: Não utilizar GIF como mecanismo de animação do software. Os loops visuais independentes deverão ser controlados por estados reais e, em etapa posterior, convertidos para spritesheets e renderizados pelo PixiJS/Canvas.
+Etapa intermediária autorizada: desenho de camadas SVG originais (edifício com cinco pisos, móveis, personagens, LEDs, elevador, monitores com as telas voltadas aos funcionários), com CSS animando elementos isolados sem GIF.
+A referência aprovada do prédio de cinco andares 16 bits permanece a meta de qualidade. O primeiro protótipo SVG não representa acabamento final nem renderização PixiJS concluída.
+Regras de apresentação: "DEMO" em todo dado cenográfico; interatividade por piso e zoom; acessibilidade por teclado e preferência por movimento reduzido; não marcar atividades reais antes de telemetria verificada.
+A etapa 1C deverá ser evoluída para spritesheets finais, validados em execução real antes de se considerar concluída artisticamente.
+Referência técnica: src/components/Office.tsx, src/data/floors.ts, public/building-*.svg, generate_building.py, docs/FASE_1C_REGISTRO.md.
+
+
+## Implementação 16/11/2026 — Fase 1D (sem alteração das 30 decisões)
+Prédio 5 andares com SVG programático e sprites demonstrativos independentes, controls Pausar/Retomar, animação do elevador, digitação e caminhada. Código `Office.tsx`, `FloorDetails.tsx`, `scenePolicy.ts`. A referência visual premium permanece meta, ainda não alcançada pelo protótipo. Não há telemetria real. Testes Node e sintaxe estática passaram; compilação do frontend/Tauri e validação no Windows permanecem pendentes.
