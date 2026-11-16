@@ -20,3 +20,15 @@ Conflito histórico: Plano Mestre menciona repositório ainda não criado e proi
 Hardware de referência: Ryzen 5 5600G / Radeon integrada / 16 GB RAM / NVMe 512 GB. Arquitetura permanece PixiJS 8 + React/Tauri, sem depender de ensaio prévio no Windows.
 
 Executado: materiais/luz rasterizada, personagens e mobiliário detalhados; atlas recortado com origem preservada; interiores ampliados, fachada e vegetação; máquina visual de trajetos pelo corredor, aproximação, sentar/levantar e saída; elevador com paradas/portas; cache seletivo avaliado no Cloud; testes de regressão, novas capturas, benchmark e relatório. Manter as metas 30/10/0 FPS e registrar desempenho efetivo sem prometer resultado no hardware alvo. Nenhuma integração, contrato protegido, merge ou deploy autorizado nesta continuação.
+
+## R03 — correção artística obrigatória (2026-11-16 23:43 UTC)
+
+A aparência das rodadas anteriores foi REJEITADA. Preservar tudo como protótipo técnico; não seguir com refinamentos geométricos ou expansão de sprites. A referência aprovada é o alvo principal, sem substituição de estilo.
+
+- [ ] 1. Produzir conceito estático ilustrado do prédio inteiro, fiel a composição/proporção/materiais/luz da referência.
+- [ ] 2. Produzir conceito ampliado de um andar com personagens e mobiliário na mesma qualidade.
+- [ ] 3. Comparar referência / versão atual / propostas e exportar para APROVAÇÃO HUMANA.
+- [ ] Backup: manter arte, prompts, comparação e registros no repositório e no Drive quando a gravação for verificada.
+- [!] 4. Implementação e expansão de sprites BLOQUEADAS até aprovação explícita; depois planejar arte original independente por camadas e animações PixiJS, preservando sistemas existentes.
+
+Registro contínuo obrigatório: `docs/codex/STATUS_CONTINUO_CODEX.md`. Diretório da rodada: `docs/codex/direcao-artistica/R03/`. Propostas estáticas são conceitos, nunca capturas de funcionamento.
