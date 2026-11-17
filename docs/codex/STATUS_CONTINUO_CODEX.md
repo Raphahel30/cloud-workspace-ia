@@ -11,7 +11,7 @@ Legenda: [x] concluído; [ ] pendente; [!] rejeitado/bloqueado por decisão expl
 - [x] Etapa 2: proposta ilustrada do andar 03 exportada (1536×1024).
 - [x] Comparação referência / atual / propostas exportada em HTML, PNG e PDF A3 de duas páginas; cinco imagens carregadas corretamente; PNG e página 2 do PDF inspecionados.
 - [x] Quatro arquivos (duas propostas, comparativo PNG/PDF) gravados no Drive e verificados por ID/pasta/tamanho/data via metadados.
-- [ ] Pacote completo e cópias dos registros no Drive: em preparação.
+- [x] Pacote completo e cópias dos quatro registros gravados no Drive e verificados por metadados; atualização dos mesmos IDs mantém cópias finais.
 - [ ] Etapa 3: aprovação humana das DUAS propostas pendente.
 - [!] Etapa 4: implementação e novos sprites em massa continuam BLOQUEADOS.
 
@@ -65,3 +65,16 @@ A cada etapa: acrescentar data/hora UTC e resultado neste arquivo, atualizar rel
 - [x] Proveniência/prompts em `direcao-artistica/R03/PROVENIENCIA_E_CRITERIOS.md` e `PROMPT_*.md`; decisão pendente em `aprovacao/DECISAO_PENDENTE.md`.
 - [x] Diagnóstico C0 atualizado com mudança metodológica, acesso Drive e exportação local.
 - [ ] Cópias finais de registros e pacote ZIP em preparação; não declarados salvos ainda.
+
+## 2026-11-17 00:03:44 UTC — backup documental confirmado / decisão artística pendente
+
+- [x] Pacote ZIP gravado em 17/11/2026 00:00:42 UTC e confirmado por leitura de metadados: `1iY2J7knvgSJeeWWbKZJhJyHQ2cCQZok1`. Contém propostas, referência, capturas reais, comparação, prompts, proveniência e registros.
+- [x] Relatório, status, plano e diagnóstico gravados em 17/11/2026 entre 00:01:01 e 00:01:26 UTC; IDs e destino verificados.
+- [x] Cópias do Drive são atualizadas nos mesmos IDs para refletir este fechamento documental; manifesto e recibos em `docs/codex/drive-sync/R03/`.
+- [x] Material de aprovação das etapas 1/2 e comparação concluído.
+- [ ] Aprovação da proposta do prédio inteiro ainda não recebida.
+- [ ] Aprovação da proposta do andar 03 ainda não recebida.
+- [!] Etapa 4 continua bloqueada. Aparência do runtime atual segue REJEITADA, não houve alteração do programa.
+
+Drive da rodada: https://drive.google.com/drive/folders/1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0 .
+A rodada iniciou em 16/11 e o backup/fechamento documental passou para 17/11 UTC; o nome R03/2026-11-16 identifica a rodada, não altera as datas reais dos recibos.

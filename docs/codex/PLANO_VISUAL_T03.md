@@ -29,7 +29,7 @@ A aparência das rodadas anteriores foi REJEITADA. Preservar tudo como protótip
 - [x] 2. Produzir conceito ampliado de um andar com personagens e mobiliário na mesma qualidade.
 - [x] Comparar referência / versão atual / propostas e exportar o material.
 - [ ] 3. Receber APROVAÇÃO HUMANA explícita das duas propostas.
-- [ ] Backup: manter arte, prompts, comparação e registros no repositório e no Drive quando a gravação for verificada.
+- [x] Backup: arte, prompts, comparação e registros no repositório; Drive direto gravado/verificado, com pacote completo e cópias de registros.
 - [!] 4. Implementação e expansão de sprites BLOQUEADAS até aprovação explícita; depois planejar arte original independente por camadas e animações PixiJS, preservando sistemas existentes.
 
 Registro contínuo obrigatório: `docs/codex/STATUS_CONTINUO_CODEX.md`. Diretório da rodada: `docs/codex/direcao-artistica/R03/`. Propostas estáticas são conceitos, nunca capturas de funcionamento.
@@ -39,3 +39,5 @@ Registro contínuo obrigatório: `docs/codex/STATUS_CONTINUO_CODEX.md`. Diretór
 2026-11-16 23:52:33 UTC: [x] Etapa 2 exportada; [ ] comparação/backup; [ ] aprovação artística de ambas. Etapa 4 bloqueada.
 
 2026-11-16 23:59:56 UTC: [x] comparativo HTML/PNG/PDF pronto e inspecionado; [x] duas propostas e dois comparativos gravados e verificados no Drive; [ ] pacote/registros finais em preparação; [ ] aprovação pendente.
+
+2026-11-17 00:03:44 UTC: [x] etapas 1/2 e comparação concluídas; [x] backup direto e registros confirmados; [ ] aprovação humana das duas imagens; [!] etapa 4 bloqueada. Runtime preservado sem mudanças.

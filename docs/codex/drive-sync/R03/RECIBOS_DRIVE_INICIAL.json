@@ -1,0 +1,222 @@
+{
+  "stage": "initial uploads, before final documentation refresh",
+  "folder_id": "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0",
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/direcao-artistica/R03/R03_01_PREDIO_INTEIRO_PROPOSTA_NAO_APROVADA.png",
+        "id": "1_TBLGoWA39nONmsvOY8U92NqOROXv_wp",
+        "title": "R03_01_PREDIO_INTEIRO_PROPOSTA_NAO_APROVADA.png",
+        "mime_type": "image/png",
+        "size": "2817164",
+        "url": "https://drive.google.com/file/d/1_TBLGoWA39nONmsvOY8U92NqOROXv_wp/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1_TBLGoWA39nONmsvOY8U92NqOROXv_wp/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-16T23:48:14.928Z",
+        "modified_time": "2026-11-16T23:48:14.928Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/direcao-artistica/R03/R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png",
+        "id": "11qta6WcqyMiF2F4vvYouzBalNxab2gGD",
+        "title": "R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png",
+        "mime_type": "image/png",
+        "size": "2951479",
+        "url": "https://drive.google.com/file/d/11qta6WcqyMiF2F4vvYouzBalNxab2gGD/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/11qta6WcqyMiF2F4vvYouzBalNxab2gGD/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-16T23:52:42.992Z",
+        "modified_time": "2026-11-16T23:52:42.992Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/direcao-artistica/R03/R03_03_COMPARACAO_ARTISTICA.png",
+        "id": "1ZU7oAVjr5ISwioMDmtjHS6KIL3vmBLqC",
+        "title": "R03_03_COMPARACAO_ARTISTICA.png",
+        "mime_type": "image/png",
+        "size": "2696067",
+        "url": "https://drive.google.com/file/d/1ZU7oAVjr5ISwioMDmtjHS6KIL3vmBLqC/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1ZU7oAVjr5ISwioMDmtjHS6KIL3vmBLqC/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-16T23:56:05.698Z",
+        "modified_time": "2026-11-16T23:56:05.698Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/direcao-artistica/R03/R03_03_COMPARACAO_ARTISTICA.pdf",
+        "id": "137_8TT-9vCFsSzTIGH_sTFWQDUfuwg0h",
+        "title": "R03_03_COMPARACAO_ARTISTICA.pdf",
+        "mime_type": "application/pdf",
+        "size": "12322736",
+        "url": "https://drive.google.com/file/d/137_8TT-9vCFsSzTIGH_sTFWQDUfuwg0h/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/137_8TT-9vCFsSzTIGH_sTFWQDUfuwg0h/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-16T23:56:18.039Z",
+        "modified_time": "2026-11-16T23:56:18.039Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/drive-sync/R03/R03_MATERIAIS_APROVACAO_2026-11-16.zip",
+        "id": "1iY2J7knvgSJeeWWbKZJhJyHQ2cCQZok1",
+        "title": "R03_MATERIAIS_APROVACAO_2026-11-16.zip",
+        "mime_type": "application/zip",
+        "size": "23757579",
+        "url": "https://drive.google.com/file/d/1iY2J7knvgSJeeWWbKZJhJyHQ2cCQZok1/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1iY2J7knvgSJeeWWbKZJhJyHQ2cCQZok1/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-17T00:00:42.619Z",
+        "modified_time": "2026-11-17T00:00:42.619Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/RELATORIO_VISUAL_CODEX.md",
+        "id": "1XHyKHHae8RYbzyATy4ysw61LfB2gN_FC",
+        "title": "R03_RELATORIO_VISUAL_CODEX.md",
+        "mime_type": "text/markdown",
+        "size": "5761",
+        "url": "https://drive.google.com/file/d/1XHyKHHae8RYbzyATy4ysw61LfB2gN_FC/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1XHyKHHae8RYbzyATy4ysw61LfB2gN_FC/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-17T00:01:26.385Z",
+        "modified_time": "2026-11-17T00:01:26.385Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/STATUS_CONTINUO_CODEX.md",
+        "id": "1gR3wDZXkBAi7X7BXNYB61Yvo9moN9upF",
+        "title": "R03_STATUS_CONTINUO_CODEX.md",
+        "mime_type": "text/markdown",
+        "size": "4986",
+        "url": "https://drive.google.com/file/d/1gR3wDZXkBAi7X7BXNYB61Yvo9moN9upF/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1gR3wDZXkBAi7X7BXNYB61Yvo9moN9upF/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-17T00:01:17.683Z",
+        "modified_time": "2026-11-17T00:01:17.683Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/PLANO_VISUAL_T03.md",
+        "id": "1H1ofW5LikHqk3TEC4esrBQHJR10-aOUA",
+        "title": "R03_PLANO_VISUAL_T03.md",
+        "mime_type": "text/markdown",
+        "size": "4620",
+        "url": "https://drive.google.com/file/d/1H1ofW5LikHqk3TEC4esrBQHJR10-aOUA/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1H1ofW5LikHqk3TEC4esrBQHJR10-aOUA/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-17T00:01:01.478Z",
+        "modified_time": "2026-11-17T00:01:01.478Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "path": "docs/codex/C0_DIAGNOSTICO.md",
+        "id": "1eAqMRGxcf7vDE3niiKawCrzDGZ-6guWl",
+        "title": "R03_C0_DIAGNOSTICO.md",
+        "mime_type": "text/markdown",
+        "size": "3190",
+        "url": "https://drive.google.com/file/d/1eAqMRGxcf7vDE3niiKawCrzDGZ-6guWl/view?usp=drivesdk",
+        "display_url": "https://drive.google.com/file/d/1eAqMRGxcf7vDE3niiKawCrzDGZ-6guWl/view?usp=drivesdk",
+        "file_or_folder": "file",
+        "created_time": "2026-11-17T00:01:10.146Z",
+        "modified_time": "2026-11-17T00:01:10.146Z",
+        "parent_ids": [
+          "1GrIR0r9C0qY7KrHli1HFFbmvFLUqiql0"
+        ],
+        "drive_id": null,
+        "current_user_can_share": null,
+        "has_augmented_permissions": null,
+        "shared": null,
+        "permissions": null,
+        "source_visibility_status": "access_not_verified"
+      }
+    }
+  ]
+}

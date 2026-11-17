@@ -1,6 +1,6 @@
 # Relatório visual Codex — correção da direção artística R03
 
-Atualização: 2026-11-16 23:59:56 UTC. Branch `agent/codex/visual-5-floors`; [PR #1](https://github.com/Raphahel30/cloud-workspace-ia/pull/1).
+Fechamento documental: 2026-11-17 00:03:44 UTC. Registro inicial: 2026-11-16 23:59:56 UTC. Branch `agent/codex/visual-5-floors`; [PR #1](https://github.com/Raphahel30/cloud-workspace-ia/pull/1).
 
 ## Estado de aprovação
 
@@ -39,8 +39,28 @@ Destino existente do projeto: `cloud-workspace-ia` (`113274Ty9gs3tHEPVtfEIXMZAt4
 | R03_03_COMPARACAO_ARTISTICA.png | 23:56:05 | [Drive](https://drive.google.com/file/d/1ZU7oAVjr5ISwioMDmtjHS6KIL3vmBLqC/view?usp=drivesdk) |
 | R03_03_COMPARACAO_ARTISTICA.pdf | 23:56:18 | [Drive](https://drive.google.com/file/d/137_8TT-9vCFsSzTIGH_sTFWQDUfuwg0h/view?usp=drivesdk) |
 
-Gravação confirmada por leitura de metadados, com IDs, pasta, tamanho e datas. Pacote completo e cópias dos registros: em preparação neste momento, ainda não declarados salvos. Manifesto/recibos serão mantidos em `docs/codex/drive-sync/R03/`.
+Gravação confirmada por leitura de metadados, com IDs, pasta, tamanho e datas. Pacote completo e cópias dos quatro registros também foram gravados e lidos no Drive. Os mesmos IDs são usados para atualização dos bytes após o fechamento deste registro. Manifestos/recibos estão em `docs/codex/drive-sync/R03/`.
+
+| Arquivo | Primeira gravação UTC em 17/11/2026 | Link verificado |
+| --- | --- | --- |
+| R03_MATERIAIS_APROVACAO_2026-11-16.zip | 00:00:42 | [Drive](https://drive.google.com/file/d/1iY2J7knvgSJeeWWbKZJhJyHQ2cCQZok1/view?usp=drivesdk) |
+| R03_RELATORIO_VISUAL_CODEX.md | 00:01:26 | [Drive](https://drive.google.com/file/d/1XHyKHHae8RYbzyATy4ysw61LfB2gN_FC/view?usp=drivesdk) |
+| R03_STATUS_CONTINUO_CODEX.md | 00:01:17 | [Drive](https://drive.google.com/file/d/1gR3wDZXkBAi7X7BXNYB61Yvo9moN9upF/view?usp=drivesdk) |
+| R03_PLANO_VISUAL_T03.md | 00:01:01 | [Drive](https://drive.google.com/file/d/1H1ofW5LikHqk3TEC4esrBQHJR10-aOUA/view?usp=drivesdk) |
+| R03_C0_DIAGNOSTICO.md | 00:01:10 | [Drive](https://drive.google.com/file/d/1eAqMRGxcf7vDE3niiKawCrzDGZ-6guWl/view?usp=drivesdk) |
+
+A rodada começou em 16/11 e o backup terminou em 17/11 UTC. O nome da pasta/ZIP mantém a data de início. `RECIBOS_DRIVE.json` registra os horários de modificação da versão final, tamanhos e IDs lidos do Drive; `MANIFESTO_ORIGEM.json` registra SHA-256 local dos arquivos do pacote. Não declaramos checksum remoto, pois o retorno normalizado não o expõe. Todos os arquivos-fonte importantes e o pacote ZIP também permanecem versionados no repositório.
 
 ## Próxima decisão
 
 Aprovar ou pedir ajustes para CADA proposta. Só depois da aprovação humana de ambas, planejar famílias pequenas de assets ilustrados independentes e editáveis, integração/animação na arquitetura PixiJS existente e validação por seção antes de expandir. A referência não deve virar fundo único. Sem nova produção de sprites ou expansão da implementação enquanto a direção estiver pendente.
+
+## Fechamento da etapa de propostas — 2026-11-17 00:03:44 UTC
+
+- [x] Propostas 01 e 02 exportadas e salvas.
+- [x] Comparação completa, proveniência, prompts e histórico preservados.
+- [x] Backup direto no Drive verificado; mesmos IDs usados para as cópias finais.
+- [ ] Aprovação humana das duas propostas ainda pendente.
+- [!] Produção em camadas/sprites e implementação bloqueadas.
+
+A alteração metodológica está registrada: a próxima produção artística partirá da direção ilustrada que vier a ser aprovada, sem voltar a depender exclusivamente de primitivas SVG. Isso não autoriza usar a pintura inteira como cenário funcional.
