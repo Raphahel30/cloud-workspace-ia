@@ -1,0 +1,90 @@
+{
+  "environment": "Linux Chromium headless ANGLE SwiftShader, GPU software. Not Windows/Ryzen measurement.",
+  "e2eMeasurements": [
+    {
+      "mode": "active",
+      "frames": 29,
+      "durationMs": 1259,
+      "effectiveFps": 23.03
+    },
+    {
+      "mode": "idle",
+      "frames": 20,
+      "durationMs": 2020,
+      "heap": 37573512,
+      "effectiveFps": 9.9
+    }
+  ],
+  "e2eStats": {
+    "startTime": "2026-11-16T23:22:38.811Z",
+    "duration": 70829.087,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "isolatedBenchmark": [
+    {
+      "mode": "active",
+      "frames": 118,
+      "durationMs": 5006,
+      "effectiveFps": 23.571713943268076,
+      "mainThreadTaskSeconds": 0.307583,
+      "heapBytes": 22125172,
+      "staticCaches": 8
+    },
+    {
+      "mode": "idle",
+      "frames": 30,
+      "durationMs": 3012,
+      "effectiveFps": 9.9601593625498,
+      "mainThreadTaskSeconds": 0.044041,
+      "heapBytes": 25795432,
+      "staticCaches": 8
+    }
+  ],
+  "cacheComparison": {
+    "14layers": [
+      {
+        "mode": "active",
+        "frames": 124,
+        "durationMs": 5010,
+        "effectiveFps": 24.75049900199601,
+        "mainThreadTaskSeconds": 0.248472,
+        "heapBytes": 22812560,
+        "staticCaches": 14
+      },
+      {
+        "mode": "idle",
+        "frames": 30,
+        "durationMs": 3009,
+        "effectiveFps": 9.970089730807578,
+        "mainThreadTaskSeconds": 0.039874999999999994,
+        "heapBytes": 26513532,
+        "staticCaches": 14
+      }
+    ],
+    "8layers": [
+      {
+        "mode": "active",
+        "frames": 120,
+        "durationMs": 5017,
+        "effectiveFps": 23.918676499900336,
+        "mainThreadTaskSeconds": 0.167406,
+        "heapBytes": 22210196,
+        "staticCaches": 8
+      },
+      {
+        "mode": "idle",
+        "frames": 30,
+        "durationMs": 3013,
+        "effectiveFps": 9.956853634251576,
+        "mainThreadTaskSeconds": 0.055064,
+        "heapBytes": 25882320,
+        "staticCaches": 8
+      }
+    ],
+    "chosen": 8,
+    "note": "Single short samples; same art, different caching policy. Not statistical proof or whole-process CPU/RAM/GPU measurements."
+  }
+}

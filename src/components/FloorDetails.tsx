@@ -1,14 +1,16 @@
+import type { AgentVisualState } from '../core-contracts/agentState';
+import type { ActorStates } from '../scene/visualInputs';
 import { floors, floorOrder, type FloorKey } from '../data/floors';
 import { type DemoScene } from '../lib/scenePolicy';
 
-type Role = { label: string; initials: string; color: string; area: FloorKey };
+type Role = { id:string; label: string; initials: string; color: string; area: FloorKey };
 const roles: Role[] = [
-  {label: 'ChatGPT', initials: 'GPT', color:'#37c49c', area:'agents'},
-  {label: 'Antigravity', initials: 'AG', color:'#b398fa', area:'agents'},
-  {label: 'Codex', initials: 'CX', color:'#81cef1', area:'agents'},
-  {label: 'Claude Code', initials: 'CC', color:'#e7b46d', area:'agents'},
-  {label: 'MCP local', initials: 'MCP', color:'#7eabe5', area:'infra'},
-  {label: 'Playwright', initials: 'PW', color:'#d8a6ef', area:'infra'},
+  {id:'chatgpt',label: 'ChatGPT', initials: 'GPT', color:'#37c49c', area:'agents'},
+  {id:'antigravity',label: 'Antigravity', initials: 'AG', color:'#b398fa', area:'agents'},
+  {id:'codex',label: 'Codex', initials: 'CX', color:'#81cef1', area:'agents'},
+  {id:'claude',label: 'Claude Code', initials: 'CC', color:'#e7b46d', area:'agents'},
+  {id:'mcp',label: 'MCP local', initials: 'MCP', color:'#7eabe5', area:'infra'},
+  {id:'playwright',label: 'Playwright', initials: 'PW', color:'#d8a6ef', area:'infra'},
 ];
 
 function PixelAgent({ initials, color, mood, paused }: {initials: string; color: string; mood: string; paused: boolean}) {
@@ -38,8 +40,9 @@ const floorServices: Record<FloorKey, string[]> = {
   servers: ['Google Drive', 'GitHub', 'Hostinger'],
 };
 
-export default function FloorDetails({floor, scene, paused, onChoose}: {floor:FloorKey;scene:DemoScene;paused:boolean;onChoose:(f:FloorKey)=>void}) {
+export default function FloorDetails({floor, scene, paused, onChoose, actorStates, onDemoState}: {floor:FloorKey;scene:DemoScene;paused:boolean;onChoose:(f:FloorKey)=>void;actorStates:ActorStates;onDemoState:(id:string,state:AgentVisualState)=>void}) {
   const f=floors[floor];
+  const mood=scene==='active'?'typing':scene==='alert'?'alert':scene==='waiting'?'waiting':scene==='unknown'?'unknown':'idle';
   const agents=roles.filter(r=>r.area===floor);
   return <section className="sector-detail info-card" aria-label={`Detalhes do andar ${f.number}`}>
     <header className="sector-heading">
@@ -49,11 +52,12 @@ export default function FloorDetails({floor, scene, paused, onChoose}: {floor:Fl
     <div className="sector-content">
       <div className="sector-monitor"><p className="sector-label">{floor==='agents'?'AGENTES CADASTRÁVEIS':floor==='infra'?'FERRAMENTAS PREVISTAS':'COMPONENTES DO SETOR'}</p>
         {agents.length>0?<div className="sprite-grid">{agents.map(a=><div className="sprite-chip" key={a.label}>
-          <PixelAgent initials={a.initials} color={a.color} mood={scene==='active'?'typing':scene==='alert'?'alert':'idle'} paused={paused}/>
+          {(actorStates[a.id]??scene)!=='absent'&&<PixelAgent initials={a.initials} color={a.color} mood={actorStates[a.id]==='working'?'typing':actorStates[a.id]==='error'?'alert':actorStates[a.id]??mood} paused={paused||(actorStates[a.id]??scene)==='unknown'}/>}
           <strong>{a.label}</strong><small>Não verificado</small>
+          {floor==='agents'&&<label className="agent-demo-label">DEMO individual<select aria-label={`DEMO individual ${a.label}`} value={actorStates[a.id]??''} onChange={e=>onDemoState(a.id,e.target.value as AgentVisualState)}><option value="" disabled>Cenário global</option><option value="unknown">Desconhecido</option><option value="absent">Ausente</option><option value="idle">Ocioso</option><option value="working">Trabalhando</option><option value="waiting">Aprovação</option><option value="error">Alerta</option></select></label>}
         </div>)}</div>:<div className="sector-list">{floorServices[floor].map(s=><div key={s}><span className="sector-led"/>{s}<small>não verificado</small></div>)}</div>}</div>
       <div className="sector-aside"><p className="sector-label">COMPORTAMENTO</p>
-        <strong>{scene==='active'?'Trabalho ilustrativo':scene==='alert'?'Alerta ilustrativo':'Repouso ilustrativo'}</strong>
+        <strong>{({active:'DEMO: trabalho ilustrativo',alert:'DEMO: alerta',waiting:'DEMO: aguardando aprovação',unknown:'Desconhecido / sem dados',absent:'DEMO: ausente',idle:'DEMO: repouso'})[scene]}</strong>
         <p>O movimento nesta prévia nunca confirma atividade ou conexão real. Quando a integração for criada, estados dependerão de eventos verificáveis.</p>
         <div className="floor-jump-row">{floorOrder.map(k=><button key={k} type="button" className={k===floor?'selected':''} onClick={()=>onChoose(k)} aria-label={`Inspecionar andar ${floors[k].number}`}>{floors[k].number}</button>)}</div>
       </div>

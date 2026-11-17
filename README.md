@@ -1,38 +1,33 @@
-# Cloud Workspace IA — protótipo de desenvolvimento v0.4.0-alpha.1
+# Cloud Workspace IA — escritório visual / rodada premium 2
 
-Aplicativo Windows planejado em Tauri + React/TypeScript, com sede de cinco andares em pixel art isométrico 16 bits.
+Aplicativo existente em Tauri 2, React 19, TypeScript e Vite. A interface agora renderiza um prédio de cinco andares com **PixiJS 8**, 215 sprites originais detalhados e objetos independentes, materiais, vegetação e iluminação pré-renderizada. Todos os andares cabem na visão geral em 1280×800 e 1440×900; seleção por clique, teclado 1–5 e retorno por Escape.
 
-## Implementado nesta fase
-- Prédio de 5 andares: recepção, chefe, IAs, MCP/testes, servidores/integrações.
-- Animações vetoriais independentes (sem GIF): digitação, caminhada, servidores, plantas e elevador.
-- Botões de foco/zoom por andar, cena demonstrativa e botão Pausar/Retomar.
-- Componente de detalhes por andar, personagens demonstrativos e avisos de telemetria não verificada.
-- Política `scenePolicy.ts` com checagens de segurança para o chefe e os rótulos de status.
+**DEMO permanente. Sem telemetria real ou integrações.** Estado inicial desconhecido; os controles simulam ausência, repouso, trabalho, aprovação e alerta. No painel do andar IA é possível simular estados individuais. Chefe só aparece no cenário de trabalho explicitamente DEMO. O contrato de evidências e seus testes permanecem intactos.
 
-**Atenção:** As cenas são demonstrativas, não provam funcionamento de IA, Windows, MCP ou hospedagem.
-
-## Como executar quando as dependências estiverem disponíveis
-
-```bash
-npm install
-npm run test:policy
-npm run build
+```sh
+npm ci
 npm run dev
+# http://127.0.0.1:1420
+npm run build
+npm test
+npm run test:policy
+npm run test:contracts
 ```
 
-Para instalar a versão Tauri no Windows, use o ambiente Windows configurado com Rust e WebView2 depois da auditoria autorizada.
+Node 24 foi usado nesta validação. `test:policy` e `test:contracts` usam o suporte Node a strip-types. O lockfile deve ser preservado.
 
-## Prévia sem bibliotecas
-`preview/index.html` com `public/building-{idle,active,alert}.svg` pode ser servido por um servidor HTTP local. A prévia HTML contém os mesmos ativos SVG e simula seleção de andar, zoom, pausa e estado visual.
+```sh
+npm run art:build
+# Benchmark isolado (servidor dev em execução): npm run benchmark:visual
+# Chromium instalado em /usr/bin/chromium neste Cloud workspace
+npm run test:e2e
+# Em outro ambiente: CHROMIUM_PATH=/caminho/chromium npm run test:e2e
+```
 
-## Testes reais desta etapa
-- 3 testes Node de política: PASSOU.
-- SVG XML: 3 de 3 válidos, com cinco andares cada.
-- 5 arquivos TS/TSX: sintaxe válida via `typescript.transpileModule`.
-- Prévia HTML: JavaScript válido via `node --check`.
-- **PENDENTE:** build npm/Vite/Tauri, testes React completos e validação browser. O registry npm estava inacessível (`EAI_AGAIN`) e a navegação do Chromium local foi bloqueada por política de ambiente.
+Iniciar `npm run dev` antes do Playwright. Para instalar um navegador dedicado quando necessário: `npx playwright install chromium`, ajustando CHROMIUM_PATH. Não usa perfil pessoal do Chrome. Fontes e atlas: [assets/README.md](assets/README.md).
 
-## Limitações de visual
-O SVG vetorial atual é uma **estrutura interativa provisória**, inferior ao detalhamento da arte de referência aprovada. As próximas fases substituirão peças e personagens por spritesets de qualidade superior sem recorrer a GIF de cena inteira.
+Trajetos passam pelo corredor, com aproximação, sentar/levantar e saída; elevador para nos andares e abre portas. Atlas recortado preserva a origem dos pés e oito caches guardam somente camadas estáticas densas. A cena reduz a 10 FPS em repouso/desconhecido, limita a 30 FPS em atividade, pausa quando invisível e oferece movimento reduzido. O tempo visual não executa serviços de núcleo. Falha WebGL mostra mensagem acessível; não substitui a cena pela referência.
 
-O Google Drive mantém o código-fonte e o registro da fase. Nenhum repositório Github foi criado, nenhum site publicado, e nenhuma alteração em outros projetos foi feita.
+Resultados, capturas reais, métricas e pendências: [relatório visual](docs/codex/RELATORIO_VISUAL_CODEX.md). Comparação lado a lado: [HTML local](docs/codex/COMPARACAO_VISUAL.html).
+
+O acabamento ainda difere da referência premium em sombreamento, vegetação, densidade e detalhes dos personagens. **Build web Linux não valida Tauri, instalador ou desempenho no Windows.** A configuração Tauri e módulos de integração não foram modificados. Sem merge ou deploy.

@@ -1,43 +1,43 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { floors, floorOrder, type FloorKey } from '../data/floors';
 import { type DemoScene } from '../lib/scenePolicy';
+import type { ActorStates } from '../scene/visualInputs';
+import type { OfficeRenderer } from '../scene/OfficeRenderer';
 
-/** This view contains only project-owned SVGs, never arbitrary uploaded SVG or remote HTML.
- * By embedding the bundled vector scene, we can independently pause character/LED animations
- * and apply floor-specific effects. This is a prototype ahead of a true sprite atlas/PixiJS renderer.
- */
-export default function Office({selected,onSelect,scene,zoomed,onResetZoom,paused}:{
-  selected:FloorKey;
-  onSelect:(floor:FloorKey)=>void;
-  scene:DemoScene;
-  zoomed:boolean;
-  onResetZoom:()=>void;
-  paused:boolean;
-}) {
-  const [markup,setMarkup] = useState('');
+type Props={selected:FloorKey;onSelect:(floor:FloorKey)=>void;scene:DemoScene;zoomed:boolean;onResetZoom:()=>void;paused:boolean;reduced:boolean;actorStates:ActorStates};
+export default function Office(props:Props) {
+  const host=useRef<HTMLDivElement>(null);
+  const renderer=useRef<OfficeRenderer|null>(null);
+  const current=useRef(props);current.current=props;
+  const [error,setError]=useState('');
+  const [ready,setReady]=useState(false);
   useEffect(()=>{
     let cancelled=false;
-    const url=`/building-${scene}.svg`;
-    fetch(url).then(res=>{
-      if(!res.ok) throw new Error('Falha ao carregar cenário local');
-      return res.text();
-    }).then(svg=>{if(!cancelled && svg.startsWith('<svg'))setMarkup(svg);})
-      .catch(()=>{if(!cancelled)setMarkup('');});
-    return ()=>{cancelled=true};
-  },[scene]);
-  return <div className={`office-stage building-stage ${zoomed?'zoomed':''} ${paused?'animation-paused':''}`}
-    style={{'--focus-y':floors[selected].focusY} as CSSProperties}
-    aria-label="Prédio demonstrativo de cinco andares em pixel art">
-      {markup?<div className="office-art building-art inline-building" dangerouslySetInnerHTML={{__html:markup}}/>:
-        <img className="office-art building-art" src={`/building-${scene}.svg`}
-           alt="Prédio de cinco andares: recepção, chefe, funcionários IA, MCP e servidores" draggable={false}/>}
-      {!zoomed && floorOrder.map(f=><button key={f} type="button"
-        className={`building-hotspot floor-${f} ${selected===f?'is-selected':''}`}
-        onClick={()=>onSelect(f)}
-        aria-label={`Ampliar andar ${floors[f].number}: ${floors[f].title}`}
-        title={`Andar ${floors[f].number} — ${floors[f].title}`}/>) }
-      {zoomed && <button className="building-back" type="button" onClick={onResetZoom}>← Voltar ao prédio</button>}
-      {zoomed && <div className="building-focused">ANDAR {String(floors[selected].number).padStart(2,'0')} — {floors[selected].title}</div>}
-      <div className="scene-flag"><span className="scene-flag-dot"/> DEMONSTRAÇÃO · SEM DADOS REAIS</div>
-    </div>;
+    import('../scene/OfficeRenderer').then(async({OfficeRenderer})=>{
+      if(cancelled||!host.current)return;
+      const instance=new OfficeRenderer(host.current,current.current,f=>current.current.onSelect(f));
+      renderer.current=instance;
+      await instance.init();
+      if(!cancelled){instance.update(current.current);setReady(true);}
+    }).catch(e=>{
+      if(cancelled)return;
+      renderer.current?.destroy();renderer.current=null;
+      setError('A cena WebGL não pôde iniciar. Os setores continuam acessíveis pelo painel.');
+      console.error(e);
+    });
+    return()=>{cancelled=true;renderer.current?.destroy();renderer.current=null;};
+  },[]);
+  useEffect(()=>{if(ready)renderer.current?.update(props);},[props.selected,props.zoomed,props.scene,props.paused,props.reduced,props.actorStates,ready]);
+  return <div className="office-stage pixi-stage" aria-label="Prédio demonstrativo de cinco andares em pixel art">
+    <div ref={host} className="pixi-host" data-testid="office-renderer"/>
+    {!ready&&!error&&<p className="scene-loading" role="status">Preparando escritório em pixel art…</p>}
+    {error&&<p className="scene-error" role="alert">{error}</p>}
+    <div className="scene-flag"><span className="scene-flag-dot"/> DEMO · SEM CONEXÕES REAIS</div>
+    <div className="scene-location"><span>SEDE / VISÃO {props.zoomed?'DO SETOR':'GERAL'}</span><strong>{props.zoomed?floors[props.selected].title:'Um escritório. Cinco universos.'}</strong><small>Objetos independentes · PixiJS 8</small></div>
+    <div className="scene-sector-buttons" aria-label="Selecionar andar">
+      {[...floorOrder].reverse().map(f=><button type="button" key={f} aria-label={`Ampliar andar ${floors[f].number}: ${floors[f].title}`} aria-pressed={props.zoomed&&props.selected===f} onClick={()=>props.onSelect(f)}><span>{String(floors[f].number).padStart(2,'0')}</span><span>{floors[f].title}</span><b>↗</b></button>)}
+    </div>
+    {props.zoomed&&<button className="building-back" type="button" onClick={props.onResetZoom}>← Voltar ao prédio <kbd>Esc</kbd></button>}
+    <div className="scene-caption" aria-live="polite">{props.paused?'Ⅱ Animações pausadas':props.reduced?'Movimento reduzido':props.scene==='unknown'?'? Telemetria desconhecida':'◌ Simulação visual em reprodução'}<span>Teclas 1–5: setores · Esc: visão geral</span></div>
+  </div>;
 }

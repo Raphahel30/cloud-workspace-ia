@@ -1,0 +1,102 @@
+{
+  "createdAtUtc": "2026-11-17T00:03:44.711814+00:00",
+  "kind": "R03 artistic approval materials, not software release",
+  "files": [
+    {
+      "path": "docs/codex/RELATORIO_VISUAL_CODEX.md",
+      "bytes": 7786,
+      "sha256": "bc296725a54ffb9c513a918d582e0873571e25dc3d209f6f16682722b7565255"
+    },
+    {
+      "path": "docs/codex/STATUS_CONTINUO_CODEX.md",
+      "bytes": 6241,
+      "sha256": "5b83d5a560470396b311178c66eb0542773e7d89ce19ae3a575e027c7d8355f2"
+    },
+    {
+      "path": "docs/codex/PLANO_VISUAL_T03.md",
+      "bytes": 4854,
+      "sha256": "53cc09aaac5c468b09f1d90b5ff29d5b5acdab184e6c39e36788f9a94e823d32"
+    },
+    {
+      "path": "docs/codex/C0_DIAGNOSTICO.md",
+      "bytes": 3451,
+      "sha256": "9fc8573b90fcb5bf1fd61b7c512d6fb128aa6e48f74e9189d1d081ca43141da5"
+    },
+    {
+      "path": "docs/codex/RELATORIO_VISUAL_CODEX_R02_ARQUIVADO.md",
+      "bytes": 11899,
+      "sha256": "d7c5f6216bb8600ca137f34ebba6f8f4b346ffcabf0ebfb71b96133ee356d134"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/PROMPT_01_PREDIO.md",
+      "bytes": 5018,
+      "sha256": "2d633827335a95aa6b79e19dfc30109cbd8f4f5ae4183039640e9196e07c6086"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/PROMPT_02_ANDAR_03.md",
+      "bytes": 4429,
+      "sha256": "21c9a18f8db22f4465260d127efcf0f98f64011ed831cac95cf9d033f251afbd"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/PROVENIENCIA_E_CRITERIOS.md",
+      "bytes": 2936,
+      "sha256": "2c0f9beb599b738819267e61efdcbd58e99ea5c636de1426e5debf84abfa4043"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_00A_ATUAL_PR1_CAPTURA_REAL_REJEITADA.png",
+      "bytes": 296420,
+      "sha256": "ac25c4f7ecf4236a2ba9275f4379a360823d3b5d2b0a03a605e466355ac7c955"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_00B_ATUAL_ANDAR03_CAPTURA_REAL_REJEITADA.png",
+      "bytes": 360170,
+      "sha256": "e122df6f56c136a5fc555f85a58c7e0bf407dd906b098c8a56ad374b4fdc160e"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_00_REFERENCIA_APROVADA_CONCEITO.png",
+      "bytes": 2433570,
+      "sha256": "fae0eb3e4f3c30526cbcf24b99c79d45c4d1c97d18404fe5f6582dcb9a6ab70d"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_01_PREDIO_INTEIRO_PROPOSTA_NAO_APROVADA.png",
+      "bytes": 2817164,
+      "sha256": "5f114182ee21418e68e1167dc541405b74922816932641d0b9d859b42e871e03"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png",
+      "bytes": 2951479,
+      "sha256": "60526929bf67ccded58998f78eca51ceb5b5cef7cef8ce9d437fd705c030fcf3"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_03_COMPARACAO_ARTISTICA.html",
+      "bytes": 4553,
+      "sha256": "2567700c3c359bd61e0c66c762e641af5bd33e5afeacea444616255832831612"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_03_COMPARACAO_ARTISTICA.pdf",
+      "bytes": 12322736,
+      "sha256": "8cca3a556847cd38c879ba3f226b7a7d017b4d7880b828c8dd3a5a490062921f"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/R03_03_COMPARACAO_ARTISTICA.png",
+      "bytes": 2696067,
+      "sha256": "9abf3161605ad13e96af4cddc35e3ad8b1022a3be701f764d73a27c4f4a55a37"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/README.md",
+      "bytes": 1476,
+      "sha256": "4151610acd164e05ab1dd207d7bd2d9043f7738d4f209d8fefa0cc73b8980bc5"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/REGISTRO_INTERMEDIARIO_ETAPAS.md",
+      "bytes": 3030,
+      "sha256": "5944e868f96a86d11adedb7196848baf2cf511a670f9ad723e6b6e3d1494af44"
+    },
+    {
+      "path": "docs/codex/direcao-artistica/R03/aprovacao/DECISAO_PENDENTE.md",
+      "bytes": 810,
+      "sha256": "125e31a6c332b6bf45918095d65dcde3f209b1d34e668b31ec1062f7411b37f9"
+    }
+  ],
+  "note": "Manifest and ZIP checksum do not include themselves; no executable app or credentials."
+}
