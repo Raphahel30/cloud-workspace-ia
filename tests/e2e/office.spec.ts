@@ -5,9 +5,11 @@ for(const [width,height] of [[1280,800],[1440,900]])test(`real scene ${width}x${
   await page.setViewportSize({width,height});await page.goto('/');
   const host=page.getByTestId('office-renderer');
   await expect(host).toHaveAttribute('data-camera','overview');
+  await expect(host).toHaveAttribute('data-floor03-pilot','layered');
   await expect(host.locator('canvas')).toHaveCount(1);
   await expect(page.getByRole('alert')).toHaveCount(0);
   await expect(page.getByRole('button',{name:/Ampliar andar/})).toHaveCount(5);
+  await expect(page.getByRole('button',{name:/Ampliar andar 4: Infraestrutura \/ MCP \/ Testes/})).toBeVisible();
   const stageBounds=await page.locator('.pixi-stage').boundingBox();
   expect(stageBounds!.y+stageBounds!.height).toBeLessThanOrEqual(height);
   await page.screenshot({path:`docs/codex/screenshots/overview-${width}x${height}.png`});

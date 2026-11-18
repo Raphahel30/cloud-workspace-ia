@@ -29,3 +29,18 @@ it('packs extra poses into one small atlas without losing the original foot orig
   expect(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y).toBe(true);
  }
 });
+
+it('includes modular Floor 03 pilot sprites and valid isometric Tiled layout',async()=>{
+ const atlas=JSON.parse(await readFile('public/art/office.json','utf8'));
+ for(const key of [
+   'f3-bookshelf','f3-neon-sign','f3-holo-map','f3-holo-chart','f3-holo-chip',
+   'f3-rug','f3-chair','f3-desk','f3-monitor-back','f3-bot-ia',
+   'f3-badge-chatgpt','f3-badge-codex','f3-badge-antigravity','f3-badge-claude',
+ ]){
+   expect(atlas.frames[key],key).toBeDefined();
+ }
+ const tiled=JSON.parse(await readFile('public/art/floor03_layout.json','utf8'));
+ expect(tiled.orientation).toBe('isometric');
+ expect(tiled.layers.map((l:{name:string})=>l.name)).toContain('Workstations');
+ expect(tiled.layers.map((l:{name:string})=>l.name)).toContain('OcclusionMonitors');
+});

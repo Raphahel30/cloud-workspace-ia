@@ -10,7 +10,7 @@ import type { DemoScene } from '../lib/scenePolicy';
 type View = { selected:FloorKey; zoomed:boolean; scene:DemoScene; paused:boolean; reduced:boolean; actorStates?:ActorStates };
 type Actor = { id:string; sprite:Sprite; shadow:Sprite; motion:CharacterMotion; chair:Sprite; x:number; y:number; index:number; boss:boolean };
 const C={edge:0x0c192a,wall:0x23394c,cyan:0x78dce7,amber:0xf3c87e};
-const floorNames=['RECEPÇÃO','CONTROLE','EQUIPE IA','MCP / TESTES','INTEGRAÇÕES'];
+const floorNames=['RECEPÇÃO','CONTROLE','EQUIPE IA','INFRAESTRUTURA\nMCP / TESTES','INTEGRAÇÕES'];
 
 /** Owns only visual resources and a local clock. No service connection or core timer. */
 export class OfficeRenderer {
@@ -135,7 +135,13 @@ export class OfficeRenderer {
       } else if(i===3) {
         add('rack',98,-2,.68);add('rack',143,-5,.68);add('board',385,-43,.68);add('cabinet',170,-30,.63);add('bot',555,-43,.63);
       } else if(i===2) {
-        add('notice',300,-42,.66);add('cabinet',103,-30,.52);add('bot',570,-39,.6);
+        add('f3-bookshelf',106,-34,.66).zIndex=-900;
+        add('f3-neon-sign',215,-48,.82).zIndex=-880;
+        add('f3-holo-map',346,-54,.66).zIndex=-880;
+        add('f3-holo-chart',424,-59,.62).zIndex=-880;
+        add('f3-holo-chip',372,-32,.58).zIndex=-860;
+        add('f3-bookshelf',500,-60,.64).zIndex=-900;
+        add('f3-bot-ia',566,-38,.58).zIndex=-38;
       } else if(i===1) {
         add('books',125,-3,.75);add('board',450,-42,.7);add('lamp',210,-28,.6);add('coffee',550,-32,.55);
         this.poly(furniture,[171,-8,306,-18,334,-34,197,-25],0x896745).zIndex=-20;
@@ -146,20 +152,30 @@ export class OfficeRenderer {
         this.text(furniture,'CW',266,-28,12,C.amber).zIndex=0;
       }
       const seats = i===2 ? [140,255,370,485] : i===4 ? [565] : i===3 ? [290,430] : i===1 ? [255,455] : [255];
+      const f3Ids = ['chatgpt','codex','antigravity','claude'] as const;
+      const f3Names = ['ChatGPT','Codex','Antigravity','Claude Code'] as const;
       for(let n=0;n<seats.length;n++) {
         const x=seats[n],y=-10-x*.068;
-        const chair=add('chair',x-21,y+4,.7);chair.zIndex=y-12;
+        if(i===2){add('f3-rug',x-14,y+6,.74).zIndex=y-16;}
+        const chair=add(i===2?'f3-chair':'chair',x-21,y+4,i===2?.72:.7);chair.zIndex=y-12;
         const actor=add('idle-0',x,y-3,.76);
         actor.anchor.set(32/128,120/128);
         const shadow=add('foot-shadow',x,y-3,.76);shadow.anchor.set(32/128,120/128);
         const motion=new CharacterMotion({x,y:y-3});
-        this.actors.push({id:i===2?['chatgpt','codex','antigravity','claude'][n]:i===1&&n===0?'chief':`${floorOrder[i]}-${n}`,sprite:actor,shadow,motion,chair,x,y:y-3,index:this.actors.length,boss:i===1&&n===0});
+        this.actors.push({id:i===2?f3Ids[n]:i===1&&n===0?'chief':`${floorOrder[i]}-${n}`,sprite:actor,shadow,motion,chair,x,y:y-3,index:this.actors.length,boss:i===1&&n===0});
         if(i!==0){
-          const desk=add('desk',x,y,.7);desk.zIndex=y-8;
+          const desk=add(i===2?'f3-desk':'desk',x,y,i===2?.72:.7);desk.zIndex=y-8;
           const keyboard=add('keyboard',x,y,.7);keyboard.zIndex=y-7;
-          const monitor=add('monitor',x,y,.7);monitor.zIndex=y+1;
+          const monitor=add(i===2?'f3-monitor-back':'monitor',x,y,i===2?.72:.7);monitor.zIndex=i===2?y-1.5:y+1;
         }
-        if(i===2){const name=['ChatGPT','Codex','Antigravity','Claude'][n];this.text(structural,name,x+3,y+9,8,0xb7c9d0);}
+        if(i===2){
+          const badge=add(`f3-badge-${f3Ids[n]}`,x+16,y+3,.48);badge.zIndex=y-1.2;
+          const label=this.text(furniture,f3Names[n],x+28,y-5,7,0xeafcff);label.zIndex=y-1.1;
+        }
+      }
+      if(i===2){
+        this.host.dataset.floor03Pilot='layered';
+        this.host.dataset.floor03Sprites='27';
       }
       structural.cacheAsTexture({resolution:1,antialias:false});this.staticLayers.push(structural);
       // Independent rack indicators: grey for unknown, coloured only in explicit DEMO.
@@ -171,7 +187,7 @@ export class OfficeRenderer {
       this.poly(fascia,[620,-42,710,-95,710,-87,620,-34],0x30485e);
       this.poly(fascia,[620,-42,690,-83,690,-156,620,-115],0x142c42);
       this.text(fascia,String(i+1).padStart(2,'0'),634,-114,16,C.amber);
-      const sign=this.text(fascia,floorNames[i],631,-88,8,0xb3d5e0);sign.rotation=-.12;
+      const sign=this.text(fascia,floorNames[i],631,i===3?-92:-88,i===3?7:8,0xb3d5e0);sign.rotation=-.12;
       this.poly(fascia,[616,-118,620,-120,620,-38,616,-37],0x5b8496);
       const selection=this.poly(floor,[2,3,618,-39,618,-36,2,6],C.cyan);selection.visible=false;this.selections.push(selection);
       structural.eventMode='static';structural.cursor='zoom-in';

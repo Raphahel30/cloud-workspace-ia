@@ -10,9 +10,13 @@ export function enrichInterior(parent:Container,index:number,sheet:Spritesheet){
  // Inset acoustic / walnut wall panels with bevels and brass seams.
  for(let n=0;n<14;n++){
   const x=108+n*35,y=-99-n*2.4;
-  const warm=index===0||index===1;
-  poly([x,y,x+31,y-2.1,x+31,y+65,x,y+67.1],warm?0x5e5148:0x314457);
-  poly([x+2,y+2,x+28,y+.2,x+28,y+64,x+2,y+66],warm?0x77604c:0x3d5263);
+  const warm=index===0||index===1||index===2;
+  const walnut=index===2;
+  poly([x,y,x+31,y-2.1,x+31,y+65,x,y+67.1],walnut?0x4b3428:warm?0x5e5148:0x314457);
+  poly([x+2,y+2,x+28,y+.2,x+28,y+64,x+2,y+66],walnut?0x684836:warm?0x77604c:0x3d5263);
+  if(walnut){
+   for(let s=4;s<28;s+=5)poly([x+s,y+3-s*.06,x+s+2,y+3-(s+2)*.06,x+s+2,y+62-(s+2)*.06,x+s,y+62-s*.06],0x54392b,.7);
+  }
   poly([x+4,y+5,x+5,y+5,x+5,y+60,x+4,y+60],warm?0xc29a61:0x6c8390,.3);
   poly([x,y+65,x+31,y+63,x+31,y+67,x,y+69],0x1c3043);
  }
@@ -44,11 +48,13 @@ export function enrichInterior(parent:Container,index:number,sheet:Spritesheet){
   poly([x,y-77,x+3,y-79,x+3,y,x,y+2],0x91acb6,.7);
  }
  // Distinct wall signage reads as room identity, never as real telemetry.
- const labels=['PROJETOS / RECEPÇÃO','CLOUD CONTROL','EQUIPE IA','LAB / MCP','SERVIÇOS / DEMO'];
- const sign=new Text({text:labels[index],style:{fontFamily:'monospace',fontSize:8,fontWeight:'bold',fill:0xb1e6ea}});
- sign.position.set(218,-82);sign.rotation=-.068;parent.addChild(sign);
- poly([210,-85,345,-94,345,-78,210,-69],0x102c40);
- // Place sign above its independent frame.
- parent.addChild(sign);
+ if(index!==2){
+  const labels=['PROJETOS / RECEPÇÃO','CLOUD CONTROL','EQUIPE IA','INFRAESTRUTURA / MCP / TESTES','SERVIÇOS / DEMO'];
+  const sign=new Text({text:labels[index],style:{fontFamily:'monospace',fontSize:8,fontWeight:'bold',fill:0xb1e6ea}});
+  sign.position.set(218,-82);sign.rotation=-.068;parent.addChild(sign);
+  poly([210,-85,368,-95,368,-79,210,-69],0x102c40);
+  // Place sign above its independent frame.
+  parent.addChild(sign);
+ }
  light('cyan-glow',280,-84,.72,.35);
 }

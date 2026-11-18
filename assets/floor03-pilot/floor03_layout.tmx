@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.2" orientation="isometric" renderorder="right-down" width="16" height="6" tilewidth="38" tileheight="18" infinite="0" nextlayerid="6" nextobjectid="16">
+ <properties>
+  <property name="floorId" value="agents"/>
+  <property name="floorNumber" type="int" value="3"/>
+  <property name="pilotMode" value="layered-independent"/>
+  <property name="referenceDoc" value="R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png"/>
+ </properties>
+ <tileset firstgid="1" name="floor03_atlas" tilewidth="38" tileheight="18" tilecount="1" columns="1">
+  <image source="../../public/art/office.png" width="1024" height="1072"/>
+ </tileset>
+ <layer id="1" name="FloorTiles" width="16" height="6">
+  <data encoding="csv">
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+ <objectgroup id="2" name="WallEnvironment">
+  <object id="1" name="bookshelf_left" type="f3-bookshelf" x="106" y="-34" width="64" height="68"/>
+  <object id="2" name="neon_equipe_ia" type="f3-neon-sign" x="215" y="-48" width="96" height="32"/>
+  <object id="3" name="holo_map" type="f3-holo-map" x="346" y="-54" width="64" height="44"/>
+  <object id="4" name="holo_chart" type="f3-holo-chart" x="424" y="-59" width="52" height="44"/>
+  <object id="5" name="holo_chip" type="f3-holo-chip" x="372" y="-32" width="68" height="24"/>
+  <object id="6" name="bookshelf_right" type="f3-bookshelf" x="500" y="-60" width="60" height="68"/>
+ </objectgroup>
+ <objectgroup id="3" name="Workstations">
+  <object id="7" name="station_chatgpt" type="chatgpt" x="140" y="-19" width="70" height="54"/>
+  <object id="8" name="station_codex" type="codex" x="255" y="-27" width="70" height="54"/>
+  <object id="9" name="station_antigravity" type="antigravity" x="370" y="-35" width="70" height="54"/>
+  <object id="10" name="station_claude" type="claude" x="485" y="-43" width="70" height="54"/>
+ </objectgroup>
+ <objectgroup id="4" name="HelpersAndVegetation">
+  <object id="11" name="bot_ia" type="f3-bot-ia" x="566" y="-38" width="44" height="46"/>
+  <object id="12" name="plant_west" type="plant" x="48" y="-26" width="38" height="56"/>
+  <object id="13" name="plant_east" type="fern" x="606" y="-44" width="38" height="56"/>
+ </objectgroup>
+ <objectgroup id="5" name="OcclusionMonitors">
+  <object id="14" name="monitor_rule" type="rear-facing" x="140" y="-19" width="32" height="34">
+   <properties>
+    <property name="screenFaces" value="character"/>
+    <property name="backFacesCamera" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

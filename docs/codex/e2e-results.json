@@ -1,12 +1,12 @@
 {
   "config": {
     "argv": [
-      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
-      "/workspace/cloud-workspace-ia/node_modules/.bin/playwright",
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\node_modules\\@playwright\\test\\cli.js",
       "test"
     ],
-    "configFile": "/workspace/cloud-workspace-ia/playwright.config.ts",
-    "rootDir": "/workspace/cloud-workspace-ia/tests/e2e",
+    "configFile": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\playwright.config.ts",
+    "rootDir": "C:/Users/PC NOVO/Projetos/worktrees/floor03-pilot/tests/e2e",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -22,7 +22,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/workspace/cloud-workspace-ia/test-results",
+        "outputDir": "C:/Users/PC NOVO/Projetos/worktrees/floor03-pilot/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -30,7 +30,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "/workspace/cloud-workspace-ia/tests/e2e",
+        "testDir": "C:/Users/PC NOVO/Projetos/worktrees/floor03-pilot/tests/e2e",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -42,15 +42,15 @@
       {
         "grep": {},
         "grepInvert": null,
-        "outputDir": "/workspace/cloud-workspace-ia/test-results",
+        "outputDir": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
           "actualWorkers": 1
         },
         "name": "",
-        "testDir": "/workspace/cloud-workspace-ia/tests/e2e",
-        "snapshotDir": "/workspace/cloud-workspace-ia/tests/e2e",
+        "testDir": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\tests\\e2e",
         "testIgnore": [],
         "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
         "timeout": 30000,
@@ -58,7 +58,7 @@
           "baseURL": "http://127.0.0.1:1420",
           "headless": true,
           "launchOptions": {
-            "executablePath": "/usr/bin/chromium",
+            "executablePath": "C:\\Users\\PC NOVO\\AppData\\Local\\ms-playwright\\chromium-1248\\chrome-win64\\chrome.exe",
             "args": [
               "--no-sandbox",
               "--enable-unsafe-swiftshader",
@@ -96,7 +96,12 @@
     "updateSourceMethod": "patch",
     "version": "1.65.1",
     "workers": 1,
-    "webServer": null
+    "webServer": {
+      "command": "npm run dev -- --port 1420 --strictPort",
+      "url": "http://127.0.0.1:1420",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
   },
   "suites": [
     {
@@ -121,12 +126,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 6735,
+                  "duration": 7070,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:22:39.288Z",
+                  "startTime": "2026-11-18T22:38:53.869Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -155,12 +160,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 7075,
+                  "duration": 3499,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:22:46.236Z",
+                  "startTime": "2026-11-18T22:39:01.260Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -189,23 +194,23 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 19979,
+                  "duration": 17106,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:22:53.343Z",
+                  "startTime": "2026-11-18T22:39:04.778Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "measured-active",
                       "contentType": "application/json",
-                      "body": "eyJtb2RlIjoiYWN0aXZlIiwiZnJhbWVzIjoyOSwiZHVyYXRpb25NcyI6MTI1OX0="
+                      "body": "eyJtb2RlIjoiYWN0aXZlIiwiZnJhbWVzIjozNywiZHVyYXRpb25NcyI6MTMxNX0="
                     },
                     {
                       "name": "measured-rendering",
                       "contentType": "application/json",
-                      "body": "eyJtb2RlIjoiaWRsZSIsImZyYW1lcyI6MjAsImR1cmF0aW9uTXMiOjIwMjAsImhlYXAiOjM3NTczNTEyfQ=="
+                      "body": "eyJtb2RlIjoiaWRsZSIsImZyYW1lcyI6MjAsImR1cmF0aW9uTXMiOjIwMzgsImhlYXAiOjM3NzI2ODE0fQ=="
                     }
                   ]
                 }
@@ -215,7 +220,7 @@
           ],
           "id": "5c5d446ebfeb4446412c-c470ff670bb3eebb7215",
           "file": "office.spec.ts",
-          "line": 32,
+          "line": 34,
           "column": 1
         },
         {
@@ -234,12 +239,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2201,
+                  "duration": 1624,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:23:13.360Z",
+                  "startTime": "2026-11-18T22:39:21.904Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -249,7 +254,7 @@
           ],
           "id": "5c5d446ebfeb4446412c-61c91eebb054e33d8ed8",
           "file": "office.spec.ts",
-          "line": 90,
+          "line": 92,
           "column": 1
         },
         {
@@ -268,12 +273,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 7042,
+                  "duration": 5490,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:23:15.616Z",
+                  "startTime": "2026-11-18T22:39:23.588Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -283,7 +288,7 @@
           ],
           "id": "5c5d446ebfeb4446412c-cc9ac679412ad7084abc",
           "file": "office.spec.ts",
-          "line": 104,
+          "line": 106,
           "column": 1
         },
         {
@@ -302,12 +307,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3128,
+                  "duration": 1844,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:23:22.674Z",
+                  "startTime": "2026-11-18T22:39:29.096Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -317,7 +322,7 @@
           ],
           "id": "5c5d446ebfeb4446412c-1ca2973e1230beb9077e",
           "file": "office.spec.ts",
-          "line": 120,
+          "line": 122,
           "column": 1
         },
         {
@@ -336,12 +341,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1563,
+                  "duration": 646,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:23:25.850Z",
+                  "startTime": "2026-11-18T22:39:30.956Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -351,7 +356,7 @@
           ],
           "id": "5c5d446ebfeb4446412c-e03b0bc2cca20e15ebb4",
           "file": "office.spec.ts",
-          "line": 132,
+          "line": 134,
           "column": 1
         },
         {
@@ -370,12 +375,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 16838,
+                  "duration": 9974,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-16T23:23:27.430Z",
+                  "startTime": "2026-11-18T22:39:31.621Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -385,7 +390,7 @@
           ],
           "id": "5c5d446ebfeb4446412c-cf92c399c5a9c428490d",
           "file": "office.spec.ts",
-          "line": 139,
+          "line": 141,
           "column": 1
         }
       ]
@@ -393,8 +398,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-11-16T23:22:38.811Z",
-    "duration": 70829.087,
+    "startTime": "2026-11-18T22:38:50.367Z",
+    "duration": 51763.744,
     "expected": 8,
     "skipped": 0,
     "unexpected": 0,

@@ -1,6 +1,7 @@
 /** Original Cloud Workspace pixel artwork. Sources are editable SVG; raster atlas is reproducible. */
 import sharp from 'sharp';
 import {premiumArt} from './art/premium.mjs';
+import {floor03PilotArt} from './art/floor03Pilot.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 await mkdir('public/art',{recursive:true});
 await mkdir('assets/source',{recursive:true});
@@ -43,6 +44,7 @@ for(const [pose,count] of [['walk',4],['type',4],['idle',2],['wait',2],['error',
  art[`${pose}-${f}`]=b;
 }
 premiumArt(art,r,p);
+floor03PilotArt(art,r,p);
 for(const name of Object.keys(art).filter(n=>/^(walk|walk-back|type|idle|wait|error|unknown|sit|stand|seated)-/.test(n))) {
   const palettes=[['#7389a9','#a9b9c9','#3c5678'],['#a889c3','#d1b9db','#66517f'],['#58a598','#9bd0ba','#356d72'],['#c69b70','#e6c490','#8a654b'],['#6f9cbd','#b2d2dc','#456882']];
   palettes.forEach((colors,i)=>art[`${name}-c${i}`]=art[name].replaceAll('#7389a9',colors[0]).replaceAll('#a9b9c9',colors[1]).replaceAll('#3c5678',colors[2]).replaceAll('#553c3e',['#553c3e','#655078','#684938','#463941','#434555'][i]).replaceAll('#916151',['#916151','#9e7fb8','#ab7b53','#857371','#7e8587'][i]));
