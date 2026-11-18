@@ -284,3 +284,21 @@ RELATORIOS E REGISTROS:
 - docs/antigravity/STATUS_CONTINUO_ANTIGRAVITY.md
 - Copiados para G:\Meu Drive\Projetos Code\01 - Projetos\cloud-workspace-ia\Relatorios Preparacao\ e G:\Meu Drive\Projetos Code\00 - Documentacao Cloud Workspace IA\03_STATUS_E_REGISTRO_DE_ETAPAS.txt
 IDENTIFICADOR DE COMMIT / BRANCH: agent/antigravity/setup (Raphahel30/cloud-workspace-ia)
+
+
+====================================================================
+[2026-11-18 18:54 UTC-3] ETAPA: LIMPEZA PARCIAL SSD ETAPA 1 + REVISAO TEMP
+====================================================================
+STATUS: CONCLUIDA PARCIALMENTE (npm cache e SquirrelTemp limpos; uv cache aguardando liberacao do processo mem0-mcp-server; selecao segura de Temp e plano do icone Tauri prontos para aprovacao)
+O QUE FOI FEITO:
+- Espaco livre antes em C:: 58,39 GB (62.696.587.264 bytes).
+- Executado `npm cache clean --force` (exit 0; _cacache limpo; restam ~2,24 GB em _npx).
+- Confirmada ausencia de instaladores ativos e limpo `AppData\Local\SquirrelTemp` (0,00 MB restantes).
+- `uv cache clean` detectou trava ativa do processo `uv.exe` PID 10864 (`mem0-mcp-server`) e foi interrompido com seguranca sem `--force`.
+- Espaco livre apos Etapa 1 em C:: 84,84 GB (91.098.624.000 bytes) => +26,45 GB efetivamente recuperados.
+- Downloads, Hugging Face, Docker, Playwright, Rust, projetos, bancos, documentos, credenciais e unidade G:\ preservados integralmente.
+- Auditoria profunda somente leitura de `AppData\Local\Temp` (19,80 GB) concluida em `docs/antigravity/RELATORIO_LIMPEZA_SSD_ETAPA1.md`, separando itens de projetos a preservar de ~13,6 GB de temporarios tecnicos descartaveis.
+RELATORIOS ATUALIZADOS:
+- docs/antigravity/RELATORIO_LIMPEZA_SSD_ETAPA1.md
+- docs/antigravity/STATUS_CONTINUO_ANTIGRAVITY.md
+- Copias sincronizadas no Drive em `G:\Meu Drive\Projetos Code\01 - Projetos\cloud-workspace-ia\Relatorios Preparacao\` e neste registro.

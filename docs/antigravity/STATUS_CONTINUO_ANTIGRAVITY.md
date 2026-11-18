@@ -19,3 +19,12 @@
 - [ ] Aprovação humana das duas propostas R03 (pendente).
 - [ ] Aprovação humana para eventual limpeza do SSD (pendente).
 - [ ] Configuração futura do cofre KeePassXC e correção de `icon.ico` / `playwright.config.ts` em etapa autorizada de desenvolvimento.
+
+
+## Limpeza SSD Etapa 1 — 2026-11-18 (UTC-3)
+- [x] Medição antes: `58,39 GB` livres em `C:`.
+- [x] `npm cache clean --force` executado (`exit 0`; restam `2,24 GB` em `_npx`).
+- [x] `SquirrelTemp` limpo após confirmar ausência de instaladores ativos (`0,00 MB` restantes).
+- [!] `uv cache clean` adiado por trava ativa do servidor `mem0-mcp-server` (PID `10864` em `uv.exe`); `10,56 GB` de `uv\cache` e ferramentas em `Roaming\uv` preservados.
+- [x] Medição depois: **`84,84 GB`** livres em `C:` (**`+26,45 GB` efetivamente recuperados**).
+- [x] Revisão profunda somente leitura de `AppData\Local\Temp` registrada em `RELATORIO_LIMPEZA_SSD_ETAPA1.md`, preservando itens ligados a `OptiGrill`, `PetSiStore`, `Sebastião Freitas`, `docesdale`, `Codex`, `Antigravity` e separando `~13,6 GB` descartáveis para aprovação.
