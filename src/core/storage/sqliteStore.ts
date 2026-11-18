@@ -333,6 +333,25 @@ export class SqliteStore {
     }));
   }
 
+  getProject(idOrSlug: string): ProjectRecord | null {
+    const r = this.db
+      .prepare('SELECT * FROM projects WHERE id = ? OR slug = ? LIMIT 1')
+      .get(idOrSlug, idOrSlug) as Record<string, unknown> | undefined;
+    if (!r) return null;
+    return {
+      id: String(r.id),
+      slug: String(r.slug),
+      name: String(r.name),
+      stack: String(r.stack),
+      status: String(r.status),
+      localPath: r.local_path === null ? null : String(r.local_path),
+      drivePath: r.drive_path === null ? null : String(r.drive_path),
+      githubRepo: r.github_repo === null ? null : String(r.github_repo),
+      reviewStatus: String(r.review_status),
+      updatedAt: String(r.updated_at),
+    };
+  }
+
   replaceProjectManifest(projectId: string, entries: ReadonlyArray<ManifestEntryRecord>): void {
     this.db.exec('BEGIN IMMEDIATE;');
     try {
@@ -392,6 +411,43 @@ export class SqliteStore {
         ws.state,
         ws.bytesUsed,
       );
+  }
+
+  getWorkspace(id: string): WorkspaceRecord | null {
+    const r = this.db
+      .prepare('SELECT * FROM workspaces WHERE id = ? LIMIT 1')
+      .get(id) as Record<string, unknown> | undefined;
+    if (!r) return null;
+    return {
+      id: String(r.id),
+      projectId: String(r.project_id),
+      runId: String(r.run_id),
+      agentId: String(r.agent_id),
+      localPath: String(r.local_path),
+      branch: String(r.branch),
+      createdAt: String(r.created_at),
+      state: String(r.state),
+      bytesUsed: Number(r.bytes_used),
+    };
+  }
+
+  listWorkspaces(projectId?: string): WorkspaceRecord[] {
+    const rows = (
+      projectId
+        ? this.db.prepare('SELECT * FROM workspaces WHERE project_id = ? ORDER BY created_at DESC').all(projectId)
+        : this.db.prepare('SELECT * FROM workspaces ORDER BY created_at DESC').all()
+    ) as Array<Record<string, unknown>>;
+    return rows.map((r) => ({
+      id: String(r.id),
+      projectId: String(r.project_id),
+      runId: String(r.run_id),
+      agentId: String(r.agent_id),
+      localPath: String(r.local_path),
+      branch: String(r.branch),
+      createdAt: String(r.created_at),
+      state: String(r.state),
+      bytesUsed: Number(r.bytes_used),
+    }));
   }
 
   upsertAgent(agent: AgentRecord): void {
@@ -560,6 +616,7 @@ export class SqliteStore {
         INSERT INTO sync_jobs (id, source_path, target_path, base_manifest_hash, state, attempts, last_error, verified, updated_at)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(id) DO UPDATE SET
+          base_manifest_hash = excluded.base_manifest_hash,
           state = excluded.state,
           attempts = excluded.attempts,
           last_error = excluded.last_error,
@@ -577,6 +634,21 @@ export class SqliteStore {
         job.verified ? 1 : 0,
         job.updatedAt,
       );
+  }
+
+  listSyncJobs(): SyncJobRecord[] {
+    const rows = this.db.prepare('SELECT * FROM sync_jobs ORDER BY updated_at DESC').all() as Array<Record<string, unknown>>;
+    return rows.map((r) => ({
+      id: String(r.id),
+      sourcePath: String(r.source_path),
+      targetPath: String(r.target_path),
+      baseManifestHash: r.base_manifest_hash === null ? null : String(r.base_manifest_hash),
+      state: String(r.state),
+      attempts: Number(r.attempts),
+      lastError: r.last_error === null ? null : String(r.last_error),
+      verified: Number(r.verified) === 1,
+      updatedAt: String(r.updated_at),
+    }));
   }
 
   recordBackup(backup: BackupRecord): void {
@@ -597,6 +669,30 @@ export class SqliteStore {
         backup.retentionGroup,
         backup.createdAt,
       );
+  }
+
+  getBackupRecord(id: string): BackupRecord | null {
+    const r = this.db
+      .prepare('SELECT * FROM backup_records WHERE id = ? LIMIT 1')
+      .get(id) as Record<string, unknown> | undefined;
+    if (!r) return null;
+    return {
+      id: String(r.id),
+      projectId: String(r.project_id),
+      target: String(r.target),
+      snapshotPath: String(r.snapshot_path),
+      sha256: r.sha256 === null ? null : String(r.sha256),
+      restoreState: String(r.restore_state),
+      retentionGroup: String(r.retention_group),
+      createdAt: String(r.created_at),
+    };
+  }
+
+  listTableNames(): string[] {
+    const rows = this.db
+      .prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC")
+      .all() as Array<Record<string, unknown>>;
+    return rows.map((r) => String(r.name));
   }
 
   appendAuditEvent(event: AuditEventRecord): number {

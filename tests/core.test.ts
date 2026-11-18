@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { SqliteStore, redactSecrets } from '../src/core/storage/sqliteStore';
 import { aggregateEvidenceFromStore } from '../src/core/evidence/evidenceAggregator';
+import { resolveSidecarConfig } from '../src/core/runtime/tauriSidecarRuntime';
+import { isAllowedHttpOrigin } from '../src/core/mcp/localMcpGateway';
 
-describe('CORE-01/02 Vitest integration', () => {
+describe('CORE-01..05 Vitest integration', () => {
   it('masks secret patterns and keeps unverified evidence as unknown', () => {
     expect(redactSecrets('Bearer secret_token_12345')).toBe('Bearer [REDACTED_BEARER]');
     const store = new SqliteStore(':memory:');
@@ -23,5 +25,12 @@ describe('CORE-01/02 Vitest integration', () => {
     } finally {
       store.close();
     }
+  });
+
+  it('enforces Tauri sidecar local-only paths and loopback HTTP Origin allowlist', () => {
+    expect(() => resolveSidecarConfig({ dbPathOverride: 'G:\\Meu Drive\\workspace.sqlite' })).toThrow();
+    expect(isAllowedHttpOrigin('http://127.0.0.1:1420')).toBe(true);
+    expect(isAllowedHttpOrigin('tauri://localhost')).toBe(true);
+    expect(isAllowedHttpOrigin('https://evil.site')).toBe(false);
   });
 });

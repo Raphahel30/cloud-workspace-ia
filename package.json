@@ -12,7 +12,7 @@
     "desktop:build": "tauri build",
     "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs",
     "test:contracts": "node --experimental-strip-types --test tests/agentState.node.test.mjs",
-    "test:core": "node --experimental-strip-types --test tests/core/*.node.test.mjs"
+    "test:core": "node --experimental-strip-types --test tests/core/core01_02.node.test.mjs tests/core/core03_04_05.node.test.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",
