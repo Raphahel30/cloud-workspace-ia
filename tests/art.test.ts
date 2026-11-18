@@ -44,3 +44,23 @@ it('includes modular Floor 03 pilot sprites and valid isometric Tiled layout',as
  expect(tiled.layers.map((l:{name:string})=>l.name)).toContain('Workstations');
  expect(tiled.layers.map((l:{name:string})=>l.name)).toContain('OcclusionMonitors');
 });
+
+it('ships R03_02 single-workstation layered RGBA assets and 12 distinct animation frames',async()=>{
+ const sheet=JSON.parse(await readFile('public/art/workstation-proof/spritesheet_character_r03.json','utf8'));
+ const manifest=JSON.parse(await readFile('public/art/workstation-proof/workstation_proof_manifest.json','utf8'));
+ expect(manifest.layerCount).toBe(12);
+ expect(manifest.alphaTransparencyVerified).toBe(true);
+ for(const [pose,count] of [['walk',4],['sit',2],['stand',2],['type',4]] as const){
+   const hashes=await Promise.all(Array.from({length:count},async(_,i)=>{
+     const f=sheet.frames[`${pose}-${i}`].frame;
+     return (await sharp('public/art/workstation-proof/spritesheet_character_r03.png').extract({left:f.x,top:f.y,width:f.w,height:f.h}).raw().toBuffer()).toString('base64');
+   }));
+   expect(new Set(hashes).size,pose).toBe(count);
+ }
+ for(const s of manifest.sprites as Array<{transparentPixels:number;opaquePixels:number}>){
+   expect(s.transparentPixels).toBeGreaterThan(0);
+   expect(s.opaquePixels).toBeGreaterThan(0);
+ }
+ const tiledProof=JSON.parse(await readFile('public/art/workstation-proof/workstation_r03_map.json','utf8'));
+ expect(tiledProof.layers.map((l:{name:string})=>l.name)).toEqual(['WallAndWindow','FloorTiles','WorkstationLayers','LightingGlow']);
+});

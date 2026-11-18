@@ -126,12 +126,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 7070,
+                  "duration": 9077,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:38:53.869Z",
+                  "startTime": "2026-11-18T23:24:43.899Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -160,12 +160,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3499,
+                  "duration": 3101,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:01.260Z",
+                  "startTime": "2026-11-18T23:24:53.488Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -194,23 +194,23 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 17106,
+                  "duration": 16581,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:04.778Z",
+                  "startTime": "2026-11-18T23:24:56.608Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "measured-active",
                       "contentType": "application/json",
-                      "body": "eyJtb2RlIjoiYWN0aXZlIiwiZnJhbWVzIjozNywiZHVyYXRpb25NcyI6MTMxNX0="
+                      "body": "eyJtb2RlIjoiYWN0aXZlIiwiZnJhbWVzIjozNSwiZHVyYXRpb25NcyI6MTIzMX0="
                     },
                     {
                       "name": "measured-rendering",
                       "contentType": "application/json",
-                      "body": "eyJtb2RlIjoiaWRsZSIsImZyYW1lcyI6MjAsImR1cmF0aW9uTXMiOjIwMzgsImhlYXAiOjM3NzI2ODE0fQ=="
+                      "body": "eyJtb2RlIjoiaWRsZSIsImZyYW1lcyI6MjAsImR1cmF0aW9uTXMiOjIwMzAsImhlYXAiOjM2NTc2NzQyfQ=="
                     }
                   ]
                 }
@@ -239,12 +239,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1624,
+                  "duration": 1331,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:21.904Z",
+                  "startTime": "2026-11-18T23:25:13.223Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -273,12 +273,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5490,
+                  "duration": 5156,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:23.588Z",
+                  "startTime": "2026-11-18T23:25:14.580Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -307,12 +307,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1844,
+                  "duration": 1765,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:29.096Z",
+                  "startTime": "2026-11-18T23:25:19.755Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -341,12 +341,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 646,
+                  "duration": 641,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:30.956Z",
+                  "startTime": "2026-11-18T23:25:21.540Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -375,12 +375,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 9974,
+                  "duration": 9283,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-18T22:39:31.621Z",
+                  "startTime": "2026-11-18T23:25:22.202Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -394,13 +394,55 @@
           "column": 1
         }
       ]
+    },
+    {
+      "title": "workstationProof.spec.ts",
+      "file": "workstationProof.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "single workstation R03_02 proof renders 12 RGBA layers and all 4 animation states in PixiJS 8",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9003,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-18T23:25:31.534Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb02b35166ed5d08daa9-b7b879444b0a8ac81df8",
+          "file": "workstationProof.spec.ts",
+          "line": 7,
+          "column": 1
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-11-18T22:38:50.367Z",
-    "duration": 51763.744,
-    "expected": 8,
+    "startTime": "2026-11-18T23:24:42.157Z",
+    "duration": 58862.267,
+    "expected": 9,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

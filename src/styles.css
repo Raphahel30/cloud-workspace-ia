@@ -66,3 +66,27 @@ button:focus-visible,select:focus-visible{outline:3px solid #ffe0a0!important;ou
 .scene-sector-buttons{top:150px}
 @media(max-width:760px){.scene-sector-buttons{top:auto}}
 .topbar{position:sticky;top:0;z-index:20}
+/* Prova Artística Isolada: 1 Estação Completa estilo R03_02 */
+.headline-badges{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;justify-content:flex-end}
+.proof-launch-btn{background:#1b3e4f;border:1px solid #6bd3e1;color:#d6fbff;font-size:10px;font-weight:800;letter-spacing:.4px;padding:10px 12px;border-radius:9px;white-space:nowrap}
+.proof-launch-btn:hover{background:#255469}
+.proof-panel{border-radius:14px;border:1px solid #2d4655;background:#111f31;overflow:hidden;box-shadow:0 10px 30px #050d1526}
+.proof-header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-bottom:1px solid #253d4f}
+.proof-header h2{margin:4px 0 0;font-size:18px}
+.proof-header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.proof-controls-bar{padding:12px 20px;background:#0e1b2b;border-bottom:1px solid #253d4f}
+.proof-mode-group{display:flex;gap:8px;flex-wrap:wrap}
+.proof-mode-btn{background:#193143;border:1px solid #35586d;color:#bdd5e2;font-size:11px;font-weight:700;padding:8px 13px;border-radius:8px}
+.proof-mode-btn:hover{background:#22435b}
+.proof-mode-btn.active{background:#285552;border-color:#68d6c1;color:#ecfffb}
+.proof-grid{display:grid;grid-template-columns:minmax(0,1fr) 265px;gap:0}
+.proof-stage-wrap{position:relative;background:#091625;aspect-ratio:1200/896;width:100%;overflow:hidden}
+.proof-pixi-host{position:absolute;inset:0}
+.proof-pixi-host canvas{width:100%;height:100%;display:block;image-rendering:pixelated}
+.proof-layers-panel{background:#132336;border-left:1px solid #253d4f;padding:16px;display:flex;flex-direction:column;gap:10px}
+.proof-layers-hint{font-size:10px;color:#8aa4b5;line-height:1.45;margin:0}
+.proof-layer-list{display:flex;flex-direction:column;gap:6px}
+.proof-layer-item{display:flex;align-items:center;gap:8px;font-size:11px;color:#d8e9f2;background:#1a2e43;border:1px solid #2c475d;padding:7px 9px;border-radius:7px;cursor:pointer}
+.proof-layer-item input{accent-color:#6cd7c3;cursor:pointer}
+.proof-layer-actions{margin-top:auto;padding-top:8px}
+@media(max-width:980px){.proof-grid{grid-template-columns:1fr}.proof-layers-panel{border-left:0;border-top:1px solid #253d4f}}

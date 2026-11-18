@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { AgentVisualState } from './core-contracts/agentState';
 import Office from './components/Office';
+import WorkstationProof from './components/WorkstationProof';
 import FloorDetails from './components/FloorDetails';
 import { SCENE_COPY, type DemoScene } from './lib/scenePolicy';
 import { floorOrder, floors, type FloorKey } from './data/floors';
@@ -24,6 +25,7 @@ export default function App() {
   const [actorStates,setActorStates] = useState<Record<string,AgentVisualState>>({});
   const [paused,setPaused] = useState(false);
   const [reduced,setReduced] = useState(()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [proofMode,setProofMode] = useState(()=>new URLSearchParams(window.location.search).get('proof')==='workstation');
   useEffect(()=>{const query=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>setReduced(query.matches);query.addEventListener('change',change);return()=>query.removeEventListener('change',change);},[]);
   const previousZoom=useRef(false);
   useLayoutEffect(()=>{
@@ -59,8 +61,8 @@ export default function App() {
     <div className="main-area">
       <header className="topbar"><div className="breadcrumbs">CENTRAL / <strong>{pages.find(p=>p.id===page)?.label.toUpperCase()}</strong></div><div className="topbar-right"><span className="dot amber"/><span>DEMO · Telemetria indisponível</span><span className="topbar-avatar">CW</span></div></header>
       <main className="main-content">
-        {page==='office'? <>
-          <div className="headline"><div><p className="overline">SEDE OPERACIONAL · CINCO ANDARES</p><h1>Cloud Workspace <em>IA.</em></h1><p className="subtitle">Explore a sede 16 bits e acompanhe seus setores em um único lugar.</p></div><span className="preview-badge">✦ PRÉVIA INTERATIVA · DEMO</span></div>
+        {page==='office'? (proofMode ? <WorkstationProof onBackToBuilding={()=>setProofMode(false)}/> : <>
+          <div className="headline"><div><p className="overline">SEDE OPERACIONAL · CINCO ANDARES</p><h1>Cloud Workspace <em>IA.</em></h1><p className="subtitle">Explore a sede 16 bits e acompanhe seus setores em um único lugar.</p></div><div className="headline-badges"><button type="button" className="proof-launch-btn" data-testid="open-workstation-proof" onClick={()=>setProofMode(true)}>★ Prova Artística · 1 Estação R03_02</button><span className="preview-badge">✦ PRÉVIA INTERATIVA · DEMO</span></div></div>
           <div className="summary-strip">
             <div className="summary-item"><span className="summary-icon teal">◷</span><div><small>Cenário global</small><strong>{({active:'DEMO: trabalhando',alert:'DEMO: alerta',idle:'DEMO: repouso',waiting:'DEMO: aprovação',absent:'DEMO: ausente',unknown:'Desconhecido'})[scene]}</strong></div></div>
             <div className="summary-item"><span className="summary-icon gold">▦</span><div><small>Agentes cadastrados</small><strong>{snapshot.agents.length} · não verificados</strong></div></div>
@@ -76,7 +78,7 @@ export default function App() {
             <FloorDetails floor={selected} scene={scene} paused={paused||reduced} onChoose={selectFloor} actorStates={actorStates} onDemoState={(id,state)=>setActorStates(current=>({...current,[id]:state}))}/>
             <section className="info-card"><div className="section-card-title"><div><p className="overline">CENTRAL DE EVENTOS</p><h3>Atividade recente</h3></div><span className="card-badge">◷</span></div><div className="event-row"><span className="event-dot amber"/><div><strong>Reprodução de cena 16 bits</strong><small>Atlas original: caminhada, digitação, espera e alerta; reprodução pausável</small></div><time>DEMO</time></div><div className="event-row"><span className="event-dot muted"/><div><strong>Integrações não habilitadas</strong><small>MCP local, ferramentas e telemetria serão validados posteriormente</small></div><time>PENDENTE</time></div><div className="event-row"><span className="event-dot muted"/><div><strong>Drive previsto no planejamento</strong><small>Nenhum armazenamento externo conectado nesta interface</small></div><time>DEFINIDO</time></div></section>
           </div>
-        </>: <section className="placeholder-module"><div className="module-icon">{pages.find(p=>p.id===page)?.icon}</div><p className="overline">MÓDULO PLANEJADO · SEM OPERAÇÕES REAIS</p><h1>{pages.find(p=>p.id===page)?.label}</h1><p>{page==='projects'?'Projetos só serão migrados após inventário e aprovação individual.':page==='tests'?'Testes futuros executarão Playwright em navegador separado, sem controlar o mouse.':page==='connections'?'Conexões Drive, GitHub, Hostinger e MCP só aparecerão ativas após verificação real.':'KeePassXC será desbloqueado sob demanda e não compartilhará a senha mestra com agentes.'}</p><div className="module-cta">Em desenvolvimento · nenhuma integração acionada</div></section>}
+        </>) : <section className="placeholder-module"><div className="module-icon">{pages.find(p=>p.id===page)?.icon}</div><p className="overline">MÓDULO PLANEJADO · SEM OPERAÇÕES REAIS</p><h1>{pages.find(p=>p.id===page)?.label}</h1><p>{page==='projects'?'Projetos só serão migrados após inventário e aprovação individual.':page==='tests'?'Testes futuros executarão Playwright em navegador separado, sem controlar o mouse.':page==='connections'?'Conexões Drive, GitHub, Hostinger e MCP só aparecerão ativas após verificação real.':'KeePassXC será desbloqueado sob demanda e não compartilhará a senha mestra com agentes.'}</p><div className="module-cta">Em desenvolvimento · nenhuma integração acionada</div></section>}
       </main>
       <footer className="app-footer">CLOUD WORKSPACE IA · PRÉVIA DE INTERFACE <span>SEM TELEMETRIA REAL · ESTADOS DEMO</span></footer>
     </div>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="24" height="18" tilewidth="50" tileheight="50" infinite="0" nextlayerid="6" nextobjectid="12">
+ <properties>
+  <property name="proofScope" value="single-workstation-r03-02"/>
+  <property name="reference" value="R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png"/>
+ </properties>
+ <imagelayer id="1" name="WallAndWindow">
+  <image source="../../public/art/workstation-proof/layer_wall_window.png" width="1200" height="896"/>
+ </imagelayer>
+ <imagelayer id="2" name="FloorTiles">
+  <image source="../../public/art/workstation-proof/layer_floor_tiles.png" width="1200" height="896"/>
+ </imagelayer>
+ <objectgroup id="3" name="WorkstationLayers">
+  <object id="1" name="rug" type="sprite_rug" x="450" y="640" width="380" height="210"/>
+  <object id="2" name="plant" type="sprite_plant" x="225" y="455" width="175" height="295"/>
+  <object id="3" name="chair" type="sprite_chair" x="405" y="410" width="210" height="285"/>
+  <object id="4" name="character" type="spritesheet_character_r03" x="475" y="430" width="240" height="260"/>
+  <object id="5" name="desk" type="sprite_desk" x="550" y="470" width="340" height="255"/>
+  <object id="6" name="keyboard" type="sprite_keyboard" x="595" y="510" width="110" height="65"/>
+  <object id="7" name="accessories" type="sprite_accessories" x="640" y="468" width="120" height="90"/>
+  <object id="8" name="monitor_back" type="sprite_monitor_back" x="665" y="380" width="205" height="210">
+   <properties>
+    <property name="backFacesCamera" type="bool" value="true"/>
+    <property name="screenFacesCharacter" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="9" name="lamp" type="sprite_lamp" x="515" y="95" width="225" height="125"/>
+ </objectgroup>
+ <imagelayer id="4" name="LightingGlow">
+  <image source="../../public/art/workstation-proof/layer_lighting_glow.png" width="1200" height="896"/>
+ </imagelayer>
+</map>

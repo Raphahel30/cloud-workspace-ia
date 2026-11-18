@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-11-18T23:24:27.888Z",
+  "reference": "R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png",
+  "layerCount": 12,
+  "alphaTransparencyVerified": true,
+  "roomLayers": [
+    {
+      "file": "layer_wall_window.png",
+      "width": 1200,
+      "height": 896,
+      "role": "wall-window-layer",
+      "sha256": "6b31e78dc67c598b5b80faf098b0f9c8c3abf7891dc25cf444d1b9b5c7053caa"
+    },
+    {
+      "file": "layer_floor_tiles.png",
+      "width": 1200,
+      "height": 896,
+      "role": "floor-tiles-layer",
+      "sha256": "f15c02cf1fb52295066ab8b5b37b381f44fe1fa933c7d4e1c12893fdf8254fa4"
+    },
+    {
+      "file": "layer_lighting_glow.png",
+      "width": 1200,
+      "height": 896,
+      "role": "volumetric-lighting-layer",
+      "sha256": "85b5ee136fa69863bd5a2d40044ed3f220c27f3a8d32e0f2ed9f7d2882fef719"
+    }
+  ],
+  "sprites": [
+    {
+      "file": "sprite_chair.png",
+      "width": 238,
+      "height": 364,
+      "opaquePixels": 44809,
+      "transparentPixels": 41823,
+      "sha256": "1c05357e442c8ea40e648eb8ed537a2e1f7af76620bd2530960f6530a12d3870"
+    },
+    {
+      "file": "sprite_desk.png",
+      "width": 468,
+      "height": 324,
+      "opaquePixels": 84462,
+      "transparentPixels": 67170,
+      "sha256": "c0fbc05c49ccb8bba99683dbf93ee382bc58371ca10ef048895860c1831ba86b"
+    },
+    {
+      "file": "sprite_monitor_back.png",
+      "width": 285,
+      "height": 312,
+      "opaquePixels": 58853,
+      "transparentPixels": 30067,
+      "sha256": "3020fcab6df8db8fe87b882caaf1fa9d75491dd2ad867833530f836b68bebda9"
+    },
+    {
+      "file": "sprite_rug.png",
+      "width": 398,
+      "height": 193,
+      "opaquePixels": 37947,
+      "transparentPixels": 38867,
+      "sha256": "d2bc7eb6d8f7fd1a3063518774538842481305314fb2d13ae8e3c0a1009c56b1"
+    },
+    {
+      "file": "sprite_plant.png",
+      "width": 231,
+      "height": 281,
+      "opaquePixels": 28104,
+      "transparentPixels": 36807,
+      "sha256": "f844a969784284f4b4e4e3926105e346bbac10c595fe2c450e372345488cf2cb"
+    },
+    {
+      "file": "sprite_keyboard.png",
+      "width": 140,
+      "height": 81,
+      "opaquePixels": 5038,
+      "transparentPixels": 6302,
+      "sha256": "865a55f6878b4ea948b9c73983b304ab88848ca6eeb3ded266e3e02906b22a94"
+    },
+    {
+      "file": "sprite_accessories.png",
+      "width": 196,
+      "height": 89,
+      "opaquePixels": 8644,
+      "transparentPixels": 8800,
+      "sha256": "8a13229aed7686d55c3466f643c53e9e14802cf365794a1f7871ed7be0ddaf2c"
+    },
+    {
+      "file": "sprite_lamp.png",
+      "width": 250,
+      "height": 175,
+      "opaquePixels": 14398,
+      "transparentPixels": 29352,
+      "sha256": "c2c26775d8c58e9e59cf83bf30bd31dc4d78a49dd551ae24c36051d54a4bfec0"
+    }
+  ],
+  "characterSheet": {
+    "image": "spritesheet_character_r03.png",
+    "json": "spritesheet_character_r03.json",
+    "width": 960,
+    "height": 780,
+    "frameCount": 12,
+    "sha256": "e98356f18a8928f85493170113746c1e5790c9c54a48afa3735e89ad0f5ab75c"
+  },
+  "editableProjects": {
+    "tmx": "assets/workstation-proof/workstation_r03_proof.tmx",
+    "tiledMapJson": "public/art/workstation-proof/workstation_r03_map.json",
+    "pxo": "assets/workstation-proof/workstation_r03_proof.pxo"
+  },
+  "inspectionBoard": "assets/workstation-proof/PROVA_ASSETS_SEPARADOS_TRANSPARENCIA.png"
+}
