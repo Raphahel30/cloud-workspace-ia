@@ -10,7 +10,9 @@
     "tauri": "tauri",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
-    "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs"
+    "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs",
+    "test:contracts": "node --experimental-strip-types --test tests/agentState.node.test.mjs",
+    "test:core": "node --experimental-strip-types --test tests/core/*.node.test.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.0.0",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.4.0",
