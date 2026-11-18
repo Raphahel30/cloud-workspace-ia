@@ -263,6 +263,28 @@ PRÓXIMA AÇÃO:
 - Após PR de Codex, revisar e integrar com aprovação expressa; continuar core em branch/arquivos independentes.
 
 
+====================================================================
+[2026-11-18 20:28 UTC-3] ETAPA 3: TAURI SIDECAR + CORE-03/04/05 + PROVA ARTISTICA 1 ESTACAO R03_02 (ANTIGRAVITY)
+====================================================================
+STATUS: CONCLUIDA (aguardando aprovacao humana da prova visual de 1 estacao antes de expandir a arte dos 5 andares)
+O QUE FOI FEITO (fatos verificaveis):
+- Nucleo e Distribuicao Windows (branch `agent/antigravity/core-mcp-drive` · commit `470fc0b`):
+  - Arquitetura de distribuicao Windows validada em `src/core/runtime/tauriSidecarRuntime.ts` e `ARQUITETURA_DISTRIBUICAO_TAURI_NODE_SQLITE.md`: Sidecar Tauri 2 (`bundle.externalBin`) empacotado com Node 26 SEA (`node --build-sea`) embutindo `node:sqlite` (WAL + foreign_keys), sem exigir instalacoes manuais de Node/SQLite pelo usuario final e proibindo caminhos em `G:\`.
+  - `CORE-03` (`localMcpGateway.ts`): Gateway MCP local JSON-RPC 2.0 (`stdio` e HTTP `127.0.0.1`), validacao de `Origin`, Bearer token de sessao curta, confinamento estrito de caminhos, allowlist de comandos por stack e 14 ferramentas do Plano Mestre emitindo evidencias verificadas para `SqliteStore`.
+  - `CORE-04` (`workspaceManager.ts`): Workspaces temporarios isolados fora do Drive, manifestos SHA-256, preservacao de conflitos sem sobrescrever (`.conflict-*`), backups cifrados AES-256-GCM + restauracao verificada e limpeza condicionada a `canCleanup()` de `src/lib/policy.ts`.
+  - `CORE-05` (`keepassAdapter.ts`): Adaptador KeePassXC sob demanda com `FictitiousVaultProvider` para testes (sem acessar cofres reais), catalogo somente de metadados, aprovacao explicita por projeto e prazo, bloqueio `.lock`/conflito Drive, zeramento imediato de Buffer (`fill(0)`) e redacao em logs/auditoria.
+- Prova Artistica de 1 Estacao Estilo R03_02 (branch `agent/antigravity/floor03-pilot` · commit `e4a24c1`):
+  - Expandir o estilo SVG anterior foi interrompido por decisao do usuario; nova metodologia aplicada gerando sprites pixel art 16 bits ilustrados, recortados por `sharp` em 12 camadas RGBA independentes com transparencia real (`layer_wall_window`, `layer_floor_tiles`, `sprite_rug`, `sprite_plant`, `sprite_chair`, `sprite_desk`, `sprite_keyboard`, `sprite_accessories`, `sprite_monitor_back`, `sprite_lamp`, `layer_lighting_glow` e `spritesheet_character_r03.png/.json` com 12 quadros: `walk`, `sit`, `type`, `stand`).
+  - Gerados `workstation_r03_proof.tmx` -> `workstation_r03_map.json` (via `tiled.exe --export-map json`) e `workstation_r03_proof.pxo`.
+  - Integrado ao vivo no PixiJS 8 (`/?proof=workstation`, `WorkstationProofRenderer.ts` + `WorkstationProof.tsx`) com alternancia dos 4 estados e desligamento individual de camadas, mantendo `/` intacto.
+VERIFICACOES/TESTES:
+- `core-mcp-drive` (`470fc0b`): `build` PASS; Vitest `8/8` PASS; `test:policy` `3/3` PASS; `test:contracts` `5/5` PASS; `test:core` `8/8` PASS; `cargo check` PASS (`15.17s`).
+- `floor03-pilot` (`e4a24c1`): `buildWorkstationProof` PASS; `build` PASS (`5.08s`); Vitest `24/24` PASS; `test:policy` `3/3` PASS; `test:contracts` `5/5` PASS; Playwright E2E `9/9` PASS (`58.9s`); `cargo check` PASS (`7.84s`); `COMPARACAO_PROVA_ESTACAO_R03_02.png` e `PROVA_ASSETS_SEPARADOS_TRANSPARENCIA.png` inspecionadas visualmente.
+PENDENCIAS:
+- Aprovacao humana da Prova Visual de 1 Estacao (`COMPARACAO_PROVA_ESTACAO_R03_02.png`) antes de produzir os demais personagens/estacoes.
+- Decisao futura para acoplar o sidecar `cloud-workspace-core` em `src-tauri` e ativar integracoes reais quando autorizado.
+
+
 
 ====================================================================
 [2026-11-18 18:39 UTC-3] ETAPA: PREPARACAO COMPLETA DO AMBIENTE WINDOWS (ANTIGRAVITY)

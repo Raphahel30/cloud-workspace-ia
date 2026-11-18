@@ -36,5 +36,19 @@
 - [x] Playwright Windows (`playwright.config.ts`) e TypeScript/Vitest (`core-mcp-drive`) corrigidos e validados.
 - [x] `CORE-01/02` implementado (`sqliteStore.ts` WAL, `driveCatalog.ts` somente leitura em `G:\`, `evidenceAggregator.ts`); testes `build`, Vitest `7/7`, `test:policy` `3/3`, `test:contracts` `5/5`, `test:core` `4/4` aprovados.
 - [x] Piloto Visual Funcional do Andar 03 implementado em camadas modulares (`floor03_layout.json` via Tiled, `14` sprites `f3-*` em `1024x1072` `4,19 MB`, monitores de costas para a câmera, emblemas `ChatGPT`/`Codex`/`Antigravity`/`Claude Code`, Andar 04 corrigido para `INFRAESTRUTURA / MCP / TESTES`); testes `build`, Vitest `23/23`, `test:policy` `3/3`, `test:contracts` `5/5`, Playwright E2E `8/8` aprovados com capturas reais inspecionadas.
-- [ ] Aprovação humana do Piloto Visual do Andar 03 antes de produzir os demais andares (`01`, `02`, `04`, `05`).
-- [ ] Autorização para merge entre branches ou avanço para `CORE-03/04/05` (MCP local + workspaces temporários + KeePassXC).
+- [!] Avaliação humana do piloto SVG do Andar 03: **NÃO APROVADO visualmente** por estar distante da proposta `R03_02`. Autorizado avanço do núcleo (`CORE-03/04/05`) e solicitada nova metodologia artística provando **1 única estação completa** antes de qualquer expansão.
+
+
+## Etapa 3 — Tauri Sidecar + CORE-03/04/05 e Prova Artística de 1 Estação (`R03_02`) — 2026-11-18 (UTC-3)
+- [x] **Distribuição Windows Tauri + Node/SQLite definida e validada** (`tauriSidecarRuntime.ts` + `ARQUITETURA_DISTRIBUICAO_TAURI_NODE_SQLITE.md`): sidecar `bundle.externalBin` via Node 26 SEA (`node --build-sea`) embutindo `node:sqlite` (`WAL` + `foreign_keys = ON`) sem exigir instalações manuais do usuário final e com bloqueio estrutural de caminhos em `G:\`.
+- [x] **`CORE-03/04/05` implementados e testados com dados fictícios** em `agent/antigravity/core-mcp-drive` (`470fc0b`):
+  - Gateway MCP local (`localMcpGateway.ts`): `stdio` + HTTP `127.0.0.1` com `Origin` allowlist, Bearer token por sessão curta, 14 ferramentas do Plano Mestre, allowlist por stack e evidências verificadas.
+  - Workspaces temporários (`workspaceManager.ts`): máquina de estados completa fora do Drive, SHA-256, preservação de `CONFLITO` sem sobrescrever destino, snapshot cifrado **AES-256-GCM** e gate obrigatório via `canCleanup()`.
+  - Adaptador KeePassXC (`keepassAdapter.ts`): metadados apenas, aprovação explícita/escopada/não expirada, trava `.kdbx`, zeramento do `Buffer` de segredo após uso (`fill(0)`) e redação total.
+  - Testes em `core-mcp-drive`: `build` PASS, Vitest `8/8` PASS, `test:policy` `3/3` PASS, `test:contracts` `5/5` PASS, `test:core` `8/8` PASS, `cargo check` PASS (`15.17s`).
+- [x] **Nova Prova Artística de 1 Estação (`R03_02`) produzida com metodologia ilustrada em camadas** em `agent/antigravity/floor03-pilot` (`e4a24c1`):
+  - 12 camadas RGBA transparentes recortadas em `sharp` (`layer_wall_window.png`, `layer_floor_tiles.png`, `sprite_rug.png`, `sprite_plant.png`, `sprite_chair.png`, `sprite_desk.png`, `sprite_keyboard.png`, `sprite_accessories.png`, `sprite_monitor_back.png`, `sprite_lamp.png`, `layer_lighting_glow.png`, `spritesheet_character_r03.png/.json`), mapa Tiled `.tmx`/`.json` e arquivo Pixelorama `.pxo`.
+  - Personagem fiel à `R03_02` com 12 quadros distintos (`walk`, `sit`, `type`, `stand`), integrado ao PixiJS 8 (`/?proof=workstation`) com controles de estado e desligamento individual de camadas.
+  - Testes em `floor03-pilot`: `buildWorkstationProof` PASS, `build` PASS (`5.08s`), Vitest `24/24` PASS, `test:policy` `3/3` PASS, `test:contracts` `5/5` PASS, Playwright E2E `9/9` PASS (`58.9s`), `cargo check` PASS (`7.84s`), prancha comparativa `COMPARACAO_PROVA_ESTACAO_R03_02.png` inspecionada.
+- [ ] **Aprovação humana da Prova Artística de 1 Estação (`COMPARACAO_PROVA_ESTACAO_R03_02.png`)** antes de produzir demais estações ou andares.
+- [ ] Autorização para acoplar o sidecar `cloud-workspace-core` em `src-tauri` e avançar para integração real do cofre/MCP quando aprovado.
