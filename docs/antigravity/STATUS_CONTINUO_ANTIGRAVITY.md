@@ -28,3 +28,13 @@
 - [!] `uv cache clean` adiado por trava ativa do servidor `mem0-mcp-server` (PID `10864` em `uv.exe`); `10,56 GB` de `uv\cache` e ferramentas em `Roaming\uv` preservados.
 - [x] Medição depois: **`84,84 GB`** livres em `C:` (**`+26,45 GB` efetivamente recuperados**).
 - [x] Revisão profunda somente leitura de `AppData\Local\Temp` registrada em `RELATORIO_LIMPEZA_SSD_ETAPA1.md`, preservando itens ligados a `OptiGrill`, `PetSiStore`, `Sebastião Freitas`, `docesdale`, `Codex`, `Antigravity` e separando `~13,6 GB` descartáveis para aprovação.
+
+
+## Etapa 2 — Equipes Isoladas, Ícone Tauri, CORE-01/02 e Piloto Andar 03 — 2026-11-18 (UTC-3)
+- [x] Worktrees e branches isolados criados (`agent/antigravity/core-mcp-drive` · `34b70b1`; `agent/antigravity/floor03-pilot` · `c378d1d`), preservando `main`, PR #1 e `agent/antigravity/setup`.
+- [x] Ícones Tauri 2 gerados (`assets/icon-cw-1024.png` -> `src-tauri/icons/icon.ico`); `cargo check` passou (`exit 0`) em ambas as frentes.
+- [x] Playwright Windows (`playwright.config.ts`) e TypeScript/Vitest (`core-mcp-drive`) corrigidos e validados.
+- [x] `CORE-01/02` implementado (`sqliteStore.ts` WAL, `driveCatalog.ts` somente leitura em `G:\`, `evidenceAggregator.ts`); testes `build`, Vitest `7/7`, `test:policy` `3/3`, `test:contracts` `5/5`, `test:core` `4/4` aprovados.
+- [x] Piloto Visual Funcional do Andar 03 implementado em camadas modulares (`floor03_layout.json` via Tiled, `14` sprites `f3-*` em `1024x1072` `4,19 MB`, monitores de costas para a câmera, emblemas `ChatGPT`/`Codex`/`Antigravity`/`Claude Code`, Andar 04 corrigido para `INFRAESTRUTURA / MCP / TESTES`); testes `build`, Vitest `23/23`, `test:policy` `3/3`, `test:contracts` `5/5`, Playwright E2E `8/8` aprovados com capturas reais inspecionadas.
+- [ ] Aprovação humana do Piloto Visual do Andar 03 antes de produzir os demais andares (`01`, `02`, `04`, `05`).
+- [ ] Autorização para merge entre branches ou avanço para `CORE-03/04/05` (MCP local + workspaces temporários + KeePassXC).

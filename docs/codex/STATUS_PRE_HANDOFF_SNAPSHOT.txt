@@ -302,3 +302,24 @@ RELATORIOS ATUALIZADOS:
 - docs/antigravity/RELATORIO_LIMPEZA_SSD_ETAPA1.md
 - docs/antigravity/STATUS_CONTINUO_ANTIGRAVITY.md
 - Copias sincronizadas no Drive em `G:\Meu Drive\Projetos Code\01 - Projetos\cloud-workspace-ia\Relatorios Preparacao\` e neste registro.
+
+
+====================================================================
+[2026-11-18 19:41 UTC-3] ETAPA: EQUIPES ISOLADAS + ICONE TAURI + CORE-01/02 + PILOTO ANDAR 03
+====================================================================
+STATUS: CONCLUIDA (aguardando aprovacao visual do piloto do Andar 03 antes de expandir os outros 4 andares)
+O QUE FOI FEITO:
+- Criados worktrees isolados `agent/antigravity/core-mcp-drive` (commit `34b70b1`) e `agent/antigravity/floor03-pilot` (commit `c378d1d`), preservando `main`, PR #1 e `agent/antigravity/setup`.
+- Corrigido bloqueio de build Tauri 2 gerando `assets/icon-cw-1024.png` e `src-tauri/icons/icon.ico` (+ variantes PNG/ICNS) via `npx tauri icon`; `cargo check` passou com exit 0 em ambas as branches.
+- Corrigido `playwright.config.ts` para autodetectar Chromium no Windows e iniciar Vite via `webServer`, alem de `@types/node` e filtro Vitest no nucleo.
+- Implementado `CORE-01/02`: `src/core/storage/sqliteStore.ts` (`node:sqlite` WAL + redaction), `src/core/catalog/driveCatalog.ts` (leitura nao destrutiva de `G:\Meu Drive\Projetos Code\01 - Projetos` catalogando segredos somente por nome) e `src/core/evidence/evidenceAggregator.ts` (delegando estritamente a `src/core-contracts/agentState.ts`).
+- Implementado Piloto Visual Funcional do Andar 03 (`floor03-pilot`): mapa Tiled `floor03_layout.tmx` -> `floor03_layout.json`, 14 sprites modulares `f3-*` em camadas independentes (atlas `1024x1072` = `4,19 MB < 5 MB`), monitores com tela para os personagens e chassi para a camera, emblemas ChatGPT/Codex/Antigravity/Claude Code e rotulo do Andar 04 corrigido para `INFRAESTRUTURA / MCP / TESTES`.
+VERIFICACOES/TESTES:
+- `agent/antigravity/core-mcp-drive` (`34b70b1`): `build` PASS; Vitest `7/7` PASS; `test:policy` `3/3` PASS; `test:contracts` `5/5` PASS; `test:core` `4/4` PASS (incluindo scan real somente leitura em `G:\`); `cargo check` PASS.
+- `agent/antigravity/floor03-pilot` (`c378d1d`): `art:build` PASS; `build` PASS; Vitest `23/23` PASS; `test:policy` `3/3` PASS; `test:contracts` `5/5` PASS; `test:e2e` Playwright `8/8` PASS (`51.8s`); `cargo check` PASS; capturas reais inspecionadas.
+ARQUIVOS/RELATORIOS SINCRONIZADOS:
+- Repo (`agent/antigravity/setup`): `docs/antigravity/RELATORIO_ETAPA_CORE01_02_E_PILOTO_ANDAR03.md`, `STATUS_CONTINUO_ANTIGRAVITY.md`, `STATUS_PRE_HANDOFF_SNAPSHOT.txt`.
+- Drive: `03_STATUS_E_REGISTRO_DE_ETAPAS.txt` e pasta `Relatorios Preparacao\` (incluindo capturas reais `PILOTO_*.png`).
+PENDENCIAS:
+- Aprovacao humana do Piloto do Andar 03 antes de desenhar os outros 4 andares em producao definitiva.
+- Autorizacao para merges futuros ou inicio de `CORE-03/04/05`.
