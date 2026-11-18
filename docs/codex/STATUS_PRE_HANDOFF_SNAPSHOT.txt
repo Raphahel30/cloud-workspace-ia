@@ -261,3 +261,26 @@ O QUE FALTA:
 PRÓXIMA AÇÃO:
 - Usar prompt no Drive `Entrega Codex Cloud/PROMPT_PRONTO_PARA_CODEX_CLOUD.txt` após disponibilizar repositório ao Codex.
 - Após PR de Codex, revisar e integrar com aprovação expressa; continuar core em branch/arquivos independentes.
+
+
+
+====================================================================
+[2026-11-18 18:39 UTC-3] ETAPA: PREPARACAO COMPLETA DO AMBIENTE WINDOWS (ANTIGRAVITY)
+====================================================================
+STATUS: CONCLUIDA (preparacao, auditoria SSD e validacao de pipeline; implementacao visual segue pausada aguardando aprovacao das propostas R03)
+OBJETIVO ORIGINAL: Preparar o ambiente Windows para continuar o desenvolvimento do Cloud Workspace IA, priorizando Google Drive em modo streaming, inventario real, instalacao de ferramentas, validacao do pipeline artistico, recuperacao do repositorio em branch propria e auditoria somente leitura do SSD.
+O QUE FOI FEITO (fatos verificaveis):
+- Google Drive 133.0.2.0 instalado via winget, autenticado e montado em G:\ em modo streaming (cache DriveFS de 142,71 MB).
+- Pastas localizadas no Drive sem duplicacao: G:\Meu Drive\Projetos Code\00 - Documentacao Cloud Workspace IA e 01 - Projetos\cloud-workspace-ia (incluindo Direcao Artistica - R03 - 2026-11-16 e Pacotes). Teste de leitura e gravacao em subpasta temporaria confirmado.
+- Hardware verificado: AMD Ryzen 5 5600G, Radeon integrada (driver 31.0.21924.61), 15,30 GB RAM, XrayDisk 512GB SSD (59,09 GB livres em C:), Windows 11 Pro 26200.
+- Ferramentas verificadas: Git 2.55.0, gh 2.98.0, Node v26.7.0, npm 11.19.0, rustup 1.29.1 / rustc 1.98.1 / cargo 1.98.1 (msvc), MSVC 14.44.35207, Windows SDK 10.0.26100.0, WebView2 157.0.4341.46/60, Playwright Chromium.
+- Ferramentas instaladas via winget: Pixelorama 1.2.3, Krita 5.3.4.1, Tiled 1.12.2 e KeePassXC 2.8.0 (sem acessar/importar credenciais).
+- Repositorio Raphahel30/cloud-workspace-ia clonado em C:\Users\PC NOVO\Projetos\cloud-workspace-ia; PR #1 (agent/codex/visual-5-floors) preservado; branch agent/antigravity/setup criada a partir de main.
+- Pipeline artistico validado com tile isometrico 32x16 e spritesheet 32x16 (Tiled JSON + tmxrasterizer --no-smoothing + sharp + PixiJS 8 + Playwright PNG capture com 0 erros; CLI headless do Pixelorama verificado; Krita identificado como ferramenta de edicao manual por bloqueio headless no Windows).
+- Auditoria somente leitura do SSD concluida, identificando ~48,15 GB em caches/temporarios seguros (Faixa A) e ~12,15 GB adicionais em node_modules/duplicatas/snapshots sob revisao (Faixa B).
+RELATORIOS E REGISTROS:
+- docs/antigravity/RELATORIO_PREPARACAO_AMBIENTE.md
+- docs/antigravity/AUDITORIA_SSD_SOMENTE_LEITURA.md
+- docs/antigravity/STATUS_CONTINUO_ANTIGRAVITY.md
+- Copiados para G:\Meu Drive\Projetos Code\01 - Projetos\cloud-workspace-ia\Relatorios Preparacao\ e G:\Meu Drive\Projetos Code\00 - Documentacao Cloud Workspace IA\03_STATUS_E_REGISTRO_DE_ETAPAS.txt
+IDENTIFICADOR DE COMMIT / BRANCH: agent/antigravity/setup (Raphahel30/cloud-workspace-ia)
