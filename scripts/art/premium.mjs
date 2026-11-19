@@ -96,45 +96,59 @@ export function premiumArt(art,r,p){
  }
  art['floor-glow']='';for(let n=10;n>=1;n--)art['floor-glow']+=ellipse(64,110,n*6,n*1.3,'#f4c582',.016);
  art['foot-shadow']=ellipse(32,119,18,4,'#071524',.45)+ellipse(32,119,11,2,'#071524',.4);
- // Deliberately shaped faces and jackets. Feet remain anchored at (32,120).
+ // Deliberately shaped faces and jackets with dedicated seated geometry aligned to chair cushion (y~86..91).
  for(const [pose,count] of [['walk',4],['walk-back',4],['type',4],['idle',2],['wait',2],['error',2],['unknown',2],['sit',2],['stand',2],['seated-idle',2],['seated-wait',2],['seated-error',2],['seated-unknown',2]])for(let f=0;f<count;f++){
   const mood=pose.replace('seated-','');
   const walking=pose.startsWith('walk'),back=pose==='walk-back',sitting=pose.startsWith('seated-')||pose==='type'||pose==='sit'&&f===1||pose==='stand'&&f===1;
-  const bob=walking?(f%2):0,headY=45+bob+(sitting?4:0);
+  const bob=walking?(f%2):0;
+  const torsoShiftX=sitting?-3:0;
+  const crouch=pose==='sit'&&f===0?2:pose==='stand'&&f===1?-2:0;
+  const headY=(sitting?39:45)+bob+crouch;
   let b='';
-  if(sitting)b+=p('22,100 43,99 47,104 45,110 35,111 26,107','#263b50')+r(37,107,7,10,'#243548')+r(36,116,15,4,'#0c1d2c')+r(37,116,11,1,'#687985');
-  else {
+  if(sitting){
+   // Dedicated seated hips/thighs resting flat on chair cushion (y=86..92), knees tucking toward desk, shoes flat on rug
+   b+=p('18,86 44,85 52,90 48,96 22,95','#22374b')+
+     p('20,87 43,86 49,90 24,91','#334e68')+
+     p('42,89 51,91 50,113 42,113','#24364a')+
+     p('36,92 43,92 43,111 36,111','#1b2b3c')+
+     r(41,113,14,4,'#0d1e2e')+r(42,113,10,1,'#718490')+
+     r(35,111,11,3,'#0c1a28');
+  }else{
    const stride=walking?[-5,0,5,0][f]:0;
    b+=p(`23,99 31,99 ${30+stride},116 ${23+stride},116`,'#293c50')+p(`34,99 42,99 ${41-stride},117 ${34-stride},117`,'#3c5163')+
     r(21+stride,116,12,4,'#102334')+r(33-stride,117,13,3,'#102334')+r(22+stride,116,7,1,'#7b8d94')+r(34-stride,117,7,1,'#7b8d94');
   }
-  const y=77+bob+(sitting?3:0);
-  b+=p(`21,${y} 38,${y-1} 44,${y+6} 44,${y+26} 20,${y+27} 17,${y+5}`,'#172b3d')+
-    p(`22,${y+1} 37,${y} 42,${y+7} 41,${y+24} 22,${y+24} 19,${y+6}`,'#7389a9')+
-    r(22,y+3,3,19,'#a9b9c9')+r(37,y+7,4,16,'#3c5678')+
-    p(`26,${y} 34,${y} 32,${y+11} 28,${y+11}`,'#e9e1cd')+r(30,y+11,1,12,'#4e6274')+r(32,y+18,5,1,'#c5cfce')+
-    r(26,y-6,10,8,'#c68d67');
+  const y=(sitting?65:77)+bob+crouch;
+  b+=p(`${21+torsoShiftX},${y} ${38+torsoShiftX},${y-1} ${44+torsoShiftX},${y+6} ${43+torsoShiftX},${y+24} ${19+torsoShiftX},${y+24} ${17+torsoShiftX},${y+5}`,'#172b3d')+
+    p(`${22+torsoShiftX},${y+1} ${37+torsoShiftX},${y} ${42+torsoShiftX},${y+7} ${40+torsoShiftX},${y+22} ${21+torsoShiftX},${y+22} ${19+torsoShiftX},${y+6}`,'#7389a9')+
+    r(22+torsoShiftX,y+3,3,17,'#a9b9c9')+r(36+torsoShiftX,y+7,4,14,'#3c5678')+
+    p(`${26+torsoShiftX},${y} ${34+torsoShiftX},${y} ${32+torsoShiftX},${y+11} ${28+torsoShiftX},${y+11}`,'#e9e1cd')+r(30+torsoShiftX,y+11,1,10,'#4e6274')+r(32+torsoShiftX,y+17,5,1,'#c5cfce')+
+    r(26+torsoShiftX,y-6,10,8,'#c68d67');
   // Stepped silhouette, ear, cheek, nose and layered hair highlights.
-  b+=p(`17,${headY+7} 21,${headY+2} 43,${headY+1} 49,${headY+7} 49,${headY+22} 43,${headY+29} 25,${headY+29} 18,${headY+22}`,'#332c38')+
-    p(`23,${headY+7} 43,${headY+5} 47,${headY+10} 47,${headY+22} 42,${headY+27} 27,${headY+26} 23,${headY+21}`,'#d6a078')+
-    p(`27,${headY+9} 43,${headY+7} 46,${headY+11} 46,${headY+22} 40,${headY+25} 29,${headY+23}`,'#f0c69a')+
-    r(43,headY+15,3,3,'#1d2e3e')+r(44,headY+15,1,1,'#d7e0d4')+r(47,headY+19,5,4,'#e5b48a')+
-    r(40,headY+24,6,1,'#a76f5c')+r(25,headY+17,5,8,'#bc845f')+r(26,headY+17,3,5,'#e6b68a')+
-    p(`17,${headY+8} 20,${headY+2} 27,${headY-1} 41,${headY-1} 47,${headY+3} 46,${headY+9} 34,${headY+7} 28,${headY+13} 25,${headY+20} 18,${headY+18}`,'#553c3e')+
-    p(`20,${headY+5} 28,${headY+1} 41,${headY+1} 44,${headY+4} 31,${headY+3} 24,${headY+7}`,'#916151')+
-    r(20,headY+8,3,7,'#6e4843')+r(25,headY+2,8,1,'#b68160')+
-    r(18,headY+10,3,12,'#7da3af')+r(17,headY+17,7,9,'#153247')+r(19,headY+18,3,6,'#4f7b8e');
+  const hx=torsoShiftX;
+  b+=p(`${17+hx},${headY+7} ${21+hx},${headY+2} ${43+hx},${headY+1} ${49+hx},${headY+7} ${49+hx},${headY+22} ${43+hx},${headY+29} ${25+hx},${headY+29} ${18+hx},${headY+22}`,'#332c38')+
+    p(`${23+hx},${headY+7} ${43+hx},${headY+5} ${47+hx},${headY+10} ${47+hx},${headY+22} ${42+hx},${headY+27} ${27+hx},${headY+26} ${23+hx},${headY+21}`,'#d6a078')+
+    p(`${27+hx},${headY+9} ${43+hx},${headY+7} ${46+hx},${headY+11} ${46+hx},${headY+22} ${40+hx},${headY+25} ${29+hx},${headY+23}`,'#f0c69a')+
+    r(43+hx,headY+15,3,3,'#1d2e3e')+r(44+hx,headY+15,1,1,'#d7e0d4')+r(47+hx,headY+19,5,4,'#e5b48a')+
+    r(40+hx,headY+24,6,1,'#a76f5c')+r(25+hx,headY+17,5,8,'#bc845f')+r(26+hx,headY+17,3,5,'#e6b68a')+
+    p(`${17+hx},${headY+8} ${20+hx},${headY+2} ${27+hx},${headY-1} ${41+hx},${headY-1} ${47+hx},${headY+3} ${46+hx},${headY+9} ${34+hx},${headY+7} ${28+hx},${headY+13} ${25+hx},${headY+20} ${18+hx},${headY+18}`,'#553c3e')+
+    p(`${20+hx},${headY+5} ${28+hx},${headY+1} ${41+hx},${headY+1} ${44+hx},${headY+4} ${31+hx},${headY+3} ${24+hx},${headY+7}`,'#916151')+
+    r(20+hx,headY+8,3,7,'#6e4843')+r(25+hx,headY+2,8,1,'#b68160')+
+    r(18+hx,headY+10,3,12,'#7da3af')+r(17+hx,headY+17,7,9,'#153247')+r(19+hx,headY+18,3,6,'#4f7b8e');
   if(sitting&&mood==='type'){
-   b+=p(`39,${y+5} 47,${y+9} 61,${y+7} 61,${y+12} 44,${y+14} 38,${y+10}`,'#3c5678')+
-    r(59,y+4+f%2,20,5,'#dbab80')+r(76,y+2+f%3,9,4,'#f1cba0')+r(80,y+2+f%3,3,1,'#f8dec0');
+   b+=p(`${34+hx},${y+8} ${44+hx},${y+13} ${62+hx},${y+14} ${62+hx},${y+19} ${41+hx},${y+19} ${33+hx},${y+13}`,'#3c5678')+
+    r(59+hx,y+12+f%2,21,5,'#dbab80')+r(78+hx,y+10+f%3,10,4,'#f1cba0')+r(82+hx,y+10+f%3,3,1,'#f8dec0');
+  }else if(sitting){
+   b+=p(`${32+hx},${y+8} ${41+hx},${y+13} ${48+hx},${y+18} ${43+hx},${y+22} ${33+hx},${y+16}`,'#7389a9')+
+    r(43+hx,y+17,9,5,'#e5b78b');
   }else{
    const swing=walking?[-3,1,3,-1][f]:0;
    b+=r(16+swing,y+7,6,12,'#3c5678')+r(16+swing,y+18,6,7,'#e5b78b')+r(40-swing,y+7,6,12,'#7389a9')+r(41-swing,y+18,6,7,'#e5b78b');
   }
-  if(mood==='idle'&&f===1)b+=r(42,headY+14,5,5,'#f0c69a')+r(43,headY+17,3,1,'#69524b');
-  if(mood==='wait')b+=r(40,y+12,12,5,'#e8bd8e')+r(48,headY-9+f,2,6,'#f3d08d')+r(48,headY-1+f,2,2,'#f3d08d');
-  if(mood==='error')b+=r(51,headY-8-f,10,13,'#f4a18a')+r(55,headY-6-f,2,6,'#6b3741')+r(55,headY+1-f,2,2,'#6b3741');
-  if(mood==='unknown')b+=r(52,headY-6,12,13,'#42657b')+r(56,headY-3,5,2,'#a8d4d6')+r(59,headY-1,2,3,'#a8d4d6')+r(56,headY+4,2,2,'#a8d4d6');
+  if(mood==='idle'&&f===1)b+=r(42+hx,headY+14,5,5,'#f0c69a')+r(43+hx,headY+17,3,1,'#69524b');
+  if(mood==='wait')b+=r(40+hx,y+12,12,5,'#e8bd8e')+r(48+hx,headY-9+f,2,6,'#f3d08d')+r(48+hx,headY-1+f,2,2,'#f3d08d');
+  if(mood==='error')b+=r(51+hx,headY-8-f,10,13,'#f4a18a')+r(55+hx,headY-6-f,2,6,'#6b3741')+r(55+hx,headY+1-f,2,2,'#6b3741');
+  if(mood==='unknown')b+=r(52+hx,headY-6,12,13,'#42657b')+r(56+hx,headY-3,5,2,'#a8d4d6')+r(59+hx,headY-1,2,3,'#a8d4d6')+r(56+hx,headY+4,2,2,'#a8d4d6');
   if(back){ // Back of head/headset, no face looking sideways during approach.
    b+=p(`18,${headY+8} 22,${headY+2} 41,${headY} 48,${headY+6} 47,${headY+23} 42,${headY+27} 25,${headY+26} 18,${headY+21}`,'#553c3e')+
     r(22,headY+5,18,3,'#916151')+r(18,headY+14,4,9,'#365c73')+r(44,headY+13,4,9,'#365c73');

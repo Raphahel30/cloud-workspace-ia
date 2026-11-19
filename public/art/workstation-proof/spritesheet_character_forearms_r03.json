@@ -1,0 +1,119 @@
+{
+  "frames": {
+    "type-0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 260
+      },
+      "anchor": {
+        "x": 0.45,
+        "y": 0.7461538461538462
+      }
+    },
+    "type-1": {
+      "frame": {
+        "x": 240,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 260
+      },
+      "anchor": {
+        "x": 0.45,
+        "y": 0.7461538461538462
+      }
+    },
+    "type-2": {
+      "frame": {
+        "x": 480,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 260
+      },
+      "anchor": {
+        "x": 0.45,
+        "y": 0.7461538461538462
+      }
+    },
+    "type-3": {
+      "frame": {
+        "x": 720,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 260
+      },
+      "anchor": {
+        "x": 0.45,
+        "y": 0.7461538461538462
+      }
+    }
+  },
+  "animations": {
+    "type": [
+      "type-0",
+      "type-1",
+      "type-2",
+      "type-3"
+    ]
+  },
+  "meta": {
+    "app": "cloud-workspace-art-pipeline",
+    "version": "2.0-forearm-occlusion",
+    "image": "spritesheet_character_forearms_r03.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 960,
+      "h": 260
+    },
+    "scale": "1"
+  }
+}

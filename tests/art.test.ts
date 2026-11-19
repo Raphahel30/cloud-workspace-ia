@@ -34,7 +34,9 @@ it('includes modular Floor 03 pilot sprites and valid isometric Tiled layout',as
  const atlas=JSON.parse(await readFile('public/art/office.json','utf8'));
  for(const key of [
    'f3-bookshelf','f3-neon-sign','f3-holo-map','f3-holo-chart','f3-holo-chip',
-   'f3-rug','f3-chair','f3-desk','f3-monitor-back','f3-bot-ia',
+   'f3-rug','f3-chair','f3-chair-arm','f3-desk','f3-monitor-back','f3-bot-ia',
+   'f3-hanging-vines','f3-credenza-lamp','f3-wall-blueprint','f3-pendant-spot','f3-elevator-door','f3-fg-planter',
+   'f3-props-pens','f3-props-tablet','f3-props-stack',
    'f3-badge-chatgpt','f3-badge-codex','f3-badge-antigravity','f3-badge-claude',
  ]){
    expect(atlas.frames[key],key).toBeDefined();
@@ -45,17 +47,27 @@ it('includes modular Floor 03 pilot sprites and valid isometric Tiled layout',as
  expect(tiled.layers.map((l:{name:string})=>l.name)).toContain('OcclusionMonitors');
 });
 
-it('ships R03_02 single-workstation layered RGBA assets and 12 distinct animation frames',async()=>{
+it('ships expanded R03_02 modular library (32+ assets), chair-arm occlusion, and 4 Equipe IA seated sprites',async()=>{
  const sheet=JSON.parse(await readFile('public/art/workstation-proof/spritesheet_character_r03.json','utf8'));
+ const forearms=JSON.parse(await readFile('public/art/workstation-proof/spritesheet_character_forearms_r03.json','utf8'));
+ const agents=JSON.parse(await readFile('public/art/workstation-proof/spritesheet_agents_floor03.json','utf8'));
  const manifest=JSON.parse(await readFile('public/art/workstation-proof/workstation_proof_manifest.json','utf8'));
- expect(manifest.layerCount).toBe(12);
+ expect(manifest.layerCount).toBeGreaterThanOrEqual(32);
  expect(manifest.alphaTransparencyVerified).toBe(true);
+ expect(manifest.seatedFitArchitecture).toBe('nested-chair-occlusion-with-compressed-chibi-seat-height');
+ for(const reqFile of ['sprite_chair_back.png','sprite_chair_arm_front.png','sprite_seat_shadow.png','sprite_elevator_03.png','sprite_credenza_lamp.png','sprite_hanging_vines.png']){
+   expect(manifest.sprites.some((s:{file:string})=>s.file===reqFile),reqFile).toBe(true);
+ }
  for(const [pose,count] of [['walk',4],['sit',2],['stand',2],['type',4]] as const){
    const hashes=await Promise.all(Array.from({length:count},async(_,i)=>{
      const f=sheet.frames[`${pose}-${i}`].frame;
      return (await sharp('public/art/workstation-proof/spritesheet_character_r03.png').extract({left:f.x,top:f.y,width:f.w,height:f.h}).raw().toBuffer()).toString('base64');
    }));
    expect(new Set(hashes).size,pose).toBe(count);
+ }
+ expect(Object.keys(forearms.frames)).toHaveLength(4);
+ for(const agentKey of ['agent-chatgpt-type','agent-codex-type','agent-antigravity-type','agent-claude-type','agent-claude-think','agent-bot-ia']){
+   expect(agents.frames[agentKey],agentKey).toBeDefined();
  }
  for(const s of manifest.sprites as Array<{transparentPixels:number;opaquePixels:number}>){
    expect(s.transparentPixels).toBeGreaterThan(0);

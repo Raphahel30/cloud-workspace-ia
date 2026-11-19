@@ -8,7 +8,7 @@ import { floorOrder, type FloorKey } from '../data/floors';
 import type { DemoScene } from '../lib/scenePolicy';
 
 type View = { selected:FloorKey; zoomed:boolean; scene:DemoScene; paused:boolean; reduced:boolean; actorStates?:ActorStates };
-type Actor = { id:string; sprite:Sprite; shadow:Sprite; motion:CharacterMotion; chair:Sprite; x:number; y:number; index:number; boss:boolean };
+type Actor = { id:string; sprite:Sprite; shadow:Sprite; motion:CharacterMotion; chair:Sprite; chairArm?:Sprite; x:number; y:number; index:number; boss:boolean };
 const C={edge:0x0c192a,wall:0x23394c,cyan:0x78dce7,amber:0xf3c87e};
 const floorNames=['RECEPÇÃO','CONTROLE','EQUIPE IA','INFRAESTRUTURA\nMCP / TESTES','INTEGRAÇÕES'];
 
@@ -136,12 +136,21 @@ export class OfficeRenderer {
         add('rack',98,-2,.68);add('rack',143,-5,.68);add('board',385,-43,.68);add('cabinet',170,-30,.63);add('bot',555,-43,.63);
       } else if(i===2) {
         add('f3-bookshelf',106,-34,.66).zIndex=-900;
+        add('f3-hanging-vines',92,-58,.56).zIndex=-890;
+        add('f3-wall-blueprint',180,-42,.54).zIndex=-895;
         add('f3-neon-sign',215,-48,.82).zIndex=-880;
+        add('f3-credenza-lamp',316,-42,.60).zIndex=-875;
         add('f3-holo-map',346,-54,.66).zIndex=-880;
         add('f3-holo-chart',424,-59,.62).zIndex=-880;
         add('f3-holo-chip',372,-32,.58).zIndex=-860;
+        add('f3-pendant-spot',192,-62,.45).zIndex=-850;
+        add('f3-pendant-spot',442,-79,.45).zIndex=-850;
         add('f3-bookshelf',500,-60,.64).zIndex=-900;
+        add('f3-hanging-vines',494,-84,.54).zIndex=-890;
+        add('f3-elevator-door',582,-45,.64).zIndex=-870;
         add('f3-bot-ia',566,-38,.58).zIndex=-38;
+        add('f3-fg-planter',28,-4,.62).zIndex=20;
+        add('f3-fg-planter',556,-30,.58).zIndex=20;
       } else if(i===1) {
         add('books',125,-3,.75);add('board',450,-42,.7);add('lamp',210,-28,.6);add('coffee',550,-32,.55);
         this.poly(furniture,[171,-8,306,-18,334,-34,197,-25],0x896745).zIndex=-20;
@@ -157,15 +166,18 @@ export class OfficeRenderer {
       for(let n=0;n<seats.length;n++) {
         const x=seats[n],y=-10-x*.068;
         if(i===2){add('f3-rug',x-14,y+6,.74).zIndex=y-16;}
-        const chair=add(i===2?'f3-chair':'chair',x-21,y+4,i===2?.72:.7);chair.zIndex=y-12;
+        const chair=add(i===2?'f3-chair':'chair',x-18,y+3,i===2?.74:.72);chair.zIndex=y-12;
+        const chairArm=i===2?add('f3-chair-arm',x-18,y+3,.74):undefined;
+        if(chairArm){chairArm.zIndex=y-2.5;chairArm.visible=false;}
         const actor=add('idle-0',x,y-3,.76);
         actor.anchor.set(32/128,120/128);
         const shadow=add('foot-shadow',x,y-3,.76);shadow.anchor.set(32/128,120/128);
         const motion=new CharacterMotion({x,y:y-3});
-        this.actors.push({id:i===2?f3Ids[n]:i===1&&n===0?'chief':`${floorOrder[i]}-${n}`,sprite:actor,shadow,motion,chair,x,y:y-3,index:this.actors.length,boss:i===1&&n===0});
+        this.actors.push({id:i===2?f3Ids[n]:i===1&&n===0?'chief':`${floorOrder[i]}-${n}`,sprite:actor,shadow,motion,chair,chairArm,x,y:y-3,index:this.actors.length,boss:i===1&&n===0});
         if(i!==0){
           const desk=add(i===2?'f3-desk':'desk',x,y,i===2?.72:.7);desk.zIndex=y-8;
           const keyboard=add('keyboard',x,y,.7);keyboard.zIndex=y-7;
+          if(i===2&&n>0){const extraProp=add(['f3-props-pens','f3-props-tablet','f3-props-stack'][n-1],x,y,.70);extraProp.zIndex=y-6.5;}
           const monitor=add(i===2?'f3-monitor-back':'monitor',x,y,i===2?.72:.7);monitor.zIndex=i===2?y-1.5:y+1;
         }
         if(i===2){
@@ -175,7 +187,7 @@ export class OfficeRenderer {
       }
       if(i===2){
         this.host.dataset.floor03Pilot='layered';
-        this.host.dataset.floor03Sprites='27';
+        this.host.dataset.floor03Sprites='35';
       }
       structural.cacheAsTexture({resolution:1,antialias:false});this.staticLayers.push(structural);
       // Independent rack indicators: grey for unknown, coloured only in explicit DEMO.
@@ -285,6 +297,11 @@ export class OfficeRenderer {
       a.sprite.position.set(Math.round(p.x),Math.round(p.y));a.sprite.zIndex=p.y;
       a.shadow.position.copyFrom(a.sprite.position);a.shadow.zIndex=p.y-1;a.shadow.visible=a.sprite.visible;
       a.chair.visible=true;
+      if(a.chairArm){
+        const isSeated=p.pose==='type'||p.pose.startsWith('seated-')||(p.pose==='sit'&&p.frame===1);
+        a.chairArm.visible=a.sprite.visible&&isSeated;
+        a.chairArm.zIndex=p.y+.4;
+      }
       if(a.index===0)this.host.dataset.pose=p.pose;
       poses[a.id]={state:actorState,...p};
     }

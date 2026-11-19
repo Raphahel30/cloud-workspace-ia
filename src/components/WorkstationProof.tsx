@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   PROOF_LAYER_KEYS,
   type ProofAnimationMode,
+  type ProofCameraView,
   type ProofLayerKey,
 } from '../scene/workstationProofTypes';
 import type { WorkstationProofRenderer } from '../scene/WorkstationProofRenderer';
@@ -9,12 +10,16 @@ import type { WorkstationProofRenderer } from '../scene/WorkstationProofRenderer
 const DEFAULT_LAYERS: Record<ProofLayerKey, boolean> = {
   wall: true,
   floor: true,
+  wallDecor: true,
   rug: true,
   plant: true,
-  chair: true,
+  chairBack: true,
+  seatShadow: true,
   character: true,
+  chairArmFront: true,
   desk: true,
   keyboard: true,
+  characterForearms: true,
   accessories: true,
   monitor: true,
   lamp: true,
@@ -32,14 +37,17 @@ const MODE_BUTTONS: Array<{ mode: ProofAnimationMode; label: string }> = [
 export default function WorkstationProof(props: { onBackToBuilding?: () => void }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<WorkstationProofRenderer | null>(null);
+  const [camera, setCamera] = useState<ProofCameraView>(() =>
+    new URLSearchParams(window.location.search).get('view') === 'floor03' ? 'floor03-full' : 'station-zoom',
+  );
   const [mode, setMode] = useState<ProofAnimationMode>('type');
   const [paused, setPaused] = useState(false);
   const [visibleLayers, setVisibleLayers] = useState<Record<ProofLayerKey, boolean>>(DEFAULT_LAYERS);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState('');
 
-  const viewRef = useRef({ mode, paused, visibleLayers });
-  viewRef.current = { mode, paused, visibleLayers };
+  const viewRef = useRef({ camera, mode, paused, visibleLayers });
+  viewRef.current = { camera, mode, paused, visibleLayers };
 
   useEffect(() => {
     let cancelled = false;
@@ -71,21 +79,24 @@ export default function WorkstationProof(props: { onBackToBuilding?: () => void 
 
   useEffect(() => {
     if (ready) {
-      rendererRef.current?.update({ mode, paused, visibleLayers });
+      rendererRef.current?.update({ camera, mode, paused, visibleLayers });
     }
-  }, [mode, paused, visibleLayers, ready]);
+  }, [camera, mode, paused, visibleLayers, ready]);
 
   const toggleLayer = (key: ProofLayerKey) => {
     setVisibleLayers((curr) => ({ ...curr, [key]: !curr[key] }));
   };
 
   return (
-    <section className="proof-panel" aria-label="Prova artística de uma estação completa estilo R03_02">
+    <section className="proof-panel" aria-label="Prova artística de encaixe sentado e biblioteca expandida R03_02">
       <div className="proof-header">
         <div>
-          <p className="overline">PROVA ARTÍSTICA ISOLADA · DIREÇÃO R03_02 (PIXEL ART 16 BITS)</p>
+          <p className="overline">PROVA ARTÍSTICA R03_02 · ENCAIXE NA CADEIRA &amp; BIBLIOTECA MODULAR (38 ASSETS RGBA)</p>
           <h2>
-            Estação 01 — 12 Camadas RGBA Independentes <span className="subtle">/ PixiJS 8</span>
+            {camera === 'floor03-full'
+              ? 'Andar 03 Completo — 4 Estações, Robô IA & Decoração Modular'
+              : 'Estação 01 — Oclusão em Cadeira + 16 Camadas Independentes'}{' '}
+            <span className="subtle">/ PixiJS 8</span>
           </h2>
         </div>
         <div className="proof-header-actions">
@@ -107,6 +118,27 @@ export default function WorkstationProof(props: { onBackToBuilding?: () => void 
       </div>
 
       <div className="proof-controls-bar">
+        <div className="proof-camera-group" role="group" aria-label="Alternar câmera da prova">
+          <button
+            type="button"
+            data-testid="proof-camera-station"
+            className={`proof-mode-btn ${camera === 'station-zoom' ? 'active' : ''}`}
+            aria-pressed={camera === 'station-zoom'}
+            onClick={() => setCamera('station-zoom')}
+          >
+            Zoom Estação 01 (Encaixe)
+          </button>
+          <button
+            type="button"
+            data-testid="proof-camera-floor03"
+            className={`proof-mode-btn ${camera === 'floor03-full' ? 'active' : ''}`}
+            aria-pressed={camera === 'floor03-full'}
+            onClick={() => setCamera('floor03-full')}
+          >
+            Andar 03 Completo (4 Estações)
+          </button>
+        </div>
+
         <div className="proof-mode-group" role="group" aria-label="Estados de animação da estação">
           {MODE_BUTTONS.map((btn) => (
             <button
@@ -125,22 +157,23 @@ export default function WorkstationProof(props: { onBackToBuilding?: () => void 
 
       <div className="proof-grid">
         <div className="proof-stage-wrap">
-          <div
-            ref={hostRef}
-            className="proof-pixi-host"
-            data-testid="workstation-proof-renderer"
-          />
-          {!ready && !error && <p className="scene-loading">Carregando 12 sprites RGBA em camadas…</p>}
+          <div ref={hostRef} className="proof-pixi-host" data-testid="workstation-proof-renderer" />
+          {!ready && !error && <p className="scene-loading">Carregando 38 assets RGBA em camadas…</p>}
           {error && <p className="scene-error">{error}</p>}
           <div className="scene-flag">
-            <span className="scene-flag-dot" /> PROVA 1 ESTAÇÃO · SPRITES SEPARADOS
+            <span className="scene-flag-dot" />{' '}
+            {camera === 'floor03-full'
+              ? 'ANDAR 03 · 38 ASSETS MODULARES'
+              : 'ENCAIXE SENTADO · OCLUSÃO CADEIRA + MESA'}
           </div>
         </div>
 
         <aside className="proof-layers-panel" aria-label="Inspeção individual de camadas">
-          <p className="sector-label">CAMADAS INDEPENDENTES ({PROOF_LAYER_KEYS.filter((l) => visibleLayers[l.key]).length}/12 ATIVAS)</p>
+          <p className="sector-label">
+            CAMADAS INDEPENDENTES ({PROOF_LAYER_KEYS.filter((l) => visibleLayers[l.key]).length}/16 ATIVAS)
+          </p>
           <p className="proof-layers-hint">
-            Ligue ou desligue qualquer sprite em tempo real para comprovar que nenhuma pintura estática é usada como fundo.
+            Desligue a mesa, a parede ou o braço frontal da cadeira para comprovar o apoio real do quadril sobre o assento e os 38 sprites separados.
           </p>
           <div className="proof-layer-list">
             {PROOF_LAYER_KEYS.map(({ key, label }) => (

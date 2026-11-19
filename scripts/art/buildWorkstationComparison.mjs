@@ -5,104 +5,107 @@ import sharp from 'sharp';
 const ROOT = process.cwd();
 const ASSETS_DIR = path.join(ROOT, 'assets', 'workstation-proof');
 const CAPTURES_DIR = path.join(ASSETS_DIR, 'captures');
+const SCREENSHOTS_5F = path.join(ROOT, 'docs', 'codex', 'screenshots');
 const REF_PATH =
   'G:/Meu Drive/Projetos Code/01 - Projetos/cloud-workspace-ia/Direcao Artistica - R03 - 2026-11-16/R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png';
 
-const W = 1800;
-const H = 1260;
+const W = 1880;
+const H = 1320;
 
 async function main() {
-  const transparentBg = { r: 10, g: 22, b: 36, alpha: 1 };
+  const darkBg = { r: 10, g: 22, b: 36, alpha: 1 };
   const refMeta = await sharp(REF_PATH).metadata();
   const rw = refMeta.width ?? 1536;
   const rh = refMeta.height ?? 1024;
 
-  // Crop Station 1 region (left window + first workstation + overhead light + rug)
-  const cropW = Math.round(rw * 0.36);
-  const cropH = Math.round(rh * 0.72);
-  const cropTop = Math.round(rh * 0.10);
-  const refCrop = await sharp(REF_PATH)
-    .extract({ left: Math.round(rw * 0.02), top: cropTop, width: cropW, height: cropH })
-    .resize(560, 390, { fit: 'contain', kernel: 'nearest', background: transparentBg })
+  // Full reference frame for panoramic comparison alongside Floor 03
+  const refFull = await sharp(REF_PATH)
+    .resize(580, 390, { fit: 'contain', kernel: 'nearest', background: darkBg })
     .png()
     .toBuffer();
 
-  const liveType = await sharp(path.join(CAPTURES_DIR, 'PROVA_ESTACAO_PIXI_TYPE.png'))
-    .resize(560, 390, { fit: 'contain', kernel: 'nearest', background: transparentBg })
+  const floorFullLive = await sharp(path.join(CAPTURES_DIR, 'PROVA_ANDAR03_COMPLETO_4_ESTACOES_PIXI.png'))
+    .resize(580, 390, { fit: 'contain', kernel: 'nearest', background: darkBg })
     .png()
     .toBuffer();
 
-  const liveIsolated = await sharp(path.join(CAPTURES_DIR, 'PROVA_ESTACAO_PIXI_CAMADAS_ISOLADAS.png'))
-    .resize(560, 390, { fit: 'contain', kernel: 'nearest', background: transparentBg })
+  // Stacked split: Station 1 Type (top half) + Isolated Without Desk/Wall (bottom half) -> proves chair fit!
+  const zoomTypeHalf = await sharp(path.join(CAPTURES_DIR, 'PROVA_ESTACAO_PIXI_TYPE.png'))
+    .resize(285, 390, { fit: 'contain', kernel: 'nearest', background: darkBg })
     .png()
     .toBuffer();
 
-  const poseFiles = [
-    ['PROVA_ESTACAO_PIXI_WALK.png', 30],
-    ['PROVA_ESTACAO_PIXI_SIT.png', 465],
-    ['PROVA_ESTACAO_PIXI_TYPE.png', 900],
-    ['PROVA_ESTACAO_PIXI_STAND.png', 1335],
+  const isolatedHalf = await sharp(path.join(CAPTURES_DIR, 'PROVA_ESTACAO_PIXI_CAMADAS_ISOLADAS.png'))
+    .resize(285, 390, { fit: 'contain', kernel: 'nearest', background: darkBg })
+    .png()
+    .toBuffer();
+
+  const stripFiles = [
+    ['PROVA_ESTACAO_PIXI_WALK.png', 28],
+    ['PROVA_ESTACAO_PIXI_SIT.png', 396],
+    ['PROVA_ESTACAO_PIXI_TYPE.png', 764],
+    ['PROVA_ESTACAO_PIXI_STAND.png', 1132],
+    [path.join(SCREENSHOTS_5F, 'premium-working-zoom-1440x900.png'), 1500, true],
   ];
-  const poseBuffers = [];
-  for (const [file, left] of poseFiles) {
-    const buf = await sharp(path.join(CAPTURES_DIR, file))
-      .resize(425, 290, { fit: 'contain', kernel: 'nearest', background: transparentBg })
+  const stripComposites = [];
+  for (const [src, left, isAbs] of stripFiles) {
+    const filePath = isAbs ? src : path.join(CAPTURES_DIR, src);
+    const buf = await sharp(filePath)
+      .resize(352, 240, { fit: 'contain', kernel: 'nearest', background: darkBg })
       .png()
       .toBuffer();
-    poseBuffers.push({ input: buf, left, top: 535 });
+    stripComposites.push({ input: buf, left, top: 552 });
   }
 
   const assetsBoard = await sharp(path.join(ASSETS_DIR, 'PROVA_ASSETS_SEPARADOS_TRANSPARENCIA.png'))
-    .resize(1740, 340, { fit: 'contain', background: { r: 13, g: 23, b: 36, alpha: 1 } })
+    .resize(1820, 415, { fit: 'contain', background: { r: 12, g: 21, b: 34, alpha: 1 } })
     .png()
     .toBuffer();
 
   const boardSvg = Buffer.from(`
     <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
       <rect width="${W}" height="${H}" fill="#0a1522"/>
-      <text x="30" y="38" font-family="Segoe UI, Arial" font-size="24" font-weight="bold" fill="#ffd48a">COMPARATIVO OFICIAL — PROVA ARTISTICA DE 1 ESTACAO (R03_02 vs ASSETS vs PIXIJS 8 AO VIVO)</text>
-      <text x="30" y="62" font-family="Segoe UI, Arial" font-size="14" fill="#9bc2d4">Estacao 01 construida com 12 camadas RGBA independentes (transparencia real), spritesheet 4x3 e mapa Tiled/Pixelorama executando em WebGL.</text>
+      <text x="28" y="38" font-family="Segoe UI, Arial" font-size="24" font-weight="bold" fill="#ffd48a">COMPARATIVO ETAPA 4 — ENCAIXE NA CADEIRA &amp; BIBLIOTECA EXPANDIDA DO ANDAR 03 (R03_02)</text>
+      <text x="28" y="62" font-family="Segoe UI, Arial" font-size="14" fill="#9bc2d4">Oclusao real em sanduiche (encosto + sombra assento + personagem sentado + braco frontal cadeira + mesa + antebracos sobre teclado) e 38 assets RGBA.</text>
 
-      <!-- Top row: 3 main comparisons -->
-      <rect x="30" y="80" width="560" height="425" rx="8" fill="#0d1b2c" stroke="#e4b870" stroke-width="2"/>
-      <text x="44" y="103" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#ffd48a">1. REFERENCIA ORIGINAL (Recorte R03_02 — Estacao 01)</text>
+      <!-- Top row -->
+      <rect x="28" y="78" width="584" height="432" rx="8" fill="#0d1b2c" stroke="#e4b870" stroke-width="2"/>
+      <text x="42" y="102" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#ffd48a">1. PROPOSTA R03_02 ORIGINAL (4 Estacoes + Robo IA + Decoracao)</text>
 
-      <rect x="620" y="80" width="560" height="425" rx="8" fill="#0d1b2c" stroke="#6be0cc" stroke-width="2"/>
-      <text x="634" y="103" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#8df5e2">2. CENA REAL EXECUTANDO NO PIXIJS 8 (Modo Digitar)</text>
+      <rect x="646" y="78" width="584" height="432" rx="8" fill="#0d1b2c" stroke="#6be0cc" stroke-width="2"/>
+      <text x="660" y="102" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#8df5e2">2. ANDAR 03 COMPLETO NO PIXIJS 8 (38 Sprites RGBA Independentes)</text>
 
-      <rect x="1210" y="80" width="560" height="425" rx="8" fill="#0d1b2c" stroke="#60a8d6" stroke-width="2"/>
-      <text x="1224" y="103" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#8bd3ff">3. PROVA DE CAMADAS (Parede e Mesa Desligadas ao Vivo)</text>
+      <rect x="1264" y="78" width="588" height="432" rx="8" fill="#0d1b2c" stroke="#60a8d6" stroke-width="2"/>
+      <text x="1278" y="102" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#8bd3ff">3. ZOOM ENCAIXE NA CADEIRA (Com Mesa vs Sem Parede/Sem Mesa)</text>
 
-      <!-- Middle row: 4 animation states -->
-      <text x="30" y="528" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#ffd48a">4. SEQUENCIA REAL NO APLICATIVO (Playwright Captures): WALK  ->  SIT  ->  TYPE  ->  STAND</text>
-      <rect x="30" y="535" width="425" height="290" fill="none" stroke="#3c6075" stroke-width="1"/>
-      <rect x="465" y="535" width="425" height="290" fill="none" stroke="#3c6075" stroke-width="1"/>
-      <rect x="900" y="535" width="425" height="290" fill="none" stroke="#3c6075" stroke-width="1"/>
-      <rect x="1335" y="535" width="425" height="290" fill="none" stroke="#3c6075" stroke-width="1"/>
-      <text x="42" y="844" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">A. CAMINHAR (walk)</text>
-      <text x="477" y="844" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">B. SENTAR (sit)</text>
-      <text x="912" y="844" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">C. DIGITAR (type)</text>
-      <text x="1347" y="844" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">D. LEVANTAR (stand)</text>
+      <!-- Middle row -->
+      <text x="28" y="538" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#ffd48a">4. TRANSICAO COMPLETA AO VIVO (Walk -&gt; Sit -&gt; Type -&gt; Stand) + ZOOM NO PREDIO DE 5 ANDARES:</text>
+      <text x="36" y="814" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">A. CAMINHAR (walk)</text>
+      <text x="404" y="814" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">B. SENTAR (sit)</text>
+      <text x="772" y="814" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">C. DIGITAR SENTADO (type)</text>
+      <text x="1140" y="814" font-family="Consolas, monospace" font-size="13" fill="#bde7f0">D. LEVANTAR (stand)</text>
+      <text x="1508" y="814" font-family="Consolas, monospace" font-size="13" fill="#ffd48a">E. PREDIO 5 ANDARES (Andar 03)</text>
 
-      <!-- Bottom row: extracted assets checkerboard -->
-      <rect x="28" y="862" width="1744" height="380" rx="8" fill="#0d1724" stroke="#456c84" stroke-width="2"/>
-      <text x="42" y="884" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#ffd48a">5. ASSETS SEPARADOS EM CAMADAS &amp; QUADROS INDIVIDUAIS (Transparencia Real sobre Fundo Xadrez)</text>
+      <!-- Bottom row -->
+      <rect x="28" y="832" width="1824" height="466" rx="8" fill="#0d1724" stroke="#456c84" stroke-width="2"/>
+      <text x="42" y="856" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#ffd48a">5. BIBLIOTECA MODULAR EXPANDIDA (38 Assets RGBA com Transparencia Real, Oclusao de Cadeira e 4 Desenvolvedores)</text>
     </svg>
   `);
 
   const outPath = path.join(ASSETS_DIR, 'COMPARACAO_PROVA_ESTACAO_R03_02.png');
   await sharp(boardSvg)
     .composite([
-      { input: refCrop, left: 30, top: 112 },
-      { input: liveType, left: 620, top: 112 },
-      { input: liveIsolated, left: 1210, top: 112 },
-      ...poseBuffers,
-      { input: assetsBoard, left: 30, top: 894 },
+      { input: refFull, left: 30, top: 112 },
+      { input: floorFullLive, left: 648, top: 112 },
+      { input: zoomTypeHalf, left: 1268, top: 112 },
+      { input: isolatedHalf, left: 1562, top: 112 },
+      ...stripComposites,
+      { input: assetsBoard, left: 30, top: 870 },
     ])
     .png()
     .toFile(outPath);
 
-  console.log('Generated comparison board:', outPath, fs.statSync(outPath).size, 'bytes');
+  console.log(`Generated updated comparison board (${rw}x${rh} ref):`, outPath, fs.statSync(outPath).size, 'bytes');
 }
 
 main().catch((err) => {

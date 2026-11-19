@@ -122,7 +122,7 @@ export function floor03PilotArt(art, r, p) {
     p('19,114 81,110 105,116 43,121', '#425f7a') +
     p('25,114 78,111 98,116 44,120', '#2b4054');
 
-  // 5. High-back ergonomic office chair (matches R03_02)
+  // 5. High-back ergonomic office chair (back + seat + caster base) and separate foreground armrest occlusion layer
   art['f3-chair'] =
     p('14,116 44,112 52,117 22,121', '#071322') +
     r(29, 98, 4, 15, '#495a69') +
@@ -130,13 +130,18 @@ export function floor03PilotArt(art, r, p) {
     r(19, 117, 3, 3, '#637a8c') + r(31, 117, 3, 3, '#637a8c') + r(43, 115, 3, 3, '#637a8c') +
     p('14,84 42,81 53,89 25,94', '#395166') +
     p('17,86 41,83 48,89 24,92', '#52708a') +
-    // High ergonomic backrest
+    // High ergonomic backrest & rear armrest
     p('10,56 32,53 38,59 16,62', '#5a768e') +
     p('10,56 16,62 18,88 12,85', '#1b2b3a') +
     p('16,62 38,59 40,83 18,88', '#2a4154') +
     r(20, 65, 13, 16, '#395368') +
-    // Armrest
-    r(36, 78, 12, 3, '#172533') + r(42, 81, 3, 8, '#384c5e');
+    r(36, 78, 11, 3, '#1d2d3d') + r(41, 81, 3, 6, '#334859');
+
+  // Foreground chair armrest rendered in front of seated developer hip/thigh
+  art['f3-chair-arm'] =
+    p('15,79 34,77 37,81 18,83', '#15222f') +
+    r(16, 78, 17, 3, '#4e6980') +
+    r(20, 81, 4, 8, '#2b3f52');
 
   // 6. Warm wood workstation desk with drawer pedestal, mug & stacked books
   art['f3-desk'] =
@@ -224,4 +229,89 @@ export function floor03PilotArt(art, r, p) {
     r(31, 100, 6, 10, '#e88d67') + r(29, 102, 10, 6, '#f2ab8a') + r(33, 104, 2, 2, '#fff0e8') +
       r(44, 102, 44, 3, '#ffe2d4') + r(44, 108, 28, 2, '#e88d67'),
   );
+
+  // 10. Expanded modular decor, greenery, lighting & workstation prop variations for Floor 03
+  art['f3-hanging-vines'] = (() => {
+    let s = '';
+    const cols = ['#3b7537', '#589c44', '#86c954', '#b8e36d'];
+    for (let strand = 0; strand < 7; strand++) {
+      const sx = 18 + strand * 13;
+      const len = 26 + ((strand * 19) % 34);
+      s += r(sx + 2, 8, 2, len, '#2d572a');
+      for (let y = 10; y < 10 + len; y += 6) {
+        const c1 = cols[(strand + y) % cols.length];
+        const c2 = cols[(strand + y + 1) % cols.length];
+        s += r(sx, y, 5, 4, c1) + r(sx + 3, y + 2, 5, 4, c2);
+      }
+    }
+    return s;
+  })();
+
+  art['f3-credenza-lamp'] =
+    p('18,113 94,108 112,116 36,121', '#071322') +
+    p('22,82 94,76 110,85 38,91', '#b67d47') +
+    p('22,82 38,91 38,116 22,107', '#734b2b') +
+    p('38,91 110,85 110,111 38,116', '#56361f') +
+    r(44, 93, 28, 18, '#6a4428') + r(76, 91, 28, 18, '#5d3b22') +
+    // Brass dome lamp on center-left of credenza
+    p('42,78 58,76 62,79 46,81', '#8c652f') +
+    r(49, 64, 4, 14, '#e3b254') +
+    p('38,63 64,61 60,52 42,53', '#ffcf6b') +
+    p('42,64 60,62 63,66 39,68', '#fff2b8') +
+    // Mini white planter on right of credenza
+    p('80,71 94,70 92,82 82,83', '#d6d1be') +
+    r(83, 62, 4, 9, '#5fa346') + r(88, 60, 5, 11, '#8cc956') + r(85, 57, 4, 6, '#b8e36d');
+
+  art['f3-wall-blueprint'] =
+    r(24, 28, 44, 56, '#3a271c') + r(27, 31, 38, 50, '#eae2cc') +
+    r(31, 36, 12, 10, '#6290b0') + r(46, 36, 15, 2, '#5e6f7d') + r(46, 41, 12, 2, '#5e6f7d') +
+    r(31, 51, 29, 2, '#7d8d99') + r(31, 56, 22, 2, '#7d8d99') + r(31, 63, 18, 12, '#99b8c7') +
+    r(74, 34, 36, 46, '#3a271c') + r(77, 37, 30, 40, '#e3dac2') +
+    r(81, 42, 22, 3, '#4c6d82') + r(81, 48, 22, 16, '#87b5c9') + r(81, 68, 16, 2, '#6c7c88');
+
+  art['f3-pendant-spot'] =
+    r(62, 8, 4, 24, '#1b2c3b') +
+    p('52,32 76,30 84,42 44,44', '#273c4f') +
+    p('46,43 82,41 79,45 49,47', '#ffd67d');
+
+  art['f3-elevator-door'] =
+    r(18, 12, 92, 112, '#112233') +
+    r(22, 16, 84, 106, '#264257') +
+    r(42, 18, 44, 14, '#0c1c2b') + r(46, 20, 36, 10, '#f3b74d') +
+    r(56, 22, 16, 6, '#382008') +
+    r(28, 36, 34, 84, '#47687d') + r(66, 36, 34, 84, '#3d5c70') +
+    r(61, 36, 4, 84, '#132638') +
+    // Glowing cyan up chevrons
+    p('54,68 63,60 72,68 68,68 63,64 58,68', '#89f5ff') +
+    p('54,78 63,70 72,78 68,78 63,74 58,78', '#52d5eb') +
+    r(24, 118, 80, 4, '#f7c16c');
+
+  art['f3-fg-planter'] =
+    p('10,94 98,88 118,98 30,104', '#334a5c') +
+    p('10,94 30,104 32,120 12,110', '#4f6d82') +
+    p('30,104 118,98 114,116 32,120', '#293e4f') +
+    p('18,95 92,90 106,96 32,101', '#223322') +
+    (() => {
+      let s = '';
+      for (let i = 0; i < 14; i++) {
+        const lx = 18 + i * 6;
+        const ly = 72 + ((i * 7) % 18);
+        s += p(`${lx},${ly + 20} ${lx - 8},${ly} ${lx + 4},${ly - 4} ${lx + 10},${ly + 14}`, i % 3 === 0 ? '#9be05a' : i % 2 ? '#599e43' : '#397336');
+      }
+      return s;
+    })();
+
+  // Desk props variations (station 1: pens+book, 2: tablet+mug, 3: stacked books)
+  art['f3-props-pens'] =
+    r(102, 74, 6, 9, '#2b4a62') + r(103, 69, 2, 5, '#e86a5e') + r(105, 68, 2, 6, '#f2c14e') + r(107, 70, 2, 4, '#54c4d4') +
+    p('88,80 100,79 102,84 90,85', '#3d82b0') + p('89,77 99,76 100,80 90,81', '#e8dec6');
+
+  art['f3-props-tablet'] =
+    p('90,79 102,78 106,82 94,83', '#d0e2eb') + p('92,80 101,79 103,81 94,82', '#64dcf2') +
+    r(108, 75, 6, 8, '#f0e7d4') + r(110, 72, 1, 2, '#c8e9f2');
+
+  art['f3-props-stack'] =
+    p('96,81 114,79 116,84 98,86', '#326e8c') +
+    p('97,77 113,75 115,80 99,82', '#c76946') +
+    p('98,73 112,72 114,76 100,77', '#d9b54e');
 }

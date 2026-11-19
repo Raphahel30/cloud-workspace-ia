@@ -56,32 +56,44 @@
                  "y":455
                 }, 
                 {
-                 "height":285,
+                 "height":320,
                  "id":3,
-                 "name":"chair",
+                 "name":"chair_back",
                  "opacity":1,
                  "rotation":0,
-                 "type":"sprite_chair",
+                 "type":"sprite_chair_back",
                  "visible":true,
-                 "width":210,
-                 "x":405,
-                 "y":410
+                 "width":238,
+                 "x":415,
+                 "y":420
                 }, 
                 {
                  "height":260,
                  "id":4,
-                 "name":"character",
+                 "name":"character_seated",
                  "opacity":1,
                  "rotation":0,
                  "type":"spritesheet_character_r03",
                  "visible":true,
                  "width":240,
-                 "x":475,
-                 "y":430
+                 "x":465,
+                 "y":420
+                }, 
+                {
+                 "height":320,
+                 "id":5,
+                 "name":"chair_arm_front",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"sprite_chair_arm_front",
+                 "visible":true,
+                 "width":238,
+                 "x":415,
+                 "y":420
                 }, 
                 {
                  "height":255,
-                 "id":5,
+                 "id":6,
                  "name":"desk",
                  "opacity":1,
                  "rotation":0,
@@ -93,7 +105,7 @@
                 }, 
                 {
                  "height":65,
-                 "id":6,
+                 "id":7,
                  "name":"keyboard",
                  "opacity":1,
                  "rotation":0,
@@ -104,8 +116,20 @@
                  "y":510
                 }, 
                 {
+                 "height":260,
+                 "id":8,
+                 "name":"character_forearms",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"spritesheet_character_forearms_r03",
+                 "visible":true,
+                 "width":240,
+                 "x":465,
+                 "y":420
+                }, 
+                {
                  "height":90,
-                 "id":7,
+                 "id":9,
                  "name":"accessories",
                  "opacity":1,
                  "rotation":0,
@@ -117,7 +141,7 @@
                 }, 
                 {
                  "height":210,
-                 "id":8,
+                 "id":10,
                  "name":"monitor_back",
                  "opacity":1,
                  "properties":[
@@ -140,7 +164,7 @@
                 }, 
                 {
                  "height":125,
-                 "id":9,
+                 "id":11,
                  "name":"lamp",
                  "opacity":1,
                  "rotation":0,
@@ -169,13 +193,13 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":12,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"proofScope",
          "type":"string",
-         "value":"single-workstation-r03-02"
+         "value":"floor03-r03-02-library-and-seated-fit"
         }, 
         {
          "name":"reference",

@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-11-18T23:24:27.888Z",
+  "generatedAt": "2026-11-19T00:32:13.123Z",
   "reference": "R03_02_ANDAR_03_PROPOSTA_NAO_APROVADA.png",
-  "layerCount": 12,
+  "seatedFitArchitecture": "nested-chair-occlusion-with-compressed-chibi-seat-height",
+  "layerCount": 38,
   "alphaTransparencyVerified": true,
   "roomLayers": [
     {
@@ -9,21 +10,35 @@
       "width": 1200,
       "height": 896,
       "role": "wall-window-layer",
-      "sha256": "6b31e78dc67c598b5b80faf098b0f9c8c3abf7891dc25cf444d1b9b5c7053caa"
+      "sha256": "9632cb0aedab8e6632aa68bbabd73149e948709b5eb397de3401e8f911770b5b"
     },
     {
       "file": "layer_floor_tiles.png",
       "width": 1200,
       "height": 896,
       "role": "floor-tiles-layer",
-      "sha256": "f15c02cf1fb52295066ab8b5b37b381f44fe1fa933c7d4e1c12893fdf8254fa4"
+      "sha256": "e99de4a571f3802db88b44ad584780b9620b5399a3ac080e49fff14089c61814"
+    },
+    {
+      "file": "layer_floor03_full_wall.png",
+      "width": 1740,
+      "height": 896,
+      "role": "floor03-wide-wall",
+      "sha256": "c51ccfe0bc9ac5923057d23c88356a029e930d432025607e18acc3d0c936bf4f"
+    },
+    {
+      "file": "layer_floor03_full_floor.png",
+      "width": 1740,
+      "height": 896,
+      "role": "floor03-wide-floor",
+      "sha256": "37c0313bc92af54053f3c2fc09064169a9fe4f64580debe256a378c19730a36a"
     },
     {
       "file": "layer_lighting_glow.png",
       "width": 1200,
       "height": 896,
       "role": "volumetric-lighting-layer",
-      "sha256": "85b5ee136fa69863bd5a2d40044ed3f220c27f3a8d32e0f2ed9f7d2882fef719"
+      "sha256": "3e47d51d4a9ccd69bd30f0739478076e1d451f3d5173b0523372dcbf3acf49c5"
     }
   ],
   "sprites": [
@@ -90,6 +105,238 @@
       "opaquePixels": 14398,
       "transparentPixels": 29352,
       "sha256": "c2c26775d8c58e9e59cf83bf30bd31dc4d78a49dd551ae24c36051d54a4bfec0"
+    },
+    {
+      "file": "sprite_chair_back.png",
+      "width": 238,
+      "height": 304,
+      "opaquePixels": 40558,
+      "transparentPixels": 31794,
+      "sha256": "6eff590597b12cea016ff76c85e11cc114c5b118ef4356ba6ee08aea5d1ba6f1"
+    },
+    {
+      "file": "sprite_chair_arm_front.png",
+      "width": 238,
+      "height": 304,
+      "opaquePixels": 3124,
+      "transparentPixels": 69228,
+      "sha256": "e948033becb17a27ca44368e87be9464d287d09e1a4fa9f63b5ff74528d33d42"
+    },
+    {
+      "file": "sprite_chair_back_b.png",
+      "width": 238,
+      "height": 304,
+      "opaquePixels": 40558,
+      "transparentPixels": 31794,
+      "sha256": "a0b28e13ef7fe3e0694730553b8ff05e9212bad39df22fb55d0f1941371cb23c"
+    },
+    {
+      "file": "sprite_chair_arm_front_b.png",
+      "width": 238,
+      "height": 304,
+      "opaquePixels": 3124,
+      "transparentPixels": 69228,
+      "sha256": "a4bcdaa78ca4de673788bf5233a6c47f4f8033e774c31db84b35a6961ac93a39"
+    },
+    {
+      "file": "sprite_seat_shadow.png",
+      "width": 120,
+      "height": 44,
+      "opaquePixels": 3200,
+      "transparentPixels": 2080,
+      "sha256": "1b627a054a3a7f49f0d085164f16a71b121460288a2f8305aee88f2cbcbd73a5"
+    },
+    {
+      "file": "sprite_neon_equipe_ia.png",
+      "width": 335,
+      "height": 108,
+      "opaquePixels": 33516,
+      "transparentPixels": 2664,
+      "sha256": "11003429de6684aad5018809e3e5877225a49ea7be51b15a074f176b83251afa"
+    },
+    {
+      "file": "sprite_holo_map.png",
+      "width": 249,
+      "height": 159,
+      "opaquePixels": 37880,
+      "transparentPixels": 1711,
+      "sha256": "2bd63c04ee6cbc216b17dabc65d0c7fbe1a0eeea67dc48b32f6c39d3b78fa80c"
+    },
+    {
+      "file": "sprite_holo_chart.png",
+      "width": 214,
+      "height": 159,
+      "opaquePixels": 32468,
+      "transparentPixels": 1558,
+      "sha256": "73af8f610123bab878a8c547e8aeabb3c3860ee93cea7d037cb928495fa3d8d2"
+    },
+    {
+      "file": "sprite_holo_chip.png",
+      "width": 261,
+      "height": 133,
+      "opaquePixels": 33045,
+      "transparentPixels": 1668,
+      "sha256": "c5758d6d7f337d3fa428fc7fcab648e2b8de99426162848e0b009ecac2d55f48"
+    },
+    {
+      "file": "sprite_credenza_lamp.png",
+      "width": 262,
+      "height": 267,
+      "opaquePixels": 42041,
+      "transparentPixels": 27913,
+      "sha256": "f06124f1132ffcfeace919c95f5bf515454f56991751dc570c5e9bd7bc23f764"
+    },
+    {
+      "file": "sprite_elevator_03.png",
+      "width": 226,
+      "height": 398,
+      "opaquePixels": 74430,
+      "transparentPixels": 15518,
+      "sha256": "a1e4ddfdca0126747ff10cab49bf4b92d814853fe70a8185e7d02bfa738caefa"
+    },
+    {
+      "file": "sprite_desk_variant_b.png",
+      "width": 322,
+      "height": 260,
+      "opaquePixels": 45000,
+      "transparentPixels": 38720,
+      "sha256": "6aab168fe617c6a3bf6628f28e51e615afe897567bd0709f2734f426e2ac8c67"
+    },
+    {
+      "file": "sprite_pendant_spot.png",
+      "width": 79,
+      "height": 127,
+      "opaquePixels": 3836,
+      "transparentPixels": 6197,
+      "sha256": "46c5cc97011eff691cbd27aa42454a6c5b0410477ced04e439b508d0504b2a99"
+    },
+    {
+      "file": "sprite_monitor_back_b.png",
+      "width": 175,
+      "height": 177,
+      "opaquePixels": 20059,
+      "transparentPixels": 10916,
+      "sha256": "f56525a59c499801c67092485e7873016e8f2c4990897b1e62d7332aca172536"
+    },
+    {
+      "file": "sprite_hanging_vines.png",
+      "width": 252,
+      "height": 311,
+      "opaquePixels": 28059,
+      "transparentPixels": 50313,
+      "sha256": "255f355058542947ab2b3809e9a90adfefc700e308f09f02358d8084b44e8d3b"
+    },
+    {
+      "file": "sprite_fg_planter_left.png",
+      "width": 165,
+      "height": 217,
+      "opaquePixels": 24593,
+      "transparentPixels": 11212,
+      "sha256": "784b571bff4ada1e37109f0954dc857166af6afe5fd1ef47bd5e2d44c99c109e"
+    },
+    {
+      "file": "sprite_fg_planter_right.png",
+      "width": 196,
+      "height": 237,
+      "opaquePixels": 28819,
+      "transparentPixels": 17633,
+      "sha256": "1133cdd10625d4c358823817600d0de2cc96d8d0b5af1ab10a387aabb93135a6"
+    },
+    {
+      "file": "sprite_wall_blueprint_a.png",
+      "width": 112,
+      "height": 142,
+      "opaquePixels": 14884,
+      "transparentPixels": 1020,
+      "sha256": "38c28dd128a1359cef3354bb9fb70d75d1a5e231c2f0d725703fbf877dc80efa"
+    },
+    {
+      "file": "sprite_wall_blueprint_b.png",
+      "width": 112,
+      "height": 142,
+      "opaquePixels": 14881,
+      "transparentPixels": 1023,
+      "sha256": "75d7b0993da4e854db92bf09d8fe5fb389f50f0e57ca59d1d26b3dcb20fc3a85"
+    },
+    {
+      "file": "sprite_prop_pens_book.png",
+      "width": 147,
+      "height": 117,
+      "opaquePixels": 6551,
+      "transparentPixels": 10648,
+      "sha256": "d216f1aef07947686651f2f558a256a7889cf8a4556a96921694478b8c6d9086"
+    },
+    {
+      "file": "sprite_prop_tablet_mug.png",
+      "width": 184,
+      "height": 90,
+      "opaquePixels": 6431,
+      "transparentPixels": 10129,
+      "sha256": "0f5f03c963fc2ba388a6466341580acd8ebc89913ca4292f6c359f7f56189999"
+    },
+    {
+      "file": "sprite_prop_stacked_books.png",
+      "width": 121,
+      "height": 111,
+      "opaquePixels": 8629,
+      "transparentPixels": 4802,
+      "sha256": "d59742b8e49a5952d81250eb1f84fcf2910d9cdfed3f3dcd74298fd6d01e2e07"
+    }
+  ],
+  "agentsIndividual": [
+    {
+      "file": "agent-chatgpt-type.png",
+      "width": 239,
+      "height": 402,
+      "opaquePixels": 48952,
+      "transparentPixels": 47126,
+      "sha256": "02d8e97473356af45834e75d761626ea53481dc6f7cf887fe4fdf0d5cd0936a6",
+      "path": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\public\\art\\workstation-proof\\agent-chatgpt-type.png"
+    },
+    {
+      "file": "agent-codex-type.png",
+      "width": 243,
+      "height": 394,
+      "opaquePixels": 46409,
+      "transparentPixels": 49333,
+      "sha256": "afed853ea6be3bdffde2453912acdb841eb3426f2a02100cd04d65540189b51f",
+      "path": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\public\\art\\workstation-proof\\agent-codex-type.png"
+    },
+    {
+      "file": "agent-antigravity-type.png",
+      "width": 244,
+      "height": 389,
+      "opaquePixels": 50394,
+      "transparentPixels": 44522,
+      "sha256": "6bcddfd62886fe1a5eb4b640ffe6b29a66f4f07cc1bdc5b2bda5c0f0d3f35f12",
+      "path": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\public\\art\\workstation-proof\\agent-antigravity-type.png"
+    },
+    {
+      "file": "agent-claude-type.png",
+      "width": 248,
+      "height": 401,
+      "opaquePixels": 50281,
+      "transparentPixels": 49167,
+      "sha256": "1db3c2b45fc21cde17c2d1cac1e122ce75c6a2a6674a7d0cfe82a9343be1fd66",
+      "path": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\public\\art\\workstation-proof\\agent-claude-type.png"
+    },
+    {
+      "file": "agent-claude-think.png",
+      "width": 243,
+      "height": 401,
+      "opaquePixels": 52702,
+      "transparentPixels": 44741,
+      "sha256": "3b564810ed055eb675538ac851f9d275611a7e60c9195826e84031bd730cd0fc",
+      "path": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\public\\art\\workstation-proof\\agent-claude-think.png"
+    },
+    {
+      "file": "agent-bot-ia.png",
+      "width": 188,
+      "height": 254,
+      "opaquePixels": 36705,
+      "transparentPixels": 11047,
+      "sha256": "c8485faeec84fa94cd5815352891566c21ae7e003debb7a54ce6129a16238f1f",
+      "path": "C:\\Users\\PC NOVO\\Projetos\\worktrees\\floor03-pilot\\public\\art\\workstation-proof\\agent-bot-ia.png"
     }
   ],
   "characterSheet": {
@@ -98,7 +345,23 @@
     "width": 960,
     "height": 780,
     "frameCount": 12,
-    "sha256": "e98356f18a8928f85493170113746c1e5790c9c54a48afa3735e89ad0f5ab75c"
+    "sha256": "043e4d61d827f3acb46a03d054f5417422b7d0630888d7520d1f19e1fdac27ef"
+  },
+  "forearmsSheet": {
+    "image": "spritesheet_character_forearms_r03.png",
+    "json": "spritesheet_character_forearms_r03.json",
+    "width": 960,
+    "height": 260,
+    "frameCount": 4,
+    "sha256": "dd40aeab0cd6642434e21a7b7230fbd65e41daf24c1809bf9e12f27315f0df7f"
+  },
+  "agentsSheet": {
+    "image": "spritesheet_agents_floor03.png",
+    "json": "spritesheet_agents_floor03.json",
+    "width": 840,
+    "height": 600,
+    "frameCount": 6,
+    "sha256": "af6e2c036cc1cc5a5cd6e456966c84009b0619f71ef20f2ad4e7915dd5ca6029"
   },
   "editableProjects": {
     "tmx": "assets/workstation-proof/workstation_r03_proof.tmx",
