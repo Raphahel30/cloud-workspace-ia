@@ -386,3 +386,18 @@ VERIFICACOES/TESTES (sequencial pos-edicao):
 COMMIT / BRANCH: `agent/antigravity/windows-functional` (`efccb91`) e `agent/antigravity/setup`.
 PENDENCIAS:
 - Etapa 8 (pixel art congelada para fase final) e aprovacoes futuras para merge, cofre `.kdbx` real ou integracoes remotas.
+
+
+====================================================================
+[2026-11-19 02:13 UTC-3] ETAPA 6: VALIDACAO DO APLICATIVO WINDOWS REAL E PACOTE PORTATIL
+====================================================================
+STATUS: CONCLUIDA (app Windows real em desktop:dev + executavel portatil standalone validados; pronto para revisao interativa do usuario no WinSta0\Default)
+O QUE FOI FEITO:
+- Correcoes reais em `agent/antigravity/windows-functional` (`97265ea`): `vite.config.ts` (`server.watch.ignored` para `src-tauri/target` evitando `EBUSY`), CORS `OPTIONS -> 204` (`http://tauri.localhost` e `http://127.0.0.1:1420`), dreno `stdout` + `restart_count` + `CW_UI_TOKEN` via variavel de ambiente (`lib.rs` / `sidecarCli.ts`), `[features] default = ["custom-protocol"]` em `Cargo.toml` para build standalone com `dist/` embutido (`23,75 MB`), e auto-recuperacao via `focus`/`visibilitychange`/poll `4s` quando visivel.
+- Validacao funcional real ao vivo (`PID 27932` + sidecar `PID 21052`, `577,67-580,68 MB` RAM): 7 telas, Drive `G:\` somente leitura, MCP `4/4` em `antigravity` e `codex`, ciclo `sandbox-demo-ia` completo fora de `G:\`, KeePassXC ficticio e teste `node-policy`.
+- Pacote portatil isolado em `dist-win-test\CloudWorkspaceIA-Portable\cloud-workspace-ia.exe` + `cloud-workspace-core.exe` + `manifesto-build-nativo.json`: testado com Vite parado (`HWND 0x7BF0BAA`, `http://tauri.localhost` preflight `204`, `SW_MINIMIZE`/`SW_RESTORE`, auto-respawn do sidecar em `0,6s` apos crash simulado, `SQLite` povoado e `WM_CLOSE` com `0` processos orfaos).
+VERIFICACOES/TESTES (pos-edicao final):
+- `sidecar:build` (`98,67 MB`), `build` (`4,60s`), Vitest `26/26`, `test:policy` `3/3`, `test:contracts` `5/5`, `test:core` `9/9`, Playwright `test:e2e` `10/10` (`1,4m`), `cargo build --release` (`58,73s`). Contratos protegidos e pixel art preservados intactos.
+COMMIT / BRANCH: `agent/antigravity/windows-functional` (`97265ea`) e `agent/antigravity/setup`.
+PENDENCIAS:
+- Instalador NSIS/MSI assinado (mediante aprovacao), integracao progressiva dos agentes reais, cofre `.kdbx` real e acabamento Etapa 8.
