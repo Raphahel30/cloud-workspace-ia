@@ -345,3 +345,29 @@ ARQUIVOS/RELATORIOS SINCRONIZADOS:
 PENDENCIAS:
 - Aprovacao humana do Piloto do Andar 03 antes de desenhar os outros 4 andares em producao definitiva.
 - Autorizacao para merges futuros ou inicio de `CORE-03/04/05`.
+
+
+====================================================================
+[2026-11-18 20:29 UTC-3] ETAPA 3: TAURI SIDECAR + CORE-03/04/05 + PROVA ARTISTICA 1 ESTACAO R03_02
+====================================================================
+STATUS: CONCLUIDA (nucleo CORE-03/04/05 validado; prova visual de 1 estacao R03_02 produzida)
+COMMITS: `agent/antigravity/core-mcp-drive` (`470fc0b`), `agent/antigravity/floor03-pilot` (`e4a24c1`).
+VERIFICACOES: Vitest `24/24`, `test:policy` `3/3`, `test:contracts` `5/5`, `test:core` `8/8`, Playwright `9/9`, `cargo check` PASS.
+
+
+====================================================================
+[2026-11-18 22:05 UTC-3] ETAPA 4: CORRECAO POSE SENTADA + BIBLIOTECA MODULAR EXPANDIDA ANDAR 03
+====================================================================
+STATUS: CONCLUIDA (aguardando aprovacao humana da Etapa 4 antes de expandir os outros 4 andares)
+O QUE FOI FEITO:
+- Corrigida pose sentada e oclusao fisica personagem-cadeira no Andar 03:
+  - Cena procedural 5 andares (`scripts/art/premium.mjs`, `floor03Pilot.mjs`, `OfficeRenderer.ts`): quadril/coxas elevados para altura da almofada, camada frontal `f3-chair-arm` (`zIndex = p.y + 0.4`) e 9 novos sprites modulares no Andar 03 (`239` sprites no atlas `1024x1202`, `office.png` `79.522` bytes).
+  - Prova R03_02 expandida (`scripts/art/buildWorkstationProof.mjs`, `WorkstationProofRenderer.ts`): oclusao em sanduiche (`chair_back` < `seat_shadow` < `body` < `chair_arm_front` < `desk` < `keyboard` < `forearms` < `accessories` < `monitor`), `38` assets RGBA (4 devs + `Bot IA`, cadeiras/mesas variantes A/B, letreiro `EQUIPE IA`, hologramas, credenza, trepadeiras, floreiras, blueprints, props de mesa e Elevador `03`), sala estendida `1740x896` reconstruida sem letreiro chumbado/bordas duplicadas nem filete de rodape no modo isolado.
+VERIFICACOES/TESTES (sequencial pos-edicao):
+- `npm run art:build` (`239` sprites, RGBA `< 5 MB`); `node scripts/art/buildWorkstationProof.mjs` (`38` assets RGBA) PASS.
+- `npm run build` (`5.02s`) PASS; Vitest `24/24` PASS; `test:policy` `3/3` PASS; `test:contracts` `5/5` PASS.
+- `npm run test:e2e` (`9/9`, `1.1m`) PASS; `buildWorkstationComparison.mjs` (`COMPARACAO_PROVA_ESTACAO_R03_02.png` `2.029.450` bytes) PASS; `cargo check` (`0.89s`) PASS.
+- Capturas reais inspecionadas diretamente (`PROVA_ANDAR03_COMPLETO_4_ESTACOES_PIXI.png`, `PROVA_ESTACAO_PIXI_TYPE.png`, `PROVA_ESTACAO_PIXI_CAMADAS_ISOLADAS.png`, `COMPARACAO_PROVA_ESTACAO_R03_02.png`, `premium-working-zoom-1440x900.png`).
+COMMIT / BRANCH: `agent/antigravity/floor03-pilot` (`43243f5`) e `agent/antigravity/setup`.
+PENDENCIAS:
+- Aprovacao humana do Andar 03 refinado antes de produzir os andares `01`, `02`, `04` e `05`.

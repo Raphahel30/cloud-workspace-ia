@@ -50,5 +50,15 @@
   - 12 camadas RGBA transparentes recortadas em `sharp` (`layer_wall_window.png`, `layer_floor_tiles.png`, `sprite_rug.png`, `sprite_plant.png`, `sprite_chair.png`, `sprite_desk.png`, `sprite_keyboard.png`, `sprite_accessories.png`, `sprite_monitor_back.png`, `sprite_lamp.png`, `layer_lighting_glow.png`, `spritesheet_character_r03.png/.json`), mapa Tiled `.tmx`/`.json` e arquivo Pixelorama `.pxo`.
   - Personagem fiel à `R03_02` com 12 quadros distintos (`walk`, `sit`, `type`, `stand`), integrado ao PixiJS 8 (`/?proof=workstation`) com controles de estado e desligamento individual de camadas.
   - Testes em `floor03-pilot`: `buildWorkstationProof` PASS, `build` PASS (`5.08s`), Vitest `24/24` PASS, `test:policy` `3/3` PASS, `test:contracts` `5/5` PASS, Playwright E2E `9/9` PASS (`58.9s`), `cargo check` PASS (`7.84s`), prancha comparativa `COMPARACAO_PROVA_ESTACAO_R03_02.png` inspecionada.
-- [ ] **Aprovação humana da Prova Artística de 1 Estação (`COMPARACAO_PROVA_ESTACAO_R03_02.png`)** antes de produzir demais estações ou andares.
-- [ ] Autorização para acoplar o sidecar `cloud-workspace-core` em `src-tauri` e avançar para integração real do cofre/MCP quando aprovado.
+
+
+## Etapa 4 — Correção da Pose Sentada e Biblioteca Modular Expandida do Andar 03 — 2026-11-18 (UTC-3)
+- [x] **Pose sentada e encaixe físico personagem-cadeira corrigidos** em `agent/antigravity/floor03-pilot` (`43243f5`):
+  - Cadeira redimensionada para proporção chibi (`238x304`, variantes A/B), separada em `sprite_chair_back` (`z=48`) e `sprite_chair_arm_front` (`z=64`) com `sprite_seat_shadow` (`z=52`), personagem sentado ancorado em `(0.45, 194/260)` (`z=58`) e camada de antebraços `spritesheet_character_forearms_r03` (`z=78`) acima do teclado e da mesa (`z=70`).
+  - Cena procedural dos 5 andares também atualizada (`scripts/art/premium.mjs`, `scripts/art/floor03Pilot.mjs` e `src/scene/OfficeRenderer.ts` com `f3-chair-arm` em `zIndex = p.y + 0.4` e `9` novos props no Andar 03; `public/art/office.png` com `239` sprites, `79.522` bytes e RGBA `< 5 MB`).
+- [x] **Biblioteca expandida para 38 assets RGBA e prova completa de 4 estações (`floor03-full`)**:
+  - 4 desenvolvedores sentados (`ChatGPT`, `Codex`, `Antigravity`, `Claude Code`) + `Bot IA` + Elevador `03` + letreiro `EQUIPE IA` + hologramas (`map`, `chart`, `chip`) + credenza com abajur + trepadeiras + floreiras frontais + blueprints + 4 conjuntos de objetos sobre a mesa.
+  - Arquitetura estendida `1740x896` limpa (`stripBakedNeonPanel` + `extendGalleryBuffers` sem duplicação de letreiro/bordas e sem filete de rodapé no modo isolado).
+  - Verificações sequenciais pós-edição: `art:build` PASS, `buildWorkstationProof` (`38` assets RGBA) PASS, `build` PASS (`5.02s`), Vitest `24/24` PASS, `test:policy` `3/3` PASS, `test:contracts` `5/5` PASS, Playwright E2E `9/9` PASS (`1.1m`), prancha `COMPARACAO_PROVA_ESTACAO_R03_02.png` regerada e inspecionada, `cargo check` PASS (`0.89s`).
+- [ ] **Aprovação humana da Etapa 4 (pose sentada + Andar 03 completo)** antes de expandir para os andares `01`, `02`, `04` e `05`.
+- [ ] Autorização para acoplar o sidecar `cloud-workspace-core` em `src-tauri` e eventuais merges/integrações futuras.
