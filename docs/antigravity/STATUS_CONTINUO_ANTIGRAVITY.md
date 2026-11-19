@@ -60,5 +60,18 @@
   - 4 desenvolvedores sentados (`ChatGPT`, `Codex`, `Antigravity`, `Claude Code`) + `Bot IA` + Elevador `03` + letreiro `EQUIPE IA` + hologramas (`map`, `chart`, `chip`) + credenza com abajur + trepadeiras + floreiras frontais + blueprints + 4 conjuntos de objetos sobre a mesa.
   - Arquitetura estendida `1740x896` limpa (`stripBakedNeonPanel` + `extendGalleryBuffers` sem duplicação de letreiro/bordas e sem filete de rodapé no modo isolado).
   - Verificações sequenciais pós-edição: `art:build` PASS, `buildWorkstationProof` (`38` assets RGBA) PASS, `build` PASS (`5.02s`), Vitest `24/24` PASS, `test:policy` `3/3` PASS, `test:contracts` `5/5` PASS, Playwright E2E `9/9` PASS (`1.1m`), prancha `COMPARACAO_PROVA_ESTACAO_R03_02.png` regerada e inspecionada, `cargo check` PASS (`0.89s`).
-- [ ] **Aprovação humana da Etapa 4 (pose sentada + Andar 03 completo)** antes de expandir para os andares `01`, `02`, `04` e `05`.
-- [ ] Autorização para acoplar o sidecar `cloud-workspace-core` em `src-tauri` e eventuais merges/integrações futuras.
+
+
+## Etapa 5 — Núcleo Integrado ao Tauri 2 (Windows SEA + SQLite) e Interface Operacional Padronizada (7 Telas) — 2026-11-19 (UTC-3)
+- [x] **Branch funcional isolada criada sem alterar `main` ou PR #1** (`agent/antigravity/windows-functional` · `efccb91`), unificando `CORE-01..05` sobre a base ilustrada preservada da Etapa 4 (`43243f5`).
+- [x] **Sidecar standalone Windows e supervisão Tauri 2 validados:**
+  - `scripts/build-sidecar-win.mjs` + `src/core/runtime/sidecarCli.ts` geram o executável autônomo `cloud-workspace-core-x86_64-pc-windows-msvc.exe` (`98,67 MB`, Node 26.7.0 + `node:sqlite`, zero instalação manual para o usuário final).
+  - `CoreSidecarServer` (`127.0.0.1`) aplica `Origin` allowlist (`403`), `X-CW-UI-Token` (`401`), gateway `/mcp` com Bearer escopado, reconciliação automática após reinício/falha (`recoverInterruptedState()`) e WAL checkpoint no encerramento.
+  - `src-tauri/src/lib.rs` (`SidecarSupervisor`, `CREATE_NO_WINDOW`, encerramento seguro) + `tauri.conf.json` (`externalBin`) verificados com `cargo check` (`9.06s`).
+- [x] **Interface operacional padronizada (7 telas) e fluxos reais testados no Windows:**
+  - Tokens visuais e componentes em `src/components/ui/StandardUi.tsx`, `src/styles.css`, `src/lib/coreApiClient.ts` e `src/components/screens/OperationalScreens.tsx`.
+  - Telas funcionais: **Escritório** (cena 5 andares + prova Andar 03 congeladas conforme Etapa 8 + telemetria live do núcleo), **Projetos** (inspeção real somente leitura em `G:\Meu Drive\Projetos Code`, GitHub/branches, `C:\`/`G:\`), **Agentes IA** (`DESCONHECIDO` por padrão + validação JSON-RPC MCP para Antigravity/Codex/Claude/ChatGPT + registro adicional), **Workspaces** (sandbox fora de `G:\`, SHA-256, conflitos, AES-256-GCM, recuperação e prévia `canCleanup()`), **Integrações**, **Testes e logs** (allowlist sem códigos ANSI e métricas Ryzen 5 5600G/16 GB RAM) e **Segurança** (KeePassXC `FictitiousVaultProvider` + checklist da Etapa 8).
+- [x] **Bateria sequencial completa pós-edição aprovada:**
+  - `sidecar:build` PASS (`98,67 MB`), `build` PASS (`5.30s`), Vitest **`26/26`** PASS, `test:policy` **`3/3`** PASS, `test:contracts` **`5/5`** PASS, `test:core` **`9/9`** PASS (incluindo spawn/reinício real do `.exe` Windows), Playwright `test:e2e` **`10/10`** PASS (`1.5m`, capturas `01..07*.png` inspecionadas via `read_file`), `cargo check` PASS (`9.06s`).
+- [ ] **Pendências preservadas (Etapa 8):** acabamento final da pixel art (pose/cadeira, mãos, mobiliário, oclusão e andares `01/02/04/05`) após validação com atividades reais.
+- [ ] **Decisão/aprovação humana pendente:** execução interativa do instalador/app Tauri empacotado, futuro cofre real `.kdbx`, integrações remotas e merges de branches.

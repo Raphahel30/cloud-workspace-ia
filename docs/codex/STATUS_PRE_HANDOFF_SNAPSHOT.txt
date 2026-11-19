@@ -371,3 +371,18 @@ VERIFICACOES/TESTES (sequencial pos-edicao):
 COMMIT / BRANCH: `agent/antigravity/floor03-pilot` (`43243f5`) e `agent/antigravity/setup`.
 PENDENCIAS:
 - Aprovacao humana do Andar 03 refinado antes de produzir os andares `01`, `02`, `04` e `05`.
+
+
+====================================================================
+[2026-11-19 00:12 UTC-3] ETAPA 5: NUCLEO TAURI 2 WINDOWS + INTERFACE OPERACIONAL PADRONIZADA (7 TELAS)
+====================================================================
+STATUS: CONCLUIDA (funcionamento do nucleo e das 7 telas validado no Windows; pixel art preservada e congelada para acabamento final conforme Etapa 8)
+O QUE FOI FEITO:
+- Branch `agent/antigravity/windows-functional` (`efccb91`) unificando `CORE-01..05` ao app Tauri 2 e mantendo `main`, PR #1, `core-mcp-drive` (`470fc0b`) e `floor03-pilot` (`43243f5`) intactos.
+- Empacotamento e controle Tauri 2: `scripts/build-sidecar-win.mjs` gera o executavel standalone Windows SEA (`cloud-workspace-core-x86_64-pc-windows-msvc.exe`, `98,67 MB`, Node 26.7.0 + `node:sqlite`), controlado em `src-tauri/src/lib.rs` (`SidecarSupervisor`) com startup/encerramento seguro, `Origin` allowlist, `X-CW-UI-Token` e `recoverInterruptedState()`.
+- Interface operacional padronizada (`src/components/ui/StandardUi.tsx`, `src/styles.css`, `src/lib/coreApiClient.ts`, `src/components/screens/OperationalScreens.tsx`, `src/App.tsx`): 7 telas reais (Escritorio preservado + resumo live, Projetos Drive `G:\` somente leitura, Agentes IA com estado `DESCONHECIDO` e validacao MCP individual, Workspaces sandbox fora de `G:\` com SHA-256/conflitos/AES-256-GCM/cleanup preview, Integracoes, Testes/Logs com hardware real e Seguranca com KeePassXC ficticio e checklist Etapa 8).
+VERIFICACOES/TESTES (sequencial pos-edicao):
+- `sidecar:build` PASS (`98,67 MB`, `--healthcheck` PASS); `build` (`5.30s`) PASS; Vitest `26/26` PASS; `test:policy` `3/3` PASS; `test:contracts` `5/5` PASS; `test:core` `9/9` PASS (incluindo testes reais do `.exe` standalone Windows); Playwright `test:e2e` `10/10` (`1.5m`) PASS; `cargo check` (`9.06s`) PASS; capturas `01..07*.png` inspecionadas via `read_file`.
+COMMIT / BRANCH: `agent/antigravity/windows-functional` (`efccb91`) e `agent/antigravity/setup`.
+PENDENCIAS:
+- Etapa 8 (pixel art congelada para fase final) e aprovacoes futuras para merge, cofre `.kdbx` real ou integracoes remotas.
