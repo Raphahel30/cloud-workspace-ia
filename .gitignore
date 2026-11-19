@@ -14,6 +14,7 @@ __pycache__/
 test-results/
 playwright-report/
 dist-core/
+dist-win-test/
 src-tauri/binaries/*.exe
 src-tauri/Cargo.lock
 src-tauri/gen/

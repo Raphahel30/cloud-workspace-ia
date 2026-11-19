@@ -293,10 +293,9 @@ async function coreRequest<T>(
   endpoint: string,
   options: { method?: 'GET' | 'POST'; body?: unknown } = {},
 ): Promise<T> {
-  const session = await ensureCoreSession();
-  const base = session.baseUrl || '';
-  const execute = async (tok: string) =>
-    fetch(`${base}${endpoint}`, {
+  let session = await ensureCoreSession();
+  const execute = async (baseUrl: string, tok: string) =>
+    fetch(`${baseUrl}${endpoint}`, {
       method: options.method ?? 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -305,10 +304,17 @@ async function coreRequest<T>(
       body: options.body === undefined ? undefined : JSON.stringify(options.body),
     });
 
-  let res = await execute(session.uiToken);
+  let res: Response;
+  try {
+    res = await execute(session.baseUrl || '', session.uiToken);
+  } catch {
+    session = await ensureCoreSession(true);
+    res = await execute(session.baseUrl || '', session.uiToken);
+  }
+
   if (res.status === 401) {
-    const refreshed = await ensureCoreSession(true);
-    res = await execute(refreshed.uiToken);
+    session = await ensureCoreSession(true);
+    res = await execute(session.baseUrl || '', session.uiToken);
   }
   const json = (await res.json()) as T & { error?: string };
   if (!res.ok) {

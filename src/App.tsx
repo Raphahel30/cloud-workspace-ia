@@ -50,9 +50,9 @@ export default function App() {
 
   const refreshCore = useCallback(async () => {
     try {
+      const ov = await coreApi.getOverview();
       const boot = await coreApi.bootstrap();
       setBootstrap(boot);
-      const ov = await coreApi.getOverview();
       setOverview(ov);
       setCoreStatusText(
         `Núcleo SQLite ativo · PID ${boot.sidecar.pid} · ${ov.counts.projects} projeto(s) G:\\`,
@@ -69,8 +69,18 @@ export default function App() {
         void refreshCore();
       }
     };
+    const timer = window.setInterval(() => {
+      if (!document.hidden) {
+        void refreshCore();
+      }
+    }, 4000);
     document.addEventListener('visibilitychange', onVis);
-    return () => document.removeEventListener('visibilitychange', onVis);
+    window.addEventListener('focus', onVis);
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('focus', onVis);
+    };
   }, [refreshCore]);
 
   useEffect(() => {

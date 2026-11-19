@@ -309,6 +309,19 @@ export class CoreSidecarServer {
       return true;
     }
 
+    if (originHeader) {
+      res.setHeader('Access-Control-Allow-Origin', originHeader);
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CW-UI-Token, Authorization');
+      res.setHeader('Vary', 'Origin');
+    }
+
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, { 'Cache-Control': 'no-store' });
+      res.end();
+      return true;
+    }
+
     if (urlPath === '/mcp') {
       if (req.method !== 'POST') {
         sendJson(res, 405, { error: 'Somente POST /mcp é suportado.' });

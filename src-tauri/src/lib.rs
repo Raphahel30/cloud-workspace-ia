@@ -24,6 +24,7 @@ pub struct SidecarStatusDto {
     pub executable_path: Option<String>,
     pub recovered_tasks: usize,
     pub recovered_workspaces: usize,
+    pub restart_count: u32,
     pub last_error: Option<String>,
 }
 
@@ -36,6 +37,7 @@ pub struct SidecarBootstrapDto {
     pub ui_token: String,
     pub pid: u32,
     pub port: u16,
+    pub restart_count: u32,
 }
 
 struct ManagedSidecar {
@@ -53,6 +55,7 @@ struct ManagedSidecar {
 pub struct SidecarSupervisor {
     inner: Mutex<Option<ManagedSidecar>>,
     last_error: Mutex<Option<String>>,
+    restart_count: Mutex<u32>,
 }
 
 impl Default for SidecarSupervisor {
@@ -60,6 +63,7 @@ impl Default for SidecarSupervisor {
         Self {
             inner: Mutex::new(None),
             last_error: Mutex::new(None),
+            restart_count: Mutex::new(0),
         }
     }
 }
@@ -123,10 +127,11 @@ impl SidecarSupervisor {
 
         let ui_token = Self::generate_ui_token();
         let mut cmd = Command::new(&exe_path);
-        cmd.args(["--port", "0", "--ui-token", &ui_token])
+        cmd.args(["--port", "0"])
+            .env("CW_UI_TOKEN", &ui_token)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
-            .stderr(Stdio::piped());
+            .stderr(Stdio::null());
 
         #[cfg(target_os = "windows")]
         cmd.creation_flags(CREATE_NO_WINDOW);
@@ -149,6 +154,14 @@ impl SidecarSupervisor {
         reader
             .read_line(&mut ready_line)
             .map_err(|e| format!("Falha ao ler handshake do sidecar: {e}"))?;
+
+        // Keep stdout pipe open and drained for the lifetime of the child process
+        std::thread::spawn(move || {
+            let mut sink = String::new();
+            while reader.read_line(&mut sink).unwrap_or(0) > 0 {
+                sink.clear();
+            }
+        });
 
         let parsed: Value = serde_json::from_str(ready_line.trim())
             .map_err(|e| format!("Handshake JSON inválido do sidecar: {e}"))?;
@@ -179,6 +192,7 @@ impl SidecarSupervisor {
 
         let pid = child.id();
         let exe_str = exe_path.to_string_lossy().to_string();
+        let restarts = self.restart_count.lock().map(|g| *g).unwrap_or(0);
 
         if let Ok(mut guard) = self.inner.lock() {
             *guard = Some(ManagedSidecar {
@@ -206,12 +220,20 @@ impl SidecarSupervisor {
             executable_path: Some(exe_str),
             recovered_tasks,
             recovered_workspaces,
+            restart_count: restarts,
             last_error: None,
         })
     }
 
+    fn bump_restart_count(&self) {
+        if let Ok(mut rc) = self.restart_count.lock() {
+            *rc += 1;
+        }
+    }
+
     pub fn status(&self) -> SidecarStatusDto {
         let err = self.last_error.lock().ok().and_then(|g| g.clone());
+        let restarts = self.restart_count.lock().map(|g| *g).unwrap_or(0);
         if let Ok(mut guard) = self.inner.lock() {
             if let Some(ref mut proc_handle) = *guard {
                 if let Ok(Some(_)) = proc_handle.child.try_wait() {
@@ -225,7 +247,8 @@ impl SidecarSupervisor {
                         executable_path: None,
                         recovered_tasks: 0,
                         recovered_workspaces: 0,
-                        last_error: Some("Sidecar encerrado inesperadamente; use Reiniciar.".to_string()),
+                        restart_count: restarts,
+                        last_error: Some("Sidecar encerrado inesperadamente; reiniciando núcleo.".to_string()),
                     };
                 }
                 return SidecarStatusDto {
@@ -237,6 +260,7 @@ impl SidecarSupervisor {
                     executable_path: Some(proc_handle.executable_path.clone()),
                     recovered_tasks: proc_handle.recovered_tasks,
                     recovered_workspaces: proc_handle.recovered_workspaces,
+                    restart_count: restarts,
                     last_error: err,
                 };
             }
@@ -250,14 +274,17 @@ impl SidecarSupervisor {
             executable_path: None,
             recovered_tasks: 0,
             recovered_workspaces: 0,
+            restart_count: restarts,
             last_error: err,
         }
     }
 
     pub fn bootstrap(&self) -> Result<SidecarBootstrapDto, String> {
-        if self.status().running == false {
+        if !self.status().running {
+            self.bump_restart_count();
             self.start()?;
         }
+        let restarts = self.restart_count.lock().map(|g| *g).unwrap_or(0);
         let guard = self
             .inner
             .lock()
@@ -272,6 +299,7 @@ impl SidecarSupervisor {
             ui_token: proc_handle.ui_token.clone(),
             pid: proc_handle.pid,
             port: proc_handle.port,
+            restart_count: restarts,
         })
     }
 }
@@ -294,6 +322,7 @@ fn core_sidecar_bootstrap(state: State<SidecarSupervisor>) -> Result<SidecarBoot
 
 #[tauri::command]
 fn core_sidecar_restart(state: State<SidecarSupervisor>) -> Result<SidecarStatusDto, String> {
+    state.bump_restart_count();
     state.start()
 }
 

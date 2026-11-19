@@ -26,7 +26,7 @@ async function main(): Promise<void> {
   }
 
   const port = Number(parseArg('--port') ?? '0');
-  const tokenArg = parseArg('--ui-token');
+  const tokenArg = parseArg('--ui-token') ?? process.env.CW_UI_TOKEN;
   const server = new CoreSidecarServer({
     localDataRootOverride: dataRootArg,
     dbPathOverride: dbPathArg,

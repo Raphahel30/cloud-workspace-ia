@@ -8,6 +8,7 @@ export const WINDOWS_TARGET_TRIPLE = 'x86_64-pc-windows-msvc';
 export const ALLOWED_TAURI_ORIGINS: ReadonlyArray<string> = [
   'http://127.0.0.1:1420',
   'http://localhost:1420',
+  'http://tauri.localhost',
   'tauri://localhost',
   'https://tauri.localhost',
 ];

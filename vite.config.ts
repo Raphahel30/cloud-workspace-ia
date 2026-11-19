@@ -60,7 +60,21 @@ function coreSidecarVitePlugin(): Plugin {
 export default defineConfig({
   plugins: [react(), coreSidecarVitePlugin()],
   clearScreen: false,
-  server: { host: '127.0.0.1', port: 1420, strictPort: true },
+  server: {
+    host: '127.0.0.1',
+    port: 1420,
+    strictPort: true,
+    watch: {
+      ignored: [
+        '**/src-tauri/target/**',
+        '**/src-tauri/binaries/**',
+        '**/dist-core/**',
+        '**/dist-win-test/**',
+        '**/test-results/**',
+        '**/playwright-report/**',
+      ],
+    },
+  },
   envPrefix: ['VITE_', 'TAURI_ENV_*'],
   build: { target: process.env.TAURI_ENV_PLATFORM === 'windows' ? 'chrome105' : 'es2022' },
 });

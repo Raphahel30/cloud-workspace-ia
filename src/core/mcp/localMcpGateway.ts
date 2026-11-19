@@ -343,6 +343,19 @@ export class LocalMcpGateway {
         return;
       }
 
+      if (originHeader) {
+        res.setHeader('Access-Control-Allow-Origin', originHeader);
+        res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader('Vary', 'Origin');
+      }
+
+      if (req.method === 'OPTIONS') {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+
       if (req.url !== '/mcp' || req.method !== 'POST') {
         res.writeHead(req.url !== '/mcp' ? 404 : 405, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: 'Only POST /mcp is supported.' }));
