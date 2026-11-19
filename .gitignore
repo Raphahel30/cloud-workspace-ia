@@ -13,3 +13,7 @@ src-tauri/target/
 __pycache__/
 test-results/
 playwright-report/
+dist-core/
+src-tauri/binaries/*.exe
+src-tauri/Cargo.lock
+src-tauri/gen/

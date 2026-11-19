@@ -12,6 +12,8 @@
     "desktop:build": "tauri build",
     "test:policy": "node --experimental-strip-types --test tests/scenePolicy.node.test.mjs",
     "test:contracts": "node --experimental-strip-types --test tests/agentState.node.test.mjs",
+    "test:core": "node --experimental-strip-types --test tests/core/core01_02.node.test.mjs tests/core/core03_04_05.node.test.mjs tests/core/sidecar_windows_integration.node.test.mjs",
+    "sidecar:build": "node scripts/build-sidecar-win.mjs",
     "test:e2e": "playwright test",
     "art:build": "node scripts/generate-assets.mjs",
     "benchmark:visual": "node scripts/benchmark-visual.mjs"
